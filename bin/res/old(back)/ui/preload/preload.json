@@ -1,0 +1,6 @@
+{"file":"preload.png","frames":{
+"continue":{"x":233,"y":250,"w":230,"h":76,"offX":0,"offY":0,"sourceW":230,"sourceH":76},
+"queding":{"x":340,"y":1,"w":131,"h":80,"offX":0,"offY":0,"sourceW":131,"sourceH":80},
+"quxiao":{"x":340,"y":83,"w":131,"h":80,"offX":0,"offY":0,"sourceW":131,"sourceH":80},
+"startButton":{"x":1,"y":250,"w":230,"h":76,"offX":0,"offY":0,"sourceW":230,"sourceH":76},
+"tanchukuang":{"x":1,"y":1,"w":337,"h":247,"offX":0,"offY":0,"sourceW":337,"sourceH":247}}}

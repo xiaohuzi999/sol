@@ -1,0 +1,15 @@
+{"file":"pointMall.png","frames":{
+"60a":{"x":1,"y":420,"w":452,"h":102,"offX":0,"offY":0,"sourceW":452,"sourceH":102},
+"60b":{"x":308,"y":606,"w":151,"h":80,"offX":0,"offY":0,"sourceW":151,"sourceH":80},
+"300a":{"x":1,"y":108,"w":452,"h":102,"offX":0,"offY":0,"sourceW":452,"sourceH":102},
+"300b":{"x":1,"y":677,"w":151,"h":80,"offX":0,"offY":0,"sourceW":151,"sourceH":80},
+"980a":{"x":1,"y":212,"w":452,"h":102,"offX":0,"offY":0,"sourceW":452,"sourceH":102},
+"980b":{"x":155,"y":606,"w":151,"h":80,"offX":0,"offY":0,"sourceW":151,"sourceH":80},
+"1980a":{"x":1,"y":316,"w":452,"h":102,"offX":0,"offY":0,"sourceW":452,"sourceH":102},
+"1980b":{"x":1,"y":595,"w":152,"h":80,"offX":0,"offY":0,"sourceW":152,"sourceH":80},
+"3280a":{"x":1,"y":1,"w":452,"h":105,"offX":0,"offY":0,"sourceW":452,"sourceH":105},
+"3280b":{"x":249,"y":524,"w":152,"h":80,"offX":0,"offY":0,"sourceW":152,"sourceH":80},
+"gongji":{"x":461,"y":602,"w":39,"h":42,"offX":0,"offY":0,"sourceW":39,"sourceH":42},
+"gongjishangdian":{"x":1,"y":524,"w":246,"h":69,"offX":0,"offY":0,"sourceW":246,"sourceH":69},
+"shuangbei":{"x":403,"y":524,"w":76,"h":76,"offX":0,"offY":0,"sourceW":76,"sourceH":76},
+"zi":{"x":154,"y":688,"w":339,"h":33,"offX":0,"offY":0,"sourceW":339,"sourceH":33}}}
