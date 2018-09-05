@@ -6,7 +6,7 @@ class UserReq{
 
     }
 
-    public static getUserInfo(cb:Handler):void{
+    public static getUserInfo(cb?:Handler):void{
         let userInfo:any = XDB.getData(XDB.USER);
         if(userInfo){
             userInfo = JSON.parse(userInfo);
@@ -17,7 +17,7 @@ class UserReq{
             //create bag
         }
         User.getInstance().update(userInfo);
-        cb.run();
+        cb && cb.run();
     }
 
 
@@ -26,7 +26,8 @@ class UserReq{
             name:"xiaohuzi999", 
             pic:"",
             money:0, 
-            diamond:0
+            diamond:6,
+            power:10
         };
     }
 

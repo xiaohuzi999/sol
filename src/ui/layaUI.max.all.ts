@@ -1,11 +1,36 @@
 
 import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
+module ui.fight {
+    export class FightViewUI extends View {
+
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.fight.FightViewUI.uiView);
+
+        }
+
+    }
+}
+
 module ui.main {
     export class MainViewUI extends View {
+		public roleBtn:Laya.Image;
+		public btnRank:Laya.Image;
+		public btnMore:Laya.Image;
 		public btnStart:Laya.Image;
+		public btnSignin:Laya.Image;
+		public btnUserInfo:Laya.Image;
+		public tfDiamond:Laya.Label;
+		public tfPower:Laya.Label;
+		public tfMoney:Laya.Label;
+		public btnAddPower:Laya.Button;
+		public cardBtn:Laya.Image;
 
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}},{"type":"Image","props":{"y":436,"x":174,"var":"btnStart","skin":"main/bj_piece.png","mouseEnabled":true}}]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}},{"type":"Image","props":{"y":1159,"x":330,"var":"roleBtn","skin":"main/btn_role.png"}},{"type":"Image","props":{"y":1159,"x":64,"var":"btnRank","skin":"main/btn_ranking.png"}},{"type":"Image","props":{"y":128,"x":589,"visible":false,"var":"btnMore"}},{"type":"Image","props":{"y":1020,"x":242,"var":"btnStart","skin":"main/btn_play.png","mouseEnabled":true}},{"type":"Image","props":{"y":244,"x":24,"var":"btnSignin","skin":"main/btn_sign.png"}},{"type":"Image","props":{"y":116,"x":20,"width":88,"var":"btnUserInfo","skin":"main/ic_add_power.png","height":88},"child":[{"type":"Sprite","props":{"y":0,"x":0,"width":88,"renderType":"mask","height":88},"child":[{"type":"Circle","props":{"y":44,"x":44,"radius":44,"lineWidth":1,"fillColor":"#d12424"}}]}]},{"type":"Box","props":{"y":28,"x":20},"child":[{"type":"Image","props":{"y":14,"x":30,"skin":"main/ic_bg.png"}},{"type":"Label","props":{"y":21,"x":64,"width":45,"var":"tfDiamond","text":"11","height":24,"fontSize":24,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"width":60,"skin":"main/ic_star.png"}}]},{"type":"Box","props":{"y":28,"x":362},"child":[{"type":"Image","props":{"y":14,"x":30,"skin":"main/ic_bg.png"}},{"type":"Label","props":{"y":21,"x":64,"width":76,"var":"tfPower","text":"56","height":24,"fontSize":24,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"skin":"main/ic_power.png"}}]},{"type":"Box","props":{"y":31,"x":190},"child":[{"type":"Image","props":{"y":14,"x":30,"skin":"main/ic_bg.png"}},{"type":"Image","props":{"width":60,"skin":"main/ic_coin.png","height":60}},{"type":"Label","props":{"y":21,"x":64,"width":52,"var":"tfMoney","text":"99","height":24,"fontSize":24,"color":"#ffffff","align":"center"}}]},{"type":"Button","props":{"y":41,"x":132,"var":"btnAddPower","stateNum":1,"skin":"main/btn_add.png"}},{"type":"Image","props":{"y":1159,"x":605,"var":"cardBtn","skin":"main/btn_card.png"}},{"type":"Label","props":{"y":1279,"x":71,"text":"排行榜","fontSize":25,"color":"#ffffff","align":"center"}},{"type":"Label","props":{"y":1279,"x":350,"text":"角色","fontSize":25,"color":"#ffffff","align":"center"}},{"type":"Label","props":{"y":1279,"x":600,"text":"音乐卡片","fontSize":25,"color":"#ffffff","align":"center"}},{"type":"Label","props":{"y":324,"x":36,"text":"签到","fontSize":25,"color":"#ffffff"}}]};
         constructor(){ super()}
         createChildren():void {
         
@@ -26,30 +51,6 @@ module ui.story {
         
             super.createChildren();
             this.createView(ui.story.StoryViewUI.uiView);
-
-        }
-
-    }
-}
-
-module ui.test {
-    export class TestPageUI extends View {
-		public btn:Laya.Button;
-		public clip:Laya.Clip;
-		public combobox:Laya.ComboBox;
-		public tab:Laya.Tab;
-		public list:Laya.List;
-		public btn2:Laya.Button;
-		public check:Laya.CheckBox;
-		public radio:Laya.RadioGroup;
-		public box:Laya.Box;
-
-        public static  uiView:any ={"type":"View","child":[{"props":{"x":0,"y":0,"skin":"comp/bg.png","sizeGrid":"30,4,4,4","width":600,"height":400},"type":"Image"},{"props":{"x":41,"y":56,"skin":"comp/button.png","label":"点我赋值","width":150,"height":37,"sizeGrid":"4,4,4,4","var":"btn"},"type":"Button"},{"props":{"x":401,"y":56,"skin":"comp/clip_num.png","clipX":10,"var":"clip"},"type":"Clip"},{"props":{"x":220,"y":143,"skin":"comp/combobox.png","labels":"select1,select2,selecte3","selectedIndex":1,"sizeGrid":"4,20,4,4","width":200,"height":23,"var":"combobox"},"type":"ComboBox"},{"props":{"x":220,"y":96,"skin":"comp/tab.png","labels":"tab1,tab2,tab3","var":"tab"},"type":"Tab"},{"props":{"x":259,"y":223,"skin":"comp/vscroll.png","height":150},"type":"VScrollBar"},{"props":{"x":224,"y":223,"skin":"comp/vslider.png","height":150},"type":"VSlider"},{"type":"List","child":[{"type":"Box","child":[{"props":{"skin":"comp/label.png","text":"this is a list","x":26,"y":5,"width":78,"height":20,"fontSize":14,"name":"label"},"type":"Label"},{"props":{"x":0,"y":2,"skin":"comp/clip_num.png","clipX":10,"name":"clip"},"type":"Clip"}],"props":{"name":"render","x":0,"y":0,"width":112,"height":30}}],"props":{"x":452,"y":68,"width":128,"height":299,"vScrollBarSkin":"comp/vscroll.png","repeatX":1,"var":"list"}},{"props":{"x":563,"y":4,"skin":"comp/btn_close.png","name":"close"},"type":"Button"},{"props":{"x":41,"y":112,"skin":"comp/button.png","label":"点我赋值","width":150,"height":66,"sizeGrid":"4,4,4,4","labelSize":30,"labelBold":true,"var":"btn2"},"type":"Button"},{"props":{"x":220,"y":188,"skin":"comp/checkbox.png","label":"checkBox1","var":"check"},"type":"CheckBox"},{"props":{"x":220,"y":61,"skin":"comp/radiogroup.png","labels":"radio1,radio2,radio3","var":"radio"},"type":"RadioGroup"},{"type":"Panel","child":[{"props":{"skin":"comp/image.png"},"type":"Image"}],"props":{"x":299,"y":223,"width":127,"height":150,"vScrollBarSkin":"comp/vscroll.png"}},{"props":{"x":326,"y":188,"skin":"comp/checkbox.png","label":"checkBox2","labelColors":"#ff0000"},"type":"CheckBox"},{"type":"Box","child":[{"props":{"y":70,"skin":"comp/progress.png","width":150,"height":14,"sizeGrid":"4,4,4,4","name":"progress"},"type":"ProgressBar"},{"props":{"y":103,"skin":"comp/label.png","text":"This is a Label","width":137,"height":26,"fontSize":20,"name":"label"},"type":"Label"},{"props":{"y":148,"skin":"comp/textinput.png","text":"textinput","width":150,"name":"input"},"type":"TextInput"},{"props":{"skin":"comp/hslider.png","width":150,"name":"slider"},"type":"HSlider"},{"props":{"y":34,"skin":"comp/hscroll.png","width":150,"name":"scroll"},"type":"HScrollBar"}],"props":{"x":41,"y":197,"var":"box"}}],"props":{"width":600,"height":400}};
-        constructor(){ super()}
-        createChildren():void {
-        
-            super.createChildren();
-            this.createView(ui.test.TestPageUI.uiView);
 
         }
 

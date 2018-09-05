@@ -21,14 +21,14 @@ class StoryView extends xframe.XWindow{
     }
 
     private showStory():void{
-        trace("showStory=============================");
         this._curDialog = this.getCurDialog(this._curStory);
+        trace("showStory===",this._curDialog);
         //trace(this._curDialog);
         if(this._curDialog){
             if(this._curDialog.dialog){
                 trace(this._curDialog.name+"::", this._curDialog.dialog);
-                this.execute();
             }
+            this.execute();
         }else{
 
         }
@@ -44,7 +44,11 @@ class StoryView extends xframe.XWindow{
         }
         //是否具有事件
         else if(this._curDialog.eventInfo){
-            trace("事件：：",this._curDialog.eventInfo)
+            trace("事件：：",this._curDialog.eventInfo);
+            //fight 
+            if(this._curDialog.eventInfo.fight){
+                xframe.XFacade.instance.showModule(FightView, this._curDialog.eventInfo.fight)
+            }
         }
         //是否具有数据操作
         else if(this._curDialog.dataInfo){

@@ -55,7 +55,7 @@ module xframe{
 		 * @param srcObj 需要克隆的对象
 		 * @return 一个新对象;
 		 */
-		public static clone(srcObj:any[]|{}):Object{
+		public static clone(srcObj:any[]|{}):any{
 			if(srcObj instanceof Array){
 				return [...srcObj];
 			}

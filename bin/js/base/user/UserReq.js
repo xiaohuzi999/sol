@@ -16,14 +16,15 @@ var UserReq = /** @class */ (function () {
             //create bag
         }
         User.getInstance().update(userInfo);
-        cb.run();
+        cb && cb.run();
     };
     UserReq.createUser = function () {
         return {
             name: "xiaohuzi999",
             pic: "",
             money: 0,
-            diamond: 0
+            diamond: 6,
+            power: 10
         };
     };
     UserReq.createRole = function () {

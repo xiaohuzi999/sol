@@ -1,10 +1,12 @@
 /*
 * name;
 */
-class User extends Laya.EventDispatcher{
+class User{
     public name:string;
 
     public pic:string;
+
+    public power:number;
 
     public money:number;
     
@@ -14,7 +16,6 @@ class User extends Laya.EventDispatcher{
     //
     public static readonly UPDATE:string = "update";
     constructor(){
-        super();
     }
 
     //更新
@@ -23,7 +24,7 @@ class User extends Laya.EventDispatcher{
             this[i] = value[i];
         }
         //
-        this.event(User.UPDATE);
+        xframe.XEvent.instance.event(User.UPDATE);
     }
 
     public static getInstance():User{

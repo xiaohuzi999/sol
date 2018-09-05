@@ -1,5 +1,5 @@
 /*
-* name;
+* name; 
 */
 class Role{
     public id:number=1;
@@ -9,10 +9,16 @@ class Role{
     public lv:number = 1;
 
     public exp:number = 0;
+
+    //
+    public physique:number = 1;
+    
+    public strength:number = 1;
+    
+    public agility:number = 1;
+
     //
     public attack:number = 1;
-
-    public defend:number = 1;
 
     public hp:number = 10;
 
@@ -21,7 +27,12 @@ class Role{
     public speed:number = 2;
 
     //
+    public dodgeRate:number;
+    public critRate:number;
+
     constructor(){
 
     }
+
+    
 }
