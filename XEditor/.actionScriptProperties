@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<actionScriptProperties analytics="false" mainApplicationPath="Main.as" projectUUID="1dbb91e2-ad99-4437-9b02-3e042a75ca7f" version="11">
+  <compiler additionalCompilerArguments="-locale" advancedTelemetry="false" autoRSLOrdering="true" copyDependentFiles="true" fteInMXComponents="false" generateAccessible="false" htmlExpressInstall="true" htmlGenerate="false" htmlHistoryManagement="false" htmlPlayerVersionCheck="true" includeNetmonSwc="false" outputFolderPath="bin-debug" removeUnusedRSL="true" sourceFolderPath="src" strict="true" targetPlayerVersion="0.0.0" useApolloConfig="true" useDebugRSLSwfs="true" useFlashSDK="true" verifyDigests="true" warn="true">
+    <compilerSourcePath>
+      <compilerSourcePathEntry kind="1" linkType="1" path="D:/private/sol/XFrame/src"/>
+    </compilerSourcePath>
+    <libraryPath defaultLinkType="0">
+      <libraryPathEntry kind="4" path="">
+        <excludedEntries>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_charts.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="1" linkType="1" path="${PROJECT_FRAMEWORKS}/locale/{locale}"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/qtp.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/advancedgrids.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_air.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/charts.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/airspark.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/framework.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/mx/mx.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/netmon.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/sparkskins.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/rpc.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/datavisualization.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/qtp_air.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/videoPlayer.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/spark_dmv.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/flash-integration.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_dmv.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/air/airframework.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_flashflexkit.swc" useDefaultLinkType="false"/>
+          <libraryPathEntry kind="3" linkType="1" path="${PROJECT_FRAMEWORKS}/libs/automation_agent.swc" useDefaultLinkType="false"/>
+        </excludedEntries>
+      </libraryPathEntry>
+      <libraryPathEntry kind="1" linkType="1" path="libs"/>
+    </libraryPath>
+    <sourceAttachmentPath/>
+  </compiler>
+  <applications>
+    <application path="Main.as">
+      <airExcludes/>
+    </application>
+  </applications>
+  <modules/>
+  <workers/>
+  <buildCSSFiles/>
+  <flashCatalyst validateFlashCatalystCompatibility="false"/>
+  <buildTargets>
+    <buildTarget buildTargetName="default" platformId="default">
+      <airSettings airCertificatePath="C:/宸ヤ綔/starling/StarBall/libs/璇佷功.p12" airTimestamp="true" anePathSet="true" version="1">
+        <airExcludes>
+          <pathEntry path="assets/data/绗簲绔�闃垮皵鍗戞柉灞�xls"/>
+          <pathEntry path="assets/data/绗竴绔�绋氬瓙.xls"/>
+          <pathEntry path="assets/data/npc.txt"/>
+          <pathEntry path="assets/data/绗簩绔�xls"/>
+          <pathEntry path="assets/data/rewardData.txt"/>
+          <pathEntry path="assets/data/涓夌晫琛�瓕涓荤嚎.xlsx"/>
+          <pathEntry path="assets/data/绗崄鍏珷 绁炵厡鎴樺満.xls"/>
+          <pathEntry path="assets/data/涓夌晫琛�瓕閬撳叿鍙奛PC璁惧畾.xlsx"/>
+          <pathEntry path="assets/data/绗崄绔�璧よ挋澶�xls"/>
+          <pathEntry path="assets/data/绗崄浜旂珷 灏忛泚鑽�xls"/>
+          <pathEntry path="assets/data/绗叓绔�鑽ф儜閬撳満.xls"/>
+          <pathEntry path="assets/data/绗崄鍏珷 灏惧０.xls"/>
+          <pathEntry path="assets/graphics/mood/Thumbs.db"/>
+          <pathEntry path="assets/data/涓夌晫琛�瓕閬撳叿鍙奛PC璁惧畾.xls"/>
+          <pathEntry path="assets/data/鏂扮増绗竴绔�xls"/>
+          <pathEntry path="assets/data/绗崄鍥涚珷 鍦婁簯宸�xls"/>
+          <pathEntry path="assets/data/绗崄涓�珷 鐐庣伒鐣�xls"/>
+          <pathEntry path="assets/data/鏂扮増绗簩绔�xls"/>
+          <pathEntry path="assets/data/绗叚绔�姣嶅瓙閲嶉�.xls"/>
+          <pathEntry path="assets/data/绗洓绔�鍥存敾鍑″崲灏斿煄.xls"/>
+          <pathEntry path="assets/data/绗崄浜岀珷 涓や华鏄�xls"/>
+          <pathEntry path="assets/data/绗崄涓冪珷 鐣岀巹鍏�xls"/>
+          <pathEntry path="assets/data/绗崄涓夌珷 鐜勫ぉ搴�xls"/>
+          <pathEntry path="assets/data/绗竷绔�閭欏北楝煎簻.xls"/>
+          <pathEntry path="assets/data/item.txt"/>
+          <pathEntry path="assets/data/绗笁绔�杩斿洖娈锋棌.xls"/>
+          <pathEntry path="assets/data/npcJosn.txt"/>
+          <pathEntry path="assets/data/growUpData.txt"/>
+          <pathEntry path="assets/data/绗節绔�绗竴涓栧.xls"/>
+          <pathEntry path="assets/data/heroData.txt"/>
+        </airExcludes>
+        <anePaths/>
+        <newLaunchParams/>
+        <modifiedLaunchParams/>
+        <newPackagingParams/>
+        <modifiedPackagingParams/>
+      </airSettings>
+      <actionScriptSettings version="1"/>
+    </buildTarget>
+  </buildTargets>
+</actionScriptProperties>
