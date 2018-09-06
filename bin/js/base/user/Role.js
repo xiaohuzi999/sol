@@ -2,21 +2,74 @@
 * name;
 */
 var Role = /** @class */ (function () {
-    function Role() {
-        this.id = 1;
+    function Role(data) {
+        if (data === void 0) { data = null; }
+        /**角色名*/
         this.name = "";
-        this.lv = 1;
+        /**头像*/
+        this.pic = "";
+        /**战斗形象*/
+        this.fightPic = "";
+        /**经验*/
         this.exp = 0;
-        //
-        this.physique = 1;
-        this.strength = 1;
-        this.agility = 1;
-        //
+        /**升级经验*/
+        this.lvExp = 1;
+        /**等级*/
+        this.lv = 0;
+        /**技能列表*/
+        this.skills = [];
+        //一级属性===================================================
+        /**HP*/
+        this.hp = 1;
+        /**最大HP*/
+        this.maxHp = 1;
+        /**攻击*/
         this.attack = 1;
-        this.hp = 10;
-        this.maxHp = 10;
-        this.speed = 2;
+        /**闪避*/
+        this.dodge = 0;
+        /**暴击*/
+        this.crit = 0;
+        //二级属性==================================================
+        /**体质*/
+        this.physique = 0;
+        /**敏捷*/
+        this.agility = 0;
+        //
+        this.strength = 0;
+        /**攻击成长*/
+        this.strengthGrow = 1;
+        /**体质成长*/
+        this.physiqueGrow = 0;
+        /**敏捷成长*/
+        this.agilityGrow = 0;
+        /**速度*/
+        this.speed = 0;
+        //装备=============================================
+        this.weapon = [];
+        //服务端逻辑用============================================================
+        /**是否NPC，即是否采用AI逻辑*/
+        this.isNpc = false;
+        /**所在队伍*/
+        this.fightTeam = 0;
+        /**状态 */
+        this.state = 0;
+        if (data) {
+            this.setValue(data);
+        }
     }
+    /**
+     *赋值
+     * @param valueObj 值对象,JSON格式化对象
+     */
+    Role.prototype.setValue = function (valueObj) {
+        for (var i in valueObj) {
+            this[i] = valueObj[i];
+        }
+    };
+    /**状态常量-正常 */
+    Role.NORMAL = 0;
+    /**状态常量-参战 */
+    Role.IN_FIGHT = 1;
     return Role;
 }());
 //# sourceMappingURL=Role.js.map

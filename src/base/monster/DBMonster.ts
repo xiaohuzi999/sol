@@ -15,7 +15,7 @@ class DBMonster{
     public static getMonsterInfo(id:any):Role{
         for(let i in this._data){
             if(this._data[i].id == id){
-                return {...this._data[i]};
+                return this._data[i];
             }
         }
         return null;
@@ -29,8 +29,8 @@ class DBMonster{
         role.attack = role.strength*5;
         role.hp = role.maxHp = role.physique*10;
         role.speed = role.agility*1
-        role.critRate = role.strength*0.1;
-        role.dodgeRate = role.agility*0.2;
+        role.crit = role.strength*0.1;
+        role.dodge = role.agility*0.2;
         return role;
     }
 }

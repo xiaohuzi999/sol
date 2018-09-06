@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":38,
+    "selecteID":53,
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
     "label":"View",
@@ -22,6 +22,104 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":41,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"fight/HeroItem.ui",
+            "props":{"y":1097,"x":20,"var":"hero_0","runtime":"HeroItem"},
+            "nodeParent":1,
+            "label":"UIView(hero_0)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":46,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"fight/HeroItem.ui",
+            "props":{"y":1097,"x":270,"var":"hero_1","runtime":"HeroItem"},
+            "nodeParent":1,
+            "label":"UIView(hero_1)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":54,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"fight/HeroItem.ui",
+            "props":{"y":1097,"x":520,"var":"hero_2","runtime":"HeroItem"},
+            "nodeParent":1,
+            "label":"UIView(hero_2)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":55,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"fight/EnemyItem.ui",
+            "props":{"y":92,"x":38,"var":"enemy_0","runtime":"EnemyItem"},
+            "nodeParent":1,
+            "label":"UIView(enemy_0)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":50,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"fight/EnemyItem.ui",
+            "props":{"y":62,"x":255,"var":"enemy_1","runtime":"EnemyItem"},
+            "nodeParent":1,
+            "label":"UIView(enemy_1)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":51,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"fight/EnemyItem.ui",
+            "props":{"y":412,"x":14,"var":"enemy_2","runtime":"EnemyItem"},
+            "nodeParent":1,
+            "label":"UIView(enemy_2)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":52,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"fight/EnemyItem.ui",
+            "props":{"y":216,"x":384,"var":"enemy_3","runtime":"EnemyItem"},
+            "nodeParent":1,
+            "label":"UIView(enemy_3)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":53,
             "child":[
                 ]
         }],

@@ -25,6 +25,88 @@ var FightView = /** @class */ (function (_super) {
         trace("FightView::", args[0]);
         //====
         trace("monster==========>>", DBMonster.calcTotalPro(args[0]));
+        this.initFight(args[0]);
+    };
+    FightView.prototype.initFight = function (fighters) {
+        var hero = UserReq.getFightTeam();
+        var enemy = FightModel.initNpc(fighters);
+        this.initHero(hero);
+        this.initEnemy(enemy);
+        FightModel.initFight(hero, enemy);
+        //开始战斗
+        FightModel.startFight();
+    };
+    /**战斗指令*/
+    FightView.prototype.execFight = function (vo) {
+        this._curVo = vo;
+        trace("excuteFight------->", vo);
+        var fighter = this.getFighter(vo.nowId);
+        fighter.attack(Handler.create(this, this.execFightEff));
+    };
+    //
+    FightView.prototype.execFightEff = function () {
+        trace("x______________", this._curVo.fightInfo);
+        for (var i in this._curVo.fightInfo) {
+            trace("i________________", i);
+            var fighter = this.getFighter(i);
+            fighter.beAttacked();
+        }
+        FightModel.actionComplete();
+    };
+    FightView.prototype.onFightEvent = function (type, data) {
+        trace("onFightEvent:::::::::::>", type, data);
+        switch (type) {
+            case FightModel.TURN:
+                //
+                break;
+            case FightModel.UPDATEINFO:
+                this.execFight(data);
+                break;
+            case FightModel.WIN:
+                break;
+            case FightModel.LOSE:
+                break;
+        }
+    };
+    FightView.prototype.getFighter = function (uid) {
+        var vo;
+        for (var i = 0; i < 3; i++) {
+            vo = this._view["hero_" + i].data;
+            if (vo && vo.uid == uid) {
+                return this._view["hero_" + i];
+            }
+        }
+        for (var i = 0; i < 4; i++) {
+            vo = this._view["enemy_" + i].data;
+            if (vo && vo.uid == uid) {
+                return this._view["hero_" + i];
+            }
+        }
+        return null;
+    };
+    //
+    FightView.prototype.initHero = function (list) {
+        for (var i = 0; i < 3; i++) {
+            this._view["hero_" + i].data = list[i];
+        }
+    };
+    //
+    FightView.prototype.initEnemy = function (list) {
+        for (var i = 0; i < 4; i++) {
+            this._view["enemy_" + i].data = list[i];
+        }
+    };
+    FightView.prototype.addEventListener = function () {
+        xframe.XEvent.instance.on(FightModel.TURN, this, this.onFightEvent, [FightModel.TURN]);
+        xframe.XEvent.instance.on(FightModel.UPDATEINFO, this, this.onFightEvent, [FightModel.UPDATEINFO]);
+        xframe.XEvent.instance.on(FightModel.WIN, this, this.onFightEvent, [FightModel.WIN]);
+        xframe.XEvent.instance.on(FightModel.LOSE, this, this.onFightEvent, [FightModel.LOSE]);
+    };
+    FightView.prototype.removeEventListener = function () {
+        xframe.XEvent.instance.off(FightModel.TURN, this, this.onFightEvent);
+        xframe.XEvent.instance.off(FightModel.UPDATEINFO, this, this.onFightEvent);
+        xframe.XEvent.instance.off(FightModel.WIN, this, this.onFightEvent);
+        xframe.XEvent.instance.off(FightModel.LOSE, this, this.onFightEvent);
     };
     FightView.prototype.createUI = function () {
         this._view = new ui.fight.FightViewUI();

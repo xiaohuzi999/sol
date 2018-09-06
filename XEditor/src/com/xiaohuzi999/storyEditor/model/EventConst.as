@@ -13,6 +13,7 @@ package com.xiaohuzi999.storyEditor.model
 		public static const JOIN_TEAM:String = "joinTeam";
 		public static const LEFT_TEAM:String = "leftTeam";
 		public static const GAME_OVER:String = "gameOver";
+		public static const START:String = "start";
 		public function EventConst()
 		{
 		}

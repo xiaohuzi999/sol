@@ -34,6 +34,17 @@ var xframe;
             return true;
         };
         /**
+         * 删除数组某个元素
+         * @param src 原数组
+         * @param item 需要删除的数据;
+         */
+        XUtils.delArrItem = function (src, item) {
+            var index = src.indexOf(item);
+            if (index > -1) {
+                src.splice(index, 1);
+            }
+        };
+        /**
          * 数字跳动效果
          * @param curNum 当前值
          * @param targetNum 目标值

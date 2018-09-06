@@ -3,12 +3,18 @@
 */
 var User = /** @class */ (function () {
     function User() {
+        //
+        this.heros = [];
+        //
+        this.pets = [];
     }
     //更新
     User.prototype.update = function (value) {
+        trace("updatexxxxxxxxxxxxx", value);
         for (var i in value) {
             this[i] = value[i];
         }
+        trace(this.role);
         //
         xframe.XEvent.instance.event(User.UPDATE);
     };

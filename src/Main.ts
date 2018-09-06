@@ -12,7 +12,12 @@ Laya.init(750, 1334, WebGL);
 Laya.ResourceVersion.enable("version.json", Handler.create(null, beginLoad), Laya.ResourceVersion.FILENAME_VERSION);
 
 function beginLoad(){
-	Laya.loader.load(["res/atlas/main.atlas", "cfgs/chap_0.txt","cfgs/npc.txt"], Handler.create(null, onLoaded));
+	Laya.loader.load([
+		"res/atlas/main.atlas",
+		"res/atlas/fight.atlas",
+		"cfgs/chap_0.txt",
+		"cfgs/npc.txt"
+		], Handler.create(null, onLoaded));
 }
 
 function onLoaded(): void {

@@ -2,14 +2,54 @@
 import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
 module ui.fight {
-    export class FightViewUI extends View {
+    export class EnemyItemUI extends View {
+		public pic:Laya.Image;
 
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}}]};
+        public static  uiView:any ={"type":"View","props":{"width":300,"height":450},"child":[{"type":"Image","props":{"y":0,"x":0,"var":"pic"}},{"type":"Rect","props":{"y":0,"x":0,"width":300,"lineWidth":2,"lineColor":"#000000","height":450,"fillColor":"#737373"}}]};
         constructor(){ super()}
         createChildren():void {
         
             super.createChildren();
+            this.createView(ui.fight.EnemyItemUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.fight {
+    export class FightViewUI extends View {
+		public hero_0:HeroItem;
+		public hero_1:HeroItem;
+		public hero_2:HeroItem;
+		public enemy_0:EnemyItem;
+		public enemy_1:EnemyItem;
+		public enemy_2:EnemyItem;
+		public enemy_3:EnemyItem;
+
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}},{"type":"HeroItem","props":{"y":1097,"x":20,"var":"hero_0","runtime":"HeroItem"}},{"type":"HeroItem","props":{"y":1097,"x":270,"var":"hero_1","runtime":"HeroItem"}},{"type":"HeroItem","props":{"y":1097,"x":520,"var":"hero_2","runtime":"HeroItem"}},{"type":"EnemyItem","props":{"y":92,"x":38,"var":"enemy_0","runtime":"EnemyItem"}},{"type":"EnemyItem","props":{"y":62,"x":255,"var":"enemy_1","runtime":"EnemyItem"}},{"type":"EnemyItem","props":{"y":412,"x":14,"var":"enemy_2","runtime":"EnemyItem"}},{"type":"EnemyItem","props":{"y":216,"x":384,"var":"enemy_3","runtime":"EnemyItem"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        			View.regComponent("HeroItem",HeroItem);
+			View.regComponent("EnemyItem",EnemyItem);
+
+            super.createChildren();
             this.createView(ui.fight.FightViewUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.fight {
+    export class HeroItemUI extends View {
+
+        public static  uiView:any ={"type":"View","props":{"width":216,"height":220},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"fight/tx.png"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.fight.HeroItemUI.uiView);
 
         }
 

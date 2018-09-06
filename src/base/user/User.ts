@@ -11,6 +11,13 @@ class User{
     public money:number;
     
     public diamond:number;
+    //
+    public role:Role;
+    //
+    public heros:Role[] = [];
+    //
+    public pets:Role[] = [];
+
     //单例;
     private static _instance:User;
     //
@@ -20,9 +27,11 @@ class User{
 
     //更新
     public update(value:any):void{
+        trace("updatexxxxxxxxxxxxx", value)
         for(var i in value){
             this[i] = value[i];
         }
+        trace(this.role);
         //
         xframe.XEvent.instance.event(User.UPDATE);
     }

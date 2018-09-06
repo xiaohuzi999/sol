@@ -1,0 +1,12 @@
+﻿{"0":{"physiqueGrow":1,"physique":10,"pic":"yinxuege","roleName":"殷血歌","skillName":"沥血爪","agility":10,"fightPic":"9000","quality":"A","id":"0","attack":10,"defendGrow":1,"agilityGrow":1,"attackGrow":1},
+"1":{"physiqueGrow":1.1,"physique":11,"pic":"wumu","roleName":"乌木","skillName":"防御姿态","agility":9.5,"fightPic":"9001","quality":"A","id":"1","attack":10,"defendGrow":1.1,"agilityGrow":0.95,"attackGrow":1},
+"2":{"physiqueGrow":0.95,"physique":9.5,"pic":"fennisi","roleName":"芬妮丝","skillName":"治疗","agility":9.5,"fightPic":"1009","quality":"D","id":"2","attack":10,"defendGrow":0.95,"agilityGrow":0.95,"attackGrow":1},
+"3":{"physiqueGrow":0.95,"physique":9.5,"pic":"laitening","roleName":"莱特宁","skillName":"闪电链","agility":9.5,"fightPic":"1014","quality":"D","id":"3","attack":11,"defendGrow":0.95,"agilityGrow":0.95,"attackGrow":1},
+"4":{"physiqueGrow":1.05,"physique":10.5,"pic":"sangdeer","roleName":"桑德尔","skillName":"嘲讽","agility":9.5,"fightPic":"1029","quality":"D","id":"4","attack":9.5,"defendGrow":1.05,"agilityGrow":0.95,"attackGrow":0.95},
+"5":{"physiqueGrow":0.95,"physique":9.5,"pic":"ailun","roleName":"艾伦","skillName":"狂暴","agility":10,"fightPic":"1038","quality":"D","id":"5","attack":10,"defendGrow":0.95,"agilityGrow":1,"attackGrow":0.95},
+"6":{"physiqueGrow":0.95,"physique":9.5,"pic":"fayinlan","roleName":"珐茵岚","skillName":"衰弱","agility":9.5,"fightPic":"1035","quality":"C","id":"6","attack":11,"defendGrow":0.95,"agilityGrow":0.95,"attackGrow":1.05},
+"7":{"physiqueGrow":0.95,"physique":9.5,"pic":"qiaolusi","roleName":"乔卢斯","skillName":"猛毒","agility":9.5,"fightPic":"1039","quality":"C","id":"7","attack":11,"defendGrow":0.95,"agilityGrow":0.95,"attackGrow":1.05},
+"8":{"physiqueGrow":0.95,"physique":9.5,"pic":"qilin","roleName":"黑麒麟","skillName":"黑色雷霆","agility":9.5,"fightPic":"1260","quality":"C","id":"8","attack":11,"defendGrow":0.95,"agilityGrow":0.95,"attackGrow":1.05},
+"9":{"physiqueGrow":0.95,"physique":9.5,"pic":"xiaojie","roleName":"小杰","skillName":"致命一击","agility":10.5,"fightPic":"9002","quality":"B","id":"9","attack":9.5,"defendGrow":0.95,"agilityGrow":1.05,"attackGrow":0.95},
+"10":{"physiqueGrow":1,"physique":10,"pic":"youquan","roleName":"幽泉","skillName":"群体治疗","agility":10,"fightPic":"1066","quality":"A","id":"10","attack":10,"defendGrow":1,"agilityGrow":1,"attackGrow":1},
+"11":{"physiqueGrow":0.95,"physique":9.5,"pic":"xueyingwu","roleName":"血鹦鹉","skillName":"罗睺吐槽","agility":10,"fightPic":"1067","quality":"A","id":"11","attack":10.5,"defendGrow":0.95,"agilityGrow":1,"attackGrow":1.05}}

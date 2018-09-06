@@ -60,6 +60,9 @@ package com.xiaohuzi999.storyEditor.windows
 			if(obj.gameOver){
 				$gameOverTF.text = "true"
 			}
+			if(obj.start){
+				$ui.startTF.text = "true"
+			}
 			var str:String = "";
 			for(var i:String in obj){
 				if(i != "fight"){
@@ -93,6 +96,9 @@ package com.xiaohuzi999.storyEditor.windows
 					if($gameOverTF.text){
 						obj[EventConst.GAME_OVER]  = true
 					}
+					if($ui.startTF.text){
+						obj[EventConst.START]  = true
+					}
 					if($otherTF.text){
 						if($otherTF.text.indexOf(":") == -1){
 							XTip.showTip("自定义功能不符合规范");
@@ -118,7 +124,7 @@ package com.xiaohuzi999.storyEditor.windows
 		}
 		
 		private function reset():void{
-			$fightTF.text = $otherTF.text = $joinTeamTF.text = $leftTeamTF.text = $gameOverTF.text = "";
+			$fightTF.text = $otherTF.text = $joinTeamTF.text = $leftTeamTF.text = $gameOverTF.text = $ui.startTF.text = "";
 		}
 		
 		override public function show(autoAlignCenter:Boolean=true):void{

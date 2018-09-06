@@ -22,6 +22,18 @@ module xframe{
 			}
 			return true;
 		}
+
+		/**
+		 * 删除数组某个元素
+		 * @param src 原数组
+		 * @param item 需要删除的数据;
+		 */
+		public static delArrItem(src:any[], item:any):void{
+			let index = src.indexOf(item);
+			if(index > -1){
+				src.splice(index, 1);
+			}
+		}
 		
 		/**
 		 * 数字跳动效果

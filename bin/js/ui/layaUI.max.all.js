@@ -14,19 +14,57 @@ var ui;
 (function (ui) {
     var fight;
     (function (fight) {
+        var EnemyItemUI = /** @class */ (function (_super) {
+            __extends(EnemyItemUI, _super);
+            function EnemyItemUI() {
+                return _super.call(this) || this;
+            }
+            EnemyItemUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.fight.EnemyItemUI.uiView);
+            };
+            EnemyItemUI.uiView = { "type": "View", "props": { "width": 300, "height": 450 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "var": "pic" } }, { "type": "Rect", "props": { "y": 0, "x": 0, "width": 300, "lineWidth": 2, "lineColor": "#000000", "height": 450, "fillColor": "#737373" } }] };
+            return EnemyItemUI;
+        }(View));
+        fight.EnemyItemUI = EnemyItemUI;
+    })(fight = ui.fight || (ui.fight = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var fight;
+    (function (fight) {
         var FightViewUI = /** @class */ (function (_super) {
             __extends(FightViewUI, _super);
             function FightViewUI() {
                 return _super.call(this) || this;
             }
             FightViewUI.prototype.createChildren = function () {
+                View.regComponent("HeroItem", HeroItem);
+                View.regComponent("EnemyItem", EnemyItem);
                 _super.prototype.createChildren.call(this);
                 this.createView(ui.fight.FightViewUI.uiView);
             };
-            FightViewUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "main/bj_homepage@2x.png", "height": 1334 } }] };
+            FightViewUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "main/bj_homepage@2x.png", "height": 1334 } }, { "type": "HeroItem", "props": { "y": 1097, "x": 20, "var": "hero_0", "runtime": "HeroItem" } }, { "type": "HeroItem", "props": { "y": 1097, "x": 270, "var": "hero_1", "runtime": "HeroItem" } }, { "type": "HeroItem", "props": { "y": 1097, "x": 520, "var": "hero_2", "runtime": "HeroItem" } }, { "type": "EnemyItem", "props": { "y": 92, "x": 38, "var": "enemy_0", "runtime": "EnemyItem" } }, { "type": "EnemyItem", "props": { "y": 62, "x": 255, "var": "enemy_1", "runtime": "EnemyItem" } }, { "type": "EnemyItem", "props": { "y": 412, "x": 14, "var": "enemy_2", "runtime": "EnemyItem" } }, { "type": "EnemyItem", "props": { "y": 216, "x": 384, "var": "enemy_3", "runtime": "EnemyItem" } }] };
             return FightViewUI;
         }(View));
         fight.FightViewUI = FightViewUI;
+    })(fight = ui.fight || (ui.fight = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var fight;
+    (function (fight) {
+        var HeroItemUI = /** @class */ (function (_super) {
+            __extends(HeroItemUI, _super);
+            function HeroItemUI() {
+                return _super.call(this) || this;
+            }
+            HeroItemUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.fight.HeroItemUI.uiView);
+            };
+            HeroItemUI.uiView = { "type": "View", "props": { "width": 216, "height": 220 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "skin": "fight/tx.png" } }] };
+            return HeroItemUI;
+        }(View));
+        fight.HeroItemUI = HeroItemUI;
     })(fight = ui.fight || (ui.fight = {}));
 })(ui || (ui = {}));
 (function (ui) {

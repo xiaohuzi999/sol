@@ -52,6 +52,7 @@ var StoryView = /** @class */ (function (_super) {
             trace("事件：：", this._curDialog.eventInfo);
             //fight 
             if (this._curDialog.eventInfo.fight) {
+                this.removeEventListener();
                 xframe.XFacade.instance.showModule(FightView, this._curDialog.eventInfo.fight);
             }
         }
