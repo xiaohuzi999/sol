@@ -8,6 +8,7 @@ class MainView extends xframe.XWindow{
     }
 
     private onC(e:Laya.Event):void{
+        e.stopPropagation();
         switch(e.target){
             case this._view.btnStart:
                 this.close();

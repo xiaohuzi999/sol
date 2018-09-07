@@ -17,6 +17,7 @@ var MainView = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     MainView.prototype.onC = function (e) {
+        e.stopPropagation();
         switch (e.target) {
             case this._view.btnStart:
                 this.close();

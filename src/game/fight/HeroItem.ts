@@ -8,12 +8,12 @@ class HeroItem extends ui.fight.HeroItemUI{
     }
 
     public attack(cb:Handler):void{
-        trace("attack");
+        trace("attack。。。。。", this._data.uid);
         cb && cb.run();
     }
 
     public beAttacked():void{
-        trace("beAttacked");
+        //trace("beAttacked");
     }
 
     public set data(role:Role){

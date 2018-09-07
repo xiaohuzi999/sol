@@ -27,7 +27,7 @@ class DBMonster{
     public static calcTotalPro(id:any):Role{
         var role:Role = xframe.XUtils.clone(this.getMonsterInfo(id));
         role.attack = role.strength*5;
-        role.hp = role.maxHp = role.physique*10;
+        role.hp = role.maxHp = role.physique*100;
         role.speed = role.agility*1
         role.crit = role.strength*0.1;
         role.dodge = role.agility*0.2;

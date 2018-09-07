@@ -83,12 +83,34 @@ module ui.main {
 }
 
 module ui.story {
-    export class StoryViewUI extends View {
+    export class DialogComUI extends View {
+		public leftPlayer:Laya.Box;
+		public leftPic:Laya.Image;
+		public rightPlayer:Laya.Box;
+		public rightPic:Laya.Image;
+		public tfMsg:Laya.Label;
 
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}}]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Box","props":{"y":350,"x":0,"var":"leftPlayer"},"child":[{"type":"Image","props":{"var":"leftPic"}}]},{"type":"Box","props":{"y":350,"x":430,"var":"rightPlayer"},"child":[{"type":"Image","props":{"var":"rightPic"}}]},{"type":"Image","props":{"y":738,"x":0,"width":750,"skin":"main/bg_dialog.png","sizeGrid":"57,41,52,76","height":430}},{"type":"Label","props":{"y":791,"x":36,"width":678,"var":"tfMsg","text":"label","height":332,"fontSize":24,"color":"#000000"}}]};
         constructor(){ super()}
         createChildren():void {
         
+            super.createChildren();
+            this.createView(ui.story.DialogComUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.story {
+    export class StoryViewUI extends View {
+		public msgCom:DialogCom;
+
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}},{"type":"DialogCom","props":{"y":0,"x":0,"var":"msgCom","runtime":"DialogCom"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        			View.regComponent("DialogCom",DialogCom);
+
             super.createChildren();
             this.createView(ui.story.StoryViewUI.uiView);
 

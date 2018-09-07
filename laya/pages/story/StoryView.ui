@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":38,
+    "selecteID":43,
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
     "label":"View",
@@ -22,6 +22,20 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":41,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"UIView",
+            "source":"story/DialogCom.ui",
+            "props":{"y":0,"x":0,"var":"msgCom","runtime":"DialogCom"},
+            "nodeParent":1,
+            "label":"UIView(msgCom)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":43,
             "child":[
                 ]
         }],

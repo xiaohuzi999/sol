@@ -25,9 +25,7 @@ class StoryView extends xframe.XWindow{
         trace("showStory===",this._curDialog);
         //trace(this._curDialog);
         if(this._curDialog){
-            if(this._curDialog.dialog){
-                trace(this._curDialog.name+"::", this._curDialog.dialog);
-            }
+            this._view.msgCom.showDialog(this._curDialog);
             this.execute();
         }else{
 

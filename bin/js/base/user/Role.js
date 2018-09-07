@@ -8,8 +8,6 @@ var Role = /** @class */ (function () {
         this.name = "";
         /**头像*/
         this.pic = "";
-        /**战斗形象*/
-        this.fightPic = "";
         /**经验*/
         this.exp = 0;
         /**升级经验*/

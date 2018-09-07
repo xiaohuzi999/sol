@@ -49,36 +49,13 @@
     <buildTarget buildTargetName="default" platformId="default">
       <airSettings airCertificatePath="C:/宸ヤ綔/starling/StarBall/libs/璇佷功.p12" airTimestamp="true" anePathSet="true" version="1">
         <airExcludes>
-          <pathEntry path="assets/data/绗簲绔�闃垮皵鍗戞柉灞�xls"/>
-          <pathEntry path="assets/data/绗竴绔�绋氬瓙.xls"/>
           <pathEntry path="assets/data/npc.txt"/>
-          <pathEntry path="assets/data/绗簩绔�xls"/>
-          <pathEntry path="assets/data/rewardData.txt"/>
-          <pathEntry path="assets/data/涓夌晫琛�瓕涓荤嚎.xlsx"/>
-          <pathEntry path="assets/data/绗崄鍏珷 绁炵厡鎴樺満.xls"/>
-          <pathEntry path="assets/data/涓夌晫琛�瓕閬撳叿鍙奛PC璁惧畾.xlsx"/>
-          <pathEntry path="assets/data/绗崄绔�璧よ挋澶�xls"/>
-          <pathEntry path="assets/data/绗崄浜旂珷 灏忛泚鑽�xls"/>
-          <pathEntry path="assets/data/绗叓绔�鑽ф儜閬撳満.xls"/>
-          <pathEntry path="assets/data/绗崄鍏珷 灏惧０.xls"/>
-          <pathEntry path="assets/graphics/mood/Thumbs.db"/>
-          <pathEntry path="assets/data/涓夌晫琛�瓕閬撳叿鍙奛PC璁惧畾.xls"/>
-          <pathEntry path="assets/data/鏂扮増绗竴绔�xls"/>
-          <pathEntry path="assets/data/绗崄鍥涚珷 鍦婁簯宸�xls"/>
-          <pathEntry path="assets/data/绗崄涓�珷 鐐庣伒鐣�xls"/>
-          <pathEntry path="assets/data/鏂扮増绗簩绔�xls"/>
-          <pathEntry path="assets/data/绗叚绔�姣嶅瓙閲嶉�.xls"/>
-          <pathEntry path="assets/data/绗洓绔�鍥存敾鍑″崲灏斿煄.xls"/>
-          <pathEntry path="assets/data/绗崄浜岀珷 涓や华鏄�xls"/>
-          <pathEntry path="assets/data/绗崄涓冪珷 鐣岀巹鍏�xls"/>
-          <pathEntry path="assets/data/绗崄涓夌珷 鐜勫ぉ搴�xls"/>
-          <pathEntry path="assets/data/绗竷绔�閭欏北楝煎簻.xls"/>
-          <pathEntry path="assets/data/item.txt"/>
-          <pathEntry path="assets/data/绗笁绔�杩斿洖娈锋棌.xls"/>
           <pathEntry path="assets/data/npcJosn.txt"/>
           <pathEntry path="assets/data/growUpData.txt"/>
-          <pathEntry path="assets/data/绗節绔�绗竴涓栧.xls"/>
+          <pathEntry path="assets/data/rewardData.txt"/>
+          <pathEntry path="assets/graphics/mood/Thumbs.db"/>
           <pathEntry path="assets/data/heroData.txt"/>
+          <pathEntry path="assets/data/item.txt"/>
         </airExcludes>
         <anePaths/>
         <newLaunchParams/>

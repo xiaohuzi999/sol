@@ -17,11 +17,11 @@ var HeroItem = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     HeroItem.prototype.attack = function (cb) {
-        trace("attack");
+        trace("attack。。。。。", this._data.uid);
         cb && cb.run();
     };
     HeroItem.prototype.beAttacked = function () {
-        trace("beAttacked");
+        //trace("beAttacked");
     };
     Object.defineProperty(HeroItem.prototype, "data", {
         get: function () {

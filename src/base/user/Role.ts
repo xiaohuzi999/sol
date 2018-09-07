@@ -12,8 +12,6 @@ class Role{
     public quality:string;
     /**头像*/
     public pic:string = "";
-    /**战斗形象*/
-    public fightPic:string="";
     /**经验*/
     public exp:number = 0;
     /**升级经验*/

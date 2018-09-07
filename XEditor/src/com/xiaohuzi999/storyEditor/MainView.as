@@ -153,7 +153,7 @@ package com.xiaohuzi999.storyEditor
 			
 			_rightPanel = new RightCom($ui.rightMC);
 			this.addChild(_rightPanel);
-			_rightPanel.x = 964;
+			_rightPanel.x = 1063;
 		}
 		
 		override protected function initEvent():void{

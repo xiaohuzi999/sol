@@ -88,16 +88,35 @@ var ui;
 (function (ui) {
     var story;
     (function (story) {
+        var DialogComUI = /** @class */ (function (_super) {
+            __extends(DialogComUI, _super);
+            function DialogComUI() {
+                return _super.call(this) || this;
+            }
+            DialogComUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.story.DialogComUI.uiView);
+            };
+            DialogComUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Box", "props": { "y": 350, "x": 0, "var": "leftPlayer" }, "child": [{ "type": "Image", "props": { "var": "leftPic" } }] }, { "type": "Box", "props": { "y": 350, "x": 430, "var": "rightPlayer" }, "child": [{ "type": "Image", "props": { "var": "rightPic" } }] }, { "type": "Image", "props": { "y": 738, "x": 0, "width": 750, "skin": "main/bg_dialog.png", "sizeGrid": "57,41,52,76", "height": 430 } }, { "type": "Label", "props": { "y": 791, "x": 36, "width": 678, "var": "tfMsg", "text": "label", "height": 332, "fontSize": 24, "color": "#000000" } }] };
+            return DialogComUI;
+        }(View));
+        story.DialogComUI = DialogComUI;
+    })(story = ui.story || (ui.story = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var story;
+    (function (story) {
         var StoryViewUI = /** @class */ (function (_super) {
             __extends(StoryViewUI, _super);
             function StoryViewUI() {
                 return _super.call(this) || this;
             }
             StoryViewUI.prototype.createChildren = function () {
+                View.regComponent("DialogCom", DialogCom);
                 _super.prototype.createChildren.call(this);
                 this.createView(ui.story.StoryViewUI.uiView);
             };
-            StoryViewUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "main/bj_homepage@2x.png", "height": 1334 } }] };
+            StoryViewUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "main/bj_homepage@2x.png", "height": 1334 } }, { "type": "DialogCom", "props": { "y": 0, "x": 0, "var": "msgCom", "runtime": "DialogCom" } }] };
             return StoryViewUI;
         }(View));
         story.StoryViewUI = StoryViewUI;

@@ -77,7 +77,7 @@ class FightView extends xframe.XWindow{
         for(let i=0;i <4; i++){
             vo = this._view["enemy_"+i].data;
             if(vo && vo.uid == uid){
-                return this._view["hero_"+i];
+                return this._view["enemy_"+i];
             }
         }
 

@@ -8,9 +8,9 @@ class DialogVo{
 		//地图
 		public  bg:string;
 		/**立绘,格式——图片id|x|y|XScale|alpha;*/
-		public  leftPlayer:string;
+		public  leftPlayer:{name:string, x:number,y:number,scaleX:number, alpha:number};
 		/**立绘——图片id|x|y|XScale|alpha;*/
-		public  rightPlayer:string;
+		public  rightPlayer:{name:string, x:number,y:number,scaleX:number, alpha:number};
 		/**表情--图片id|x|y*/
 		public  leftMood:string;
 		/**表情--图片id|x|y*/

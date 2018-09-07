@@ -17,20 +17,31 @@ var EnemyItem = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     EnemyItem.prototype.attack = function (cb) {
-        trace("attack");
-        cb && cb.run();
+        trace("attack。。。。。", this._data.uid);
+        this.pic.scale(0.5, 0.5);
+        Laya.Tween.to(this.pic, { scaleX: 1, scaleY: 1 }, 400, null, cb);
+        //cb && cb.run();
     };
     EnemyItem.prototype.beAttacked = function () {
-        trace("beAttacked");
+        //trace("beAttacked");
     };
     Object.defineProperty(EnemyItem.prototype, "data", {
         get: function () {
             return this._data;
         },
         set: function (role) {
+            var _this = this;
             this._data = role;
             if (role) {
                 this.visible = true;
+                var skinUrl = "res/graphics/fighter/" + role.pic + ".png";
+                Laya.loader.load(skinUrl, Handler.create(null, function () {
+                    _this.pic.skin = skinUrl;
+                    _this.pic.anchorX = 0.5;
+                    _this.pic.anchorY = 1;
+                    _this.pic.x = EnemyItem.SIZE.WIDTH / 2;
+                    _this.pic.y = EnemyItem.SIZE.HEIGHT;
+                }));
             }
             else {
                 this.visible = false;
@@ -39,6 +50,7 @@ var EnemyItem = /** @class */ (function (_super) {
         enumerable: true,
         configurable: true
     });
+    EnemyItem.SIZE = { WIDTH: 300, HEIGHT: 450 };
     return EnemyItem;
 }(ui.fight.EnemyItemUI));
 //# sourceMappingURL=EnemyItem.js.map

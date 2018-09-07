@@ -28,7 +28,7 @@ package{
 	 * Main.as 2015-5-18 下午2:56:11
 	 * version 1.0
 	 */
-	[SWF(width="1400",height="720")]
+	[SWF(width="1504",height="720")]
 	public class Main extends Sprite
 	{
 		private var window:NativeWindow = stage.nativeWindow;

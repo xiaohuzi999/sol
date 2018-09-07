@@ -49,18 +49,15 @@ package com.xiaohuzi999.storyEditor
 		//背景
 		private var _bgBM:Bitmap;
 		//左立绘
+		private var _leftCon:Sprite;
 		private var _leftPlayerBM:Bitmap;
 		private var _leftSP:Sprite;
 		//
 		private var _dragSp:Sprite;
 		//右立绘
+		private var _rightCon:Sprite;
 		private var _rightPlayerBM:Bitmap;
 		private var _rigthSp:Sprite;
-		//左右表情
-		private var _leftMoodSp:Sprite;
-		private var _rightMoodSp:Sprite;
-		private var _leftMoodBM:Bitmap;
-		private var _rightMoodBM:Bitmap;
 		//分歧剧情选单
 		private var _diffBtns:Array;
 		
@@ -72,7 +69,6 @@ package com.xiaohuzi999.storyEditor
 		private var _msgTF:TextField;
 		
 		private var _menu:NativeMenu;
-		private var _moodMenu:NativeMenu
 		//背景表情
 		private var _bgMenu:NativeMenu;
 		//当前操作的对象
@@ -124,7 +120,7 @@ package com.xiaohuzi999.storyEditor
 			//右立绘
 			if(!XUtil.isEmpty(data.rightPlayer)){
 				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.rightPlayer.name)+".png", onLoadPic,[_rightPlayerBM]);
-				_rigthSp.x = data.rightPlayer.x;
+				_rigthSp.x = data.rightPlayer.x-this._rightCon.x;
 				_rigthSp.y = data.rightPlayer.y
 				if(data.rightPlayer.scaleX){
 					_rigthSp.scaleX = data.rightPlayer.scaleX
@@ -132,18 +128,6 @@ package com.xiaohuzi999.storyEditor
 				if(data.rightPlayer.alpha != undefined){
 					_rigthSp.alpha = data.rightPlayer.alpha;
 				}
-			}
-			//左表情
-			if(!XUtil.isEmpty(data.leftMood)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.MOOD_URL, data.leftMood.name)+".png", onLoadPic,[_leftMoodBM]);
-				_leftMoodSp.x = data.leftMood.x
-				_leftMoodSp.y = data.leftMood.y
-			}
-			//右表情
-			if(!XUtil.isEmpty(data.rightMood)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.MOOD_URL, data.rightMood.name)+".png", onLoadPic,[_rightMoodBM]);
-				_rightMoodSp.x = data.rightMood.x
-				_rightMoodSp.y = data.rightMood.y
 			}
 			
 			
@@ -207,7 +191,7 @@ package com.xiaohuzi999.storyEditor
 				_bgBM.bitmapData = item.pic;
 				dispatchEvent(new Event(XEvent.CHANGE));
 			}else if(url.indexOf("player") != -1){
-				if($ui.mouseX < 320){
+				if($ui.mouseX < 375){
 					_leftPlayerBM.bitmapData = item.pic;
 					_leftSP.x = 0;
 					_leftSP.y = 0
@@ -218,39 +202,15 @@ package com.xiaohuzi999.storyEditor
 					_data.leftPlayer = obj;
 				}else{
 					_rightPlayerBM.bitmapData = item.pic;
-					_rigthSp.x = 640 - _rightPlayerBM.width;
+					_rigthSp.x = 0;
 					_rigthSp.y = 0
 					_rigthSp.scaleX = 1;
 					obj.name = (data.name+"").split(".")[0];
-					obj.x = _rigthSp.x;
+					obj.x = this._rightCon.x+_rigthSp.x;
 					obj.y = _rigthSp.y
 					_data.rightPlayer = obj;
 				}
 				dispatchEvent(new Event(XEvent.CHANGE));
-			}else if(url.indexOf("mood") != -1){
-				if($ui.mouseX < 320){
-					if(_data.leftPlayer){
-						_leftMoodBM.bitmapData = item.pic;
-						obj.name = (data.name+"").split(".")[0];
-						obj.x = _leftMoodSp.x;
-						obj.y = _leftMoodSp.y
-						_data.leftMood = obj;
-						dispatchEvent(new Event(XEvent.CHANGE));
-					}else{
-						XTip.showTip("先设定左立绘~");
-					}
-				}else{
-					if(_data.rightPlayer){
-						_rightMoodBM.bitmapData = item.pic;
-						obj.name = (data.name+"").split(".")[0];
-						obj.x = _rightMoodSp.x;
-						obj.y = _rightMoodSp.y
-						_data.rightMood = obj;
-						dispatchEvent(new Event(XEvent.CHANGE));
-					}else{
-						XTip.showTip("先设定右立绘~");
-					}
-				}
 			}
 		}
 		
@@ -278,16 +238,10 @@ package com.xiaohuzi999.storyEditor
 					_data.leftPlayer.scaleX=_leftSP.scaleX;
 					_data.leftPlayer.alpha = _leftSP.alpha;
 				}else if(_dragSp == _rigthSp){
-					_data.rightPlayer.x = _rigthSp.x;
+					_data.rightPlayer.x = _rigthSp.x+_rightCon.x;
 					_data.rightPlayer.y = _rigthSp.y;
 					_data.rightPlayer.scaleX=_rigthSp.scaleX;
 					_data.rightPlayer.alpha = _leftSP.alpha;
-				}else if(_dragSp == _leftMoodSp){
-					_data.leftMood.x = _leftMoodSp.x;
-					_data.leftMood.y = _leftMoodSp.y;
-				}else if(_dragSp == _rightMoodSp){
-					_data.rightMood.x = _rightMoodSp.x;
-					_data.rightMood.y = _rightMoodSp.y;
 				}
 				_dragSp.stopDrag();
 				dispatchEvent(new Event(XEvent.CHANGE));
@@ -330,7 +284,7 @@ package com.xiaohuzi999.storyEditor
 					dataEditWindw.showWithArgs(_data)
 					break;
 				case $effectBtn:
-					XTip.showTip("哎~没做");
+					XTip.showTip("~没做");
 					break;
 				case $funBtn:
 					(ModelManager.getInstance(FunEditWindow) as FunEditWindow).showWithArgs(_data)
@@ -351,7 +305,7 @@ package com.xiaohuzi999.storyEditor
 					_data.leftPlayer.scaleX = _leftSP.scaleX;
 					_data.leftPlayer.alpha = _leftSP.alpha
 				}else{
-					_data.rightPlayer.x = _rigthSp.x;
+					_data.rightPlayer.x = _rigthSp.x+_rightCon.x
 					_data.rightPlayer.y = _rigthSp.y;
 					_data.rightPlayer.scaleX = _rigthSp.scaleX;
 					_data.rightPlayer.alpha = _rigthSp.alpha
@@ -369,7 +323,7 @@ package com.xiaohuzi999.storyEditor
 					_data.leftPlayer.scaleX = _leftSP.scaleX;
 					_data.leftPlayer.alpha = _leftSP.alpha
 				}else{
-					_data.rightPlayer.x = _rigthSp.x;
+					_data.rightPlayer.x = _rigthSp.x+_rightCon.x;
 					_data.rightPlayer.y = _rigthSp.y;
 					_data.rightPlayer.scaleX = _rigthSp.scaleX;
 					_data.rightPlayer.alpha = _rigthSp.alpha
@@ -384,14 +338,6 @@ package com.xiaohuzi999.storyEditor
 				}
 			}else if(event.currentTarget.label == "自动对齐"){
 				this.dispatchEvent(new XEvent(ALIGN, _currentMenuItem == _leftSP));
-			}else if(event.currentTarget.label == "删除表情"){
-				if(_currentMenuItem == _leftMoodSp){
-					_data.leftMood = "";
-					_leftMoodBM.bitmapData = null;
-				}else if(_currentMenuItem == _rightMoodSp){
-					_rightMoodBM.bitmapData = null;
-					_data.rightMood = "";
-				}
 			}else if(event.currentTarget.label == "一键背景"){
 				if(_data.bg){
 					dispatchEvent(new XEvent(SETBG,_data.bg));
@@ -433,11 +379,6 @@ package com.xiaohuzi999.storyEditor
 				
 				
 				
-				_moodMenu = new NativeMenu();
-				item = new NativeMenuItem("删除表情")
-				_moodMenu.addItem(item);
-				item.addEventListener(Event.SELECT, onSelect);
-				
 				_bgMenu = new NativeMenu();
 				item = new NativeMenuItem("一键背景")
 				_bgMenu.addItem(item);
@@ -459,7 +400,7 @@ package com.xiaohuzi999.storyEditor
 		
 		private function clear():void{
 			_leftSP.alpha = _rigthSp.alpha = _leftSP.scaleX = _rigthSp.scaleX = 1;
-			_leftPlayerBM.bitmapData = _rightPlayerBM.bitmapData = _bgBM.bitmapData = _leftMoodBM.bitmapData = _rightMoodBM.bitmapData = null;
+			_leftPlayerBM.bitmapData = _rightPlayerBM.bitmapData = _bgBM.bitmapData = null;
 			$ui.diaMC.tipTF.visible = true;
 			$ui.diaMC.msgTF.text = "";
 			_data = null;
@@ -506,7 +447,7 @@ package com.xiaohuzi999.storyEditor
 			$ui.x = $ui.y = 0;
 			_bgBM = new Bitmap();
 			$ui.picMC.addChild(_bgBM);
-			_bgBM.scrollRect = new Rectangle(0,0,640, 800);
+			_bgBM.scrollRect = new Rectangle(0,0,750, 800);
 			this.scrollRect = new Rectangle(0,0, this.width, this.height);
 			
 			createMenu()
@@ -514,16 +455,25 @@ package com.xiaohuzi999.storyEditor
 			
 			_leftPlayerBM = new Bitmap();
 			_leftSP = new Sprite();
+			_leftCon = new Sprite();
 			TipManager.registerTip(_leftSP, "左立绘");
 			_leftSP.addChild(_leftPlayerBM);
-			$ui.picMC.addChild(_leftSP);
+			$ui.picMC.addChild(_leftCon);
+			_leftCon.addChild(_leftSP);
+			_leftCon.scrollRect = new Rectangle(0,0,320,430)
 			_leftSP.contextMenu = _menu;
 			
 			_rightPlayerBM = new Bitmap();
 			_rigthSp = new Sprite();
+			_rightCon = new Sprite();
+			//_rightCon.graphics.beginFill(0xff6600);
+			//_rightCon.graphics.drawRect(0,0,320, 430);
 			_rigthSp.addChild(_rightPlayerBM)
+			$ui.picMC.addChild(_rightCon);
+			_rightCon.addChild(_rigthSp);
+			_rightCon.x = $ui.picMC.width-320;
 			TipManager.registerTip(_rigthSp, "右立绘");
-			$ui.picMC.addChild(_rigthSp);
+			_rightCon.scrollRect = new Rectangle(0,0,320,430)
 			$ui.diaMC.doubleClickEnabled = true;
 			_rigthSp.contextMenu = _menu
 			
@@ -531,34 +481,14 @@ package com.xiaohuzi999.storyEditor
 			_tipTF = $ui.diaMC.tipTF;
 			_msgTF = $ui.diaMC.msgTF;
 			_msgTF.text = "";
-			
-			_leftMoodSp = new Sprite();
-			_leftMoodBM = new Bitmap();
-			_leftMoodSp.addChild(_leftMoodBM);
-			TipManager.registerTip(_leftMoodSp, "左表情");
-			
-			_rightMoodSp = new Sprite();
-			_rightMoodBM = new Bitmap();
-			_rightMoodSp.addChild(_rightMoodBM);
-			TipManager.registerTip(_rightMoodSp, "右表情");
-			this.addChild(_leftMoodSp);
-			this.addChild(_rightMoodSp);
-			_leftMoodSp.x = 100;
-			_rightMoodSp.x = 500;
-			_leftMoodSp.y = _rightMoodSp.y = 0;
-			_leftMoodSp.contextMenu = _rightMoodSp.contextMenu = _moodMenu;
 		}
 		
 		private function initEvent():void{
-			//_leftSP.addEventListener(MouseEvent.MOUSE_DOWN, onME);
-			//_rigthSp.addEventListener(MouseEvent.MOUSE_DOWN, onME);
-			_leftMoodSp.addEventListener(MouseEvent.MOUSE_DOWN, onME);
-			_rightMoodSp.addEventListener(MouseEvent.MOUSE_DOWN, onME);
+			_leftSP.addEventListener(MouseEvent.MOUSE_DOWN, onME);
+			_rigthSp.addEventListener(MouseEvent.MOUSE_DOWN, onME);
 			
 			_leftSP.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, onSelectItem);
 			_rigthSp.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, onSelectItem);
-			_leftMoodSp.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, onSelectItem);
-			_rightMoodSp.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, onSelectItem);
 			
 			
 			LayerManager.stage.addEventListener(MouseEvent.MOUSE_UP, onMU);

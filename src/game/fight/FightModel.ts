@@ -57,6 +57,7 @@ class FightModel{
         //战斗排序方式有待考虑
         //this._fightList.sort(this.sortOnSpeed);
         this._waitList = this._fightList.slice(0, this._fightList.length);
+        trace("initFight___________________", JSON.stringify(this._waitList));
         //this.startFight();
     }
     /***/
@@ -164,10 +165,11 @@ class FightModel{
             xframe.XEvent.instance.event(FightModel.WIN, reward);
         }else{
             //
-            if(FightModel._waitList.length == 0){//回合结束
-                FightModel._waitList = FightModel._fightList.slice(0, FightModel._fightList.length);
+            if(this._waitList.length == 0){//回合结束
+                trace("回合结束===============================================")
+                this._waitList = this._fightList.slice(0, this._fightList.length);
             }
-            FightModel.startFight();
+            this.startFight();
         }
     }
 
