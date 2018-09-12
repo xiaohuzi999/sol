@@ -63,8 +63,10 @@ var FightView = /** @class */ (function (_super) {
                 this.execFight(data);
                 break;
             case FightModel.WIN:
+                xframe.XFacade.instance.showModule(ResultView);
                 break;
             case FightModel.LOSE:
+                xframe.XFacade.instance.showModule(ResultView);
                 break;
         }
     };

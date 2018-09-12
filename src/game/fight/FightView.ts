@@ -57,10 +57,10 @@ class FightView extends xframe.XWindow{
                 this.execFight(data);
                 break;
             case FightModel.WIN:
-               
+               xframe.XFacade.instance.showModule(ResultView);
                 break;
             case FightModel.LOSE:
-
+                xframe.XFacade.instance.showModule(ResultView);
                 break;
         }
     }

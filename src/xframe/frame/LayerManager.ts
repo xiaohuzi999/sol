@@ -63,11 +63,11 @@ module xframe{
 		public static setLayer(view:Laya.Sprite, layer:number=LayerManager.LAYER_PANEL):void{
 			let len:number = LayerManager._container.numChildren;
 			let win:any;
-			for(let i:number=len-1; i>0; i--){
+			for(let i:number=len-1; i>=0; i--){
 				win = LayerManager._container.getChildAt(i);
 				if(win.layer && win.layer <= layer){
 					//找到相应的位置，返回-
-					LayerManager._container.addChildAt(view, i);
+					LayerManager._container.addChildAt(view, i+1);
 					return;
 				}
 			}

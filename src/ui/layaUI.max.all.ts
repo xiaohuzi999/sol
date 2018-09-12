@@ -56,6 +56,21 @@ module ui.fight {
     }
 }
 
+module ui.fight {
+    export class ResultUI extends View {
+
+        public static  uiView:any ={"type":"View","props":{"width":400,"height":300},"child":[{"type":"Rect","props":{"y":0,"x":0,"width":400,"lineWidth":0,"height":300,"fillColor":"#787878"}},{"type":"Label","props":{"y":144,"x":186,"text":"label"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.fight.ResultUI.uiView);
+
+        }
+
+    }
+}
+
 module ui.main {
     export class MainViewUI extends View {
 		public roleBtn:Laya.Image;

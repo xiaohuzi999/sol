@@ -28,11 +28,11 @@ var xframe;
             if (layer === void 0) { layer = LayerManager.LAYER_PANEL; }
             var len = LayerManager._container.numChildren;
             var win;
-            for (var i = len - 1; i > 0; i--) {
+            for (var i = len - 1; i >= 0; i--) {
                 win = LayerManager._container.getChildAt(i);
                 if (win.layer && win.layer <= layer) {
                     //找到相应的位置，返回-
-                    LayerManager._container.addChildAt(view, i);
+                    LayerManager._container.addChildAt(view, i + 1);
                     return;
                 }
             }

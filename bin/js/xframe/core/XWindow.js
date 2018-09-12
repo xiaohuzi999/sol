@@ -130,6 +130,7 @@ var xframe;
                 this.bg.size(Laya.stage.width, Laya.stage.height);
                 this.bg.graphics.clear();
                 this.bg.graphics.drawRect(0, 0, Laya.stage.width, Laya.stage.height, this._bgColor);
+                Laya.stage.addChild(this.bg);
             }
         };
         /**关闭*/
@@ -156,6 +157,17 @@ var xframe;
             },
             set: function (v) {
                 this._closeOnBlank = v;
+            },
+            enumerable: true,
+            configurable: true
+        });
+        Object.defineProperty(XMWindow.prototype, "bgAlpha", {
+            get: function () {
+                return this._bgAlpha;
+            },
+            set: function (v) {
+                this._bgAlpha = v;
+                this._bg && (this._bg.alpha = v);
             },
             enumerable: true,
             configurable: true

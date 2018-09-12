@@ -68,6 +68,24 @@ var ui;
     })(fight = ui.fight || (ui.fight = {}));
 })(ui || (ui = {}));
 (function (ui) {
+    var fight;
+    (function (fight) {
+        var ResultUI = /** @class */ (function (_super) {
+            __extends(ResultUI, _super);
+            function ResultUI() {
+                return _super.call(this) || this;
+            }
+            ResultUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.fight.ResultUI.uiView);
+            };
+            ResultUI.uiView = { "type": "View", "props": { "width": 400, "height": 300 }, "child": [{ "type": "Rect", "props": { "y": 0, "x": 0, "width": 400, "lineWidth": 0, "height": 300, "fillColor": "#787878" } }, { "type": "Label", "props": { "y": 144, "x": 186, "text": "label" } }] };
+            return ResultUI;
+        }(View));
+        fight.ResultUI = ResultUI;
+    })(fight = ui.fight || (ui.fight = {}));
+})(ui || (ui = {}));
+(function (ui) {
     var main;
     (function (main) {
         var MainViewUI = /** @class */ (function (_super) {

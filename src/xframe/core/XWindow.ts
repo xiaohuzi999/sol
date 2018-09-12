@@ -91,11 +91,11 @@ module xframe{
 		//蒙板颜色
 		protected _bgColor:string = "#000000";
 		//蒙板透明都
-		protected _bgAlpha:number = 0.01;
+		private _bgAlpha:number = 0.01;
 		//是否模式窗口状态,默认模式窗口，不可穿透
-		protected _isModel:boolean = true;
+		private _isModel:boolean = true;
 		//是否可以点空白区域关闭，只有在模式窗窗口下有效,如果覆盖addEventListener,需要调用super.addEventListener();
-		protected _closeOnBlank:boolean = false;
+		private _closeOnBlank:boolean = false;
 		
 		
 		constructor(){
@@ -120,6 +120,7 @@ module xframe{
 				this.bg.size(Laya.stage.width, Laya.stage.height);
 				this.bg.graphics.clear();
 				this.bg.graphics.drawRect(0,0,Laya.stage.width, Laya.stage.height, this._bgColor);
+				Laya.stage.addChild(this.bg);
 			}
 		}
 		
@@ -147,6 +148,15 @@ module xframe{
 		
 		public get closeOnBlank():boolean{
 			return this._closeOnBlank;
+		}
+
+		public set bgAlpha(v:number){
+			this._bgAlpha = v;
+			this._bg && (this._bg.alpha = v);
+		}
+
+		public get bgAlpha():number{
+			return this._bgAlpha;
 		}
 		
 		/**取得蒙板对象*/
