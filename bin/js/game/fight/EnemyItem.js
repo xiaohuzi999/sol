@@ -17,13 +17,23 @@ var EnemyItem = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     EnemyItem.prototype.attack = function (cb) {
-        trace("attack。。。。。", this._data.uid);
-        this.pic.scale(0.5, 0.5);
-        Laya.Tween.to(this.pic, { scaleX: 1, scaleY: 1 }, 400, null, cb);
-        //cb && cb.run();
+        FightAniUtils.attack(this.pic, cb);
     };
     EnemyItem.prototype.beAttacked = function () {
-        //trace("beAttacked");
+        FightAniUtils.beAttacked(this.pic);
+    };
+    EnemyItem.prototype.die = function () {
+        trace("die..............");
+        FightAniUtils.die(this.pic, this);
+    };
+    EnemyItem.prototype.update = function (info) {
+        for (var i in info) {
+            this._data[i] = info[i];
+        }
+        trace("this._data.hp==============", this._data.hp);
+        if (this._data.hp <= 0) {
+            this.die();
+        }
     };
     Object.defineProperty(EnemyItem.prototype, "data", {
         get: function () {

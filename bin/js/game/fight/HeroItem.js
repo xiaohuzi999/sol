@@ -17,11 +17,21 @@ var HeroItem = /** @class */ (function (_super) {
         return _super.call(this) || this;
     }
     HeroItem.prototype.attack = function (cb) {
-        trace("attack。。。。。", this._data.uid);
-        cb && cb.run();
+        FightAniUtils.attack(this, cb);
     };
     HeroItem.prototype.beAttacked = function () {
-        //trace("beAttacked");
+        FightAniUtils.beAttacked(this);
+    };
+    HeroItem.prototype.die = function () {
+        FightAniUtils.die(this, this);
+    };
+    HeroItem.prototype.update = function (info) {
+        for (var i in info) {
+            this._data[i] = info[i];
+        }
+        if (this._data.hp <= 0) {
+            this.die();
+        }
     };
     Object.defineProperty(HeroItem.prototype, "data", {
         get: function () {

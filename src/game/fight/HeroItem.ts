@@ -8,12 +8,25 @@ class HeroItem extends ui.fight.HeroItemUI{
     }
 
     public attack(cb:Handler):void{
-        trace("attack。。。。。", this._data.uid);
-        cb && cb.run();
+        FightAniUtils.attack(this,cb);
     }
 
     public beAttacked():void{
-        //trace("beAttacked");
+        FightAniUtils.beAttacked(this);
+    }
+    
+
+    public die():void{
+        FightAniUtils.die(this, this);
+    }
+
+    public update(info:any):void{
+        for(let i in info){
+            this._data[i] = info[i];
+        }
+        if(this._data.hp <= 0 ){
+            this.die();
+        }
     }
 
     public set data(role:Role){

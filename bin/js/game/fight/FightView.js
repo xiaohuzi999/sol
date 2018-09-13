@@ -39,19 +39,21 @@ var FightView = /** @class */ (function (_super) {
     /**战斗指令*/
     FightView.prototype.execFight = function (vo) {
         this._curVo = vo;
-        trace("excuteFight------->", vo);
+        trace("excuteFight------->", vo.nowId);
         var fighter = this.getFighter(vo.nowId);
-        fighter.attack(Handler.create(this, this.execFightEff));
+        fighter.attack(Handler.create(this, function () {
+            FightModel.actionComplete();
+        }));
+        this.execFightEff();
     };
     //
     FightView.prototype.execFightEff = function () {
-        trace("x______________", this._curVo.fightInfo);
         for (var i in this._curVo.fightInfo) {
             trace("i________________", i);
             var fighter = this.getFighter(i);
+            fighter.update(this._curVo.fightInfo[i]);
             fighter.beAttacked();
         }
-        FightModel.actionComplete();
     };
     FightView.prototype.onFightEvent = function (type, data) {
         trace("onFightEvent:::::::::::>", type, data);

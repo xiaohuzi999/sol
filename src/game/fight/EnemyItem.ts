@@ -9,14 +9,25 @@ class EnemyItem extends ui.fight.EnemyItemUI{
     }
 
     public attack(cb:Handler):void{
-        trace("attack。。。。。", this._data.uid);
-        this.pic.scale(0.5, 0.5)
-        Laya.Tween.to(this.pic, {scaleX:1, scaleY:1}, 400, null, cb);
-        //cb && cb.run();
+        FightAniUtils.attack(this.pic,cb);
     }
 
     public beAttacked():void{
-        //trace("beAttacked");
+        FightAniUtils.beAttacked(this.pic);
+    }
+
+    public die():void{
+        trace("die..............");
+        FightAniUtils.die(this.pic, this);
+    }
+
+    public update(info:any):void{
+        for(let i in info){
+            this._data[i] = info[i];
+        }
+        if(this._data.hp <= 0 ){
+            this.die();
+        }
     }
 
     public set data(role:Role){

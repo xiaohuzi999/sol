@@ -31,20 +31,22 @@ class FightView extends xframe.XWindow{
      /**战斗指令*/
     private execFight(vo:FightVo):void{
         this._curVo = vo;
-        trace("excuteFight------->", vo);
+        trace("excuteFight------->", vo.nowId);
         let fighter:any = this.getFighter(vo.nowId);
-        fighter.attack(Handler.create(this, this.execFightEff));
+        fighter.attack(Handler.create(this, ()=>{
+            FightModel.actionComplete();
+        }));
+        this.execFightEff();
     }
     
     //
     private execFightEff():void{
-        trace("x______________",this._curVo.fightInfo)
         for(let i in this._curVo.fightInfo){
             trace("i________________",i)
             let fighter:any = this.getFighter(i);
+            fighter.update(this._curVo.fightInfo[i])
             fighter.beAttacked();
         }
-        FightModel.actionComplete();
     }
 
     private onFightEvent(type:string, data?:any):void{
