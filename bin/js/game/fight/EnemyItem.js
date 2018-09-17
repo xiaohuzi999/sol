@@ -30,7 +30,6 @@ var EnemyItem = /** @class */ (function (_super) {
         for (var i in info) {
             this._data[i] = info[i];
         }
-        trace("this._data.hp==============", this._data.hp);
         if (this._data.hp <= 0) {
             this.die();
         }

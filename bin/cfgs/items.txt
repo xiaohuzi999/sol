@@ -1,0 +1,133 @@
+﻿{
+	"101": {
+		"name": "强化石",
+		"price": 2,
+		"value": 0,
+		"max": 888888888,
+		"property": null,
+		"type": 1,
+		"id": 101,
+		"icon": "101",
+		"desc": "强化装备的必备材料"
+	},
+	"201": {
+		"name": "软剑",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 10,
+			"attack": 10,
+			"physique": 10
+		},
+		"type": 2,
+		"id": 201,
+		"icon": "201",
+		"desc": null
+	},
+	"202": {
+		"name": "高级软剑",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 20,
+			"attack": 20,
+			"physique": 20
+		},
+		"type": 2,
+		"id": 202,
+		"icon": "202",
+		"desc": null
+	},
+	"203": {
+		"name": "血灵剑",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 30,
+			"attack": 30,
+			"physique": 30
+		},
+		"type": 2,
+		"id": 203,
+		"icon": "203",
+		"desc": null
+	},
+	"204": {
+		"name": "寒灵剑",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 50,
+			"attack": 50,
+			"physique": 50
+		},
+		"type": 2,
+		"id": 204,
+		"icon": "204",
+		"desc": null
+	},
+	"205": {
+		"name": "血歌剑",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 60,
+			"attack": 60,
+			"physique": 60
+		},
+		"type": 2,
+		"id": 205,
+		"icon": "205",
+		"desc": null
+	},
+	"206": {
+		"name": "三阳开泰斧",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 80,
+			"attack": 80,
+			"physique": 80
+		},
+		"type": 2,
+		"id": 206,
+		"icon": "206",
+		"desc": null
+	},
+	"207": {
+		"name": "诛仙剑",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 300,
+			"attack": 300,
+			"physique": 300
+		},
+		"type": 2,
+		"id": 207,
+		"icon": "207",
+		"desc": null
+	},
+	"208": {
+		"name": "玄屠剑",
+		"price": 0,
+		"value": 0,
+		"max": 1,
+		"property": {
+			"agility": 40,
+			"attack": 40,
+			"physique": 40
+		},
+		"type": 2,
+		"id": 208,
+		"icon": "208",
+		"desc": null
+	}
+}

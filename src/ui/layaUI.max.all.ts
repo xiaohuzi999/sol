@@ -1,6 +1,43 @@
 
 import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
+module ui.bag {
+    export class BagViewUI extends View {
+		public typeList:Laya.List;
+		public itemList:Laya.List;
+		public pic:Laya.Image;
+		public tfName:Laya.Label;
+
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"main/bj_homepage@2x.png"},"child":[{"type":"Rect","props":{"y":889,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"}},{"type":"Rect","props":{"y":1134,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#a4a4a4"}},{"type":"Rect","props":{"y":0,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#b9b9b9"}},{"type":"Rect","props":{"y":216,"x":2,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"}}]},{"type":"List","props":{"y":219,"x":17,"width":730,"var":"typeList","height":100},"child":[{"type":"Button","props":{"y":0,"x":0,"stateNum":1,"skin":"main/btn_watch.png","name":"item0","label":"label"}},{"type":"Button","props":{"y":0,"x":250,"stateNum":1,"skin":"main/btn_watch.png","name":"item1","label":"label"}}]},{"type":"List","props":{"y":902,"x":1,"width":728,"var":"itemList","spaceX":18,"repeatY":1,"height":134},"child":[{"type":"Item","props":{"y":0,"x":0,"runtime":"Item","name":"render"}}]},{"type":"Image","props":{"y":474,"x":278,"var":"pic"}},{"type":"Label","props":{"y":415,"x":262,"width":226,"var":"tfName","text":"1","height":24,"fontSize":28,"color":"#000000","align":"center"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        			View.regComponent("Item",Item);
+
+            super.createChildren();
+            this.createView(ui.bag.BagViewUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.bag {
+    export class ItemUI extends View {
+		public pic:Laya.Image;
+		public tfNum:Laya.Label;
+
+        public static  uiView:any ={"type":"View","props":{"width":120,"height":120},"child":[{"type":"Image","props":{"y":0,"x":0,"width":120,"skin":"main/bg_dialog.png","height":120}},{"type":"Image","props":{"width":120,"var":"pic","height":120}},{"type":"Label","props":{"y":96,"x":50,"width":70,"var":"tfNum","text":"1","height":24,"fontSize":24,"color":"#000000","align":"right"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.bag.ItemUI.uiView);
+
+        }
+
+    }
+}
+
 module ui.fight {
     export class EnemyItemUI extends View {
 		public pic:Laya.Image;

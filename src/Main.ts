@@ -18,7 +18,8 @@ function beginLoad(){
 		"res/atlas/main.atlas",
 		"res/atlas/fight.atlas",
 		"cfgs/chap_0.txt",
-		"cfgs/npc.txt"
+		"cfgs/npc.txt",
+		"cfgs/items.txt"
 		], Handler.create(null, onLoaded));
 }
 

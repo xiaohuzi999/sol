@@ -12,6 +12,8 @@ class XDB{
     public static readonly ROLE:string = "role";
     /**KEY-BAG */
     public static readonly BAG:string = "bag";
+    /**unique id index */
+    private static _uniqueIndex:number = 0;
     constructor(){
 
     }
@@ -27,5 +29,9 @@ class XDB{
         }else{
             Laya.LocalStorage.setItem(key, JSON.stringify(value));
         }
+    }
+
+    public static get uid():number{
+        return this._uniqueIndex++;
     }
 }

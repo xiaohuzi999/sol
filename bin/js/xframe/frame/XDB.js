@@ -16,6 +16,13 @@ var XDB = /** @class */ (function () {
             Laya.LocalStorage.setItem(key, JSON.stringify(value));
         }
     };
+    Object.defineProperty(XDB, "uid", {
+        get: function () {
+            return this._uniqueIndex++;
+        },
+        enumerable: true,
+        configurable: true
+    });
     /**KEY-USER INFO */
     XDB.USER = "user";
     /**HEROS */
@@ -26,6 +33,8 @@ var XDB = /** @class */ (function () {
     XDB.ROLE = "role";
     /**KEY-BAG */
     XDB.BAG = "bag";
+    /**unique id index */
+    XDB._uniqueIndex = 0;
     return XDB;
 }());
 //# sourceMappingURL=XDB.js.map
