@@ -99,7 +99,7 @@ module ui.fight {
 module ui.fight {
     export class ResultUI extends View {
 
-        public static  uiView:any ={"type":"View","props":{"width":400,"height":300},"child":[{"type":"Rect","props":{"y":0,"x":0,"width":400,"lineWidth":0,"height":300,"fillColor":"#787878"}},{"type":"Label","props":{"y":144,"x":186,"text":"label"}}]};
+        public static  uiView:any ={"type":"View","props":{"width":600,"height":520},"child":[{"type":"Image","props":{"y":22,"x":0,"width":600,"skin":"share/winF0.png","height":500,"sizeGrid":"93,46,115,58"}},{"type":"Image","props":{"y":37,"x":15,"width":568,"skin":"share/winBG1.png","height":473,"sizeGrid":"58,66,70,62"}},{"type":"Label","props":{"y":266,"x":272,"text":"label"}},{"type":"Image","props":{"y":0,"x":92,"skin":"share/title_bg.png"}},{"type":"Button","props":{"y":402,"x":192,"width":227,"stateNum":1,"skin":"share/btn_blue.png","sizeGrid":"31,48,34,47","height":86}}]};
         constructor(){ super()}
         createChildren():void {
         

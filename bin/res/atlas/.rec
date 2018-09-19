@@ -76,6 +76,16 @@ P 7B3AFE30 yy_8b.png
 P C5C5A751 yy_mmq.png
 P C5C5A751 yy_qklq.png
 P 970F4347 yy_xhj.png
+D icons
+P 8D19D32B attack.png
+P 6D46FBC7 heart.png
+P BCB44830 jinbi.png
+P D4B362E0 recharge_pic1.png
+P 1EA9A238 recharge_pic2.png
+P 6FD45E96 recharge_pic3.png
+P A9674D86 recharge_pic4.png
+P 98B9C766 recharge_pic5.png
+P A937632F recharge_pic6.png
 D main
 P D9DF9444 bg_dialog.png
 R 8651CAAC bj_homepage@2x.png
@@ -122,6 +132,17 @@ P A306FBA4 ic_3.png
 P 9D0B44F9 ic_placing.png
 P 7C02E134 ic_used.png
 P 36276C30 tab.png
+D share
+P F416E265 btn_blue.png
+P 5386C73C btn_close.png
+P 99500787 btn_red.png
+P 72E30D47 btn_yellow.png
+P F9561657 title_bg.png
+P 2B05E4F1 winBG0.png
+P 15428A83 winBG1.png
+P C4B1F845 winBG2.png
+P A0706E79 winF0.png
+P 4CEB8B2C winF1.png
 D signin
 P C0E144E2 bj_get.png
 P EECB6F8C bj_sign_tc.png

@@ -2,8 +2,8 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":6,
-    "props":{"width":400,"sceneColor":"#000000","height":300},
+    "selecteID":13,
+    "props":{"width":600,"sceneColor":"#000000","height":520},
     "nodeParent":-1,
     "label":"View",
     "isOpen":true,
@@ -14,27 +14,70 @@
     "child":[
         {
             "x":15,
-            "type":"Rect",
-            "props":{"y":0,"x":0,"width":400,"lineWidth":0,"height":300,"fillColor":"#787878"},
+            "type":"Image",
+            "props":{"y":22,"x":0,"width":600,"skin":"share/winF0.png","height":500},
             "nodeParent":1,
-            "label":"Rect",
+            "label":"Image",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":5,
+            "compId":8,
             "child":[
-                ]
+                ],
+            "$LOCKED":false,
+            "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":37,"x":15,"width":568,"skin":"share/winBG1.png","height":473},
+            "nodeParent":1,
+            "label":"Image",
+            "isOpen":true,
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":10,
+            "child":[
+                ],
+            "$LOCKED":false
         },
         {
             "x":15,
             "type":"Label",
-            "props":{"y":144,"x":186,"text":"label"},
+            "props":{"y":266,"x":272,"text":"label"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
             "compId":6,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":0,"x":92,"skin":"share/title_bg.png"},
+            "nodeParent":1,
+            "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":11,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "props":{"y":402,"x":192,"width":227,"stateNum":"1","skin":"share/btn_blue.png","sizeGrid":"31,48,34,47","height":86},
+            "nodeParent":1,
+            "label":"Button",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":13,
             "child":[
                 ]
         }],

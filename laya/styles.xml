@@ -1,0 +1,5 @@
+<res>
+   <item name="share/blue_btn.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=37,47,34,45" picType="0" scale="0"/>
+   <item name="share/winF0.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=93,46,115,58" picType="0" scale="0"/>
+   <item name="share/winBG1.png" type="Image" compress="0" pack="0" quality="80" props="sizeGrid=58,66,70,62" picType="0" scale="0"/>
+</res>
