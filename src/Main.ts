@@ -15,6 +15,7 @@ Laya.ResourceVersion.enable("version.json", Handler.create(null, beginLoad), Lay
 
 function beginLoad(){
 	Laya.loader.load([
+		"res/atlas/common.atlas",
 		"res/atlas/main.atlas",
 		"res/atlas/fight.atlas",
 		"cfgs/chap_0.txt",

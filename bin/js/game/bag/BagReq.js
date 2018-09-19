@@ -10,6 +10,11 @@ var BagReq = /** @class */ (function () {
         this.vo.itemsList || (this.vo.itemsList = []);
         this.vo.itemsList.push(DBItem.createItem(101, 10));
         this.vo.itemsList.push(DBItem.createItem(201, 1));
+        this.vo.itemsList.push(DBItem.createItem(202, 1));
+        this.vo.itemsList.push(DBItem.createItem(203, 1));
+        this.vo.itemsList.push(DBItem.createItem(204, 1));
+        this.vo.itemsList.push(DBItem.createItem(205, 1));
+        this.vo.itemsList.push(DBItem.createItem(206, 1));
         cb.runWith(this.vo);
     };
     /** add item*/

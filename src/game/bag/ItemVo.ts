@@ -26,7 +26,7 @@ class ItemVo{
     public desc:string
 
     /**类型-道具 */
-    public static readonly CONSUME:number = 1;
+    public static readonly ITEM:number = 1;
     /**类型 */
     public static readonly EQUIP:number = 2;
 
