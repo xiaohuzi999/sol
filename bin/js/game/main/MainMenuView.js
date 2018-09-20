@@ -20,8 +20,21 @@ var MainMenuView = /** @class */ (function (_super) {
         _this.layer = xframe.LayerManager.LAYER_UI;
         return _this;
     }
+    MainMenuView.prototype.onClick = function (e) {
+        switch (e.target) {
+            case this._view.btnBag:
+                xframe.XFacade.instance.showModule(BagView);
+                break;
+        }
+    };
     MainMenuView.prototype.createUI = function () {
         this.addChild(this._view);
+    };
+    MainMenuView.prototype.addEventListener = function () {
+        this._view.on(Laya.Event.CLICK, this, this.onClick);
+    };
+    MainMenuView.prototype.removeEventListener = function () {
+        this._view.off(Laya.Event.CLICK, this, this.onClick);
     };
     return MainMenuView;
 }(xframe.XWindow));

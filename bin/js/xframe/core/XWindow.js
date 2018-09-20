@@ -42,7 +42,6 @@ var xframe;
             }
             this.addEventListener();
             xframe.LayerManager.openWindow(this);
-            xframe.trace(this._layer, "__________________", this);
         };
         /**关闭 */
         XWindow.prototype.close = function () {

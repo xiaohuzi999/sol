@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":7,
+    "selecteID":2,
     "props":{"width":750,"sceneColor":"#000000","height":200},
     "nodeParent":-1,
     "label":"View",
@@ -15,9 +15,22 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":0,"x":340,"skin":"main/btn_role.png"},
+            "props":{"y":0,"x":0,"width":750,"skin":"share/bgBar.png","sizeGrid":"28,20,34,21","height":200},
             "nodeParent":1,
             "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":8,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":40,"x":340,"var":"btnBag","skin":"main/btn_role.png","mouseEnabled":true},
+            "nodeParent":1,
+            "label":"Image(btnBag)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
@@ -28,7 +41,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":0,"x":74,"skin":"main/btn_ranking.png"},
+            "props":{"y":40,"x":74,"skin":"main/btn_ranking.png"},
             "nodeParent":1,
             "label":"Image",
             "isDirectory":false,
@@ -41,7 +54,7 @@
         {
             "x":15,
             "type":"Image",
-            "props":{"y":0,"x":615,"skin":"main/btn_card.png"},
+            "props":{"y":40,"x":615,"skin":"main/btn_card.png"},
             "nodeParent":1,
             "label":"Image",
             "isDirectory":false,
@@ -54,7 +67,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":120,"x":81,"text":"排行榜","fontSize":25,"color":"#ffffff","align":"center"},
+            "props":{"y":160,"x":81,"text":"排行榜","fontSize":25,"color":"#ffffff","align":"center"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,
@@ -67,7 +80,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":120,"x":360,"text":"角色","fontSize":25,"color":"#ffffff","align":"center"},
+            "props":{"y":160,"x":360,"text":"背包","fontSize":25,"color":"#ffffff","align":"center"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,
@@ -80,7 +93,7 @@
         {
             "x":15,
             "type":"Label",
-            "props":{"y":120,"x":610,"text":"音乐卡片","fontSize":25,"color":"#ffffff","align":"center"},
+            "props":{"y":160,"x":610,"text":"音乐卡片","fontSize":25,"color":"#ffffff","align":"center"},
             "nodeParent":1,
             "label":"Label",
             "isDirectory":false,
