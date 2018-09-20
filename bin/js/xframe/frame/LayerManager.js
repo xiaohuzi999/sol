@@ -33,11 +33,12 @@ var xframe;
                 if (win.layer && win.layer <= layer) {
                     //找到相应的位置，返回-
                     LayerManager._container.addChildAt(view, i + 1);
+                    xframe.trace(i + 1, "==================", view);
                     return;
                 }
             }
-            //还没加入任何显示对象。
-            LayerManager._container.addChild(view);
+            //层级最小
+            LayerManager._container.addChildAt(view, 0);
         };
         /**
          * 设置面板位置

@@ -61,6 +61,17 @@ var xframe;
             return false;
         };
         /**
+         * 将一个已经生成的实例加入实例控制
+         * @param view 模块实例
+         * @param compClass 模块类型
+        */
+        ModuleManager.addModule = function (view, compClass) {
+            if (!this.hasModule(compClass)) {
+                ModuleManager.viewsInfo.push({ view: view });
+            }
+            return view;
+        };
+        /**
          * 销毁一个实例
          * @param view 实例对象
          * */

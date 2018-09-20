@@ -26,23 +26,17 @@ var MainView = /** @class */ (function (_super) {
                 break;
         }
     };
-    MainView.prototype.onUpdte = function () {
-        var user = User.getInstance();
-        this._view.tfPower.text = user.power + "";
-        this._view.tfDiamond.text = user.diamond + "";
-        this._view.tfMoney.text = user.money + "";
-    };
     MainView.prototype.createUI = function () {
         this._view = new ui.main.MainViewUI();
         this.addChild(this._view);
+        xframe.ModuleManager.addModule(new MainTopView(this._view.topCom), MainTopView).show();
+        xframe.ModuleManager.addModule(new MainMenuView(this._view.menuCom), MainMenuView).show();
     };
     MainView.prototype.addEventListener = function () {
         this._view.on(Laya.Event.CLICK, this, this.onC);
-        xframe.XEvent.instance.on(User.UPDATE, this, this.onUpdte);
     };
     MainView.prototype.removeEventListener = function () {
         this._view.off(Laya.Event.CLICK, this, this.onC);
-        xframe.XEvent.instance.off(User.UPDATE, this, this.onUpdte);
     };
     return MainView;
 }(xframe.XWindow));

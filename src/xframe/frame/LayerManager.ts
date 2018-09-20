@@ -71,8 +71,8 @@ module xframe{
 					return;
 				}
 			}
-			//还没加入任何显示对象。
-			LayerManager._container.addChild(view);
+			//层级最小
+			LayerManager._container.addChildAt(view, 0);
 		}
 
 		/**
