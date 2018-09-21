@@ -51,7 +51,9 @@ module xframe{
 		 */		
 		public static openWindow(view:IXWindow):void
 		{
-			LayerManager.setLayer(<Laya.Sprite>view,view.layer);
+			if(!view.displayedInStage){
+				LayerManager.setLayer(<Laya.Sprite>view,view.layer);
+			}
 			LayerManager.setPosition(<Laya.Sprite>view,view.align);
 		}
 

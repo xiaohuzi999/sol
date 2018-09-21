@@ -12,6 +12,7 @@ class MainTopView extends xframe.XWindow{
 
     protected createUI():void{
         this.addChild(this._view);
+        this.mouseThrough = this._view.mouseThrough = true;
     }
 
     private onUpdte():void{

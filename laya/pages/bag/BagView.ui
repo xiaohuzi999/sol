@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":24,
-    "selecteID":23,
+    "selectedBox":1,
+    "selecteID":21,
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
     "label":"View",
@@ -164,7 +164,7 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":1077,"x":288,"var":"btnUse","stateNum":"1","skin":"common/btn_1.png","label":"装备"},
+            "props":{"y":1077,"x":288,"var":"btnUse","stateNum":"1","skin":"common/btn_1.png","mouseEnabled":true,"label":"装备"},
             "nodeParent":1,
             "label":"Button(btnUse)",
             "isDirectory":false,

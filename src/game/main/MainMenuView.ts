@@ -3,6 +3,7 @@
 */
 class MainMenuView extends xframe.XWindow{
     protected _view:ui.main.MainMenuViewUI;
+    protected _curWin:IXWindow;
     constructor(ui:any){
         super();
         this._view = ui;
@@ -13,13 +14,35 @@ class MainMenuView extends xframe.XWindow{
     private onClick(e:Laya.Event):void{
         switch(e.target){
             case this._view.btnBag:
-            xframe.XFacade.instance.showModule(BagView);
+            this.curWin = xframe.XFacade.instance.getView(BagView);
+            break;
+            case this._view.btnStory:
+            this.curWin = xframe.XFacade.instance.getView(MainView);
             break;
         }
     }
 
+    public set curWin(w:any){
+        if(this._curWin != w){
+            if(this._curWin){
+                this._curWin.close();
+            }
+            this._curWin = w;
+            if(this._curWin){
+                this._curWin.show();
+            }
+        }
+    }
+
+    public get curWin():any{
+        return this._curWin;
+    }
+    
+
     protected createUI():void{
         this.addChild(this._view);
+        this.mouseThrough = this._view.mouseThrough = true;
+        this.curWin = xframe.XFacade.instance.getView(MainView);
     }
 
     protected addEventListener():void{

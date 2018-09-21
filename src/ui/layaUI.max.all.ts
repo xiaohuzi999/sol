@@ -2,6 +2,39 @@
 import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
 module ui.bag {
+    export class BagEquipComUI extends View {
+		public roleList:Laya.List;
+
+        public static  uiView:any ={"type":"View","props":{"width":520,"height":330},"child":[{"type":"Image","props":{"y":0,"x":0,"width":520,"skin":"share/winBG1.png","sizeGrid":"58,66,70,62","height":330}},{"type":"List","props":{"y":19,"x":11,"width":503,"var":"roleList","spaceY":6,"repeatX":1,"height":283},"child":[{"type":"BagEquipItem","props":{"y":0,"x":0,"runtime":"BagEquipItem","name":"render"}}]}]};
+        constructor(){ super()}
+        createChildren():void {
+        			View.regComponent("BagEquipItem",BagEquipItem);
+
+            super.createChildren();
+            this.createView(ui.bag.BagEquipComUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.bag {
+    export class BagEquipItemUI extends View {
+		public tf:Laya.Label;
+
+        public static  uiView:any ={"type":"View","props":{"width":500,"height":52},"child":[{"type":"Image","props":{"y":0,"x":0,"width":500,"skin":"share/item.png","sizeGrid":"20,46,23,36","height":52}},{"type":"Label","props":{"y":14,"x":90,"width":320,"var":"tf","text":"label","height":24,"fontSize":24,"color":"#ffffff","align":"center"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.bag.BagEquipItemUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.bag {
     export class BagViewUI extends View {
 		public itemList:Laya.List;
 		public pic:Laya.Image;
@@ -11,7 +44,7 @@ module ui.bag {
 		public btnUse:Laya.Button;
 		public proList:Laya.List;
 
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"main/bj_homepage@2x.png"},"child":[{"type":"Rect","props":{"y":889,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"}},{"type":"Rect","props":{"y":1134,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#a4a4a4"}},{"type":"Rect","props":{"y":0,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#b9b9b9"}},{"type":"Rect","props":{"y":216,"x":2,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"}}]},{"type":"List","props":{"y":902,"x":1,"width":728,"var":"itemList","spaceX":18,"repeatY":1,"height":134},"child":[{"type":"Item","props":{"y":0,"x":0,"runtime":"Item","name":"render"}}]},{"type":"Image","props":{"y":474,"x":278,"var":"pic"}},{"type":"Label","props":{"y":415,"x":262,"width":226,"var":"tfName","text":"1","height":24,"fontSize":28,"color":"#000000","align":"center"}},{"type":"Button","props":{"y":230,"x":10,"var":"btnItem","stateNum":3,"skin":"common/btn_0.png","labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"ITEM"}},{"type":"Button","props":{"y":230,"x":260,"var":"btnEquip","stateNum":3,"skin":"common/btn_0.png","labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"EQUIP"}},{"type":"Button","props":{"y":1077,"x":288,"var":"btnUse","stateNum":1,"skin":"common/btn_1.png","label":"装备"}},{"type":"List","props":{"y":445,"x":593,"width":125,"var":"proList","height":143},"child":[{"type":"Box","props":{"y":0,"x":0,"width":115,"name":"render","height":29},"child":[{"type":"Label","props":{"y":0,"x":0,"width":115,"text":"label","name":"lb","height":27,"fontSize":24,"color":"#ffffff"}}]}]}]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"main/bj_homepage@2x.png"},"child":[{"type":"Rect","props":{"y":889,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"}},{"type":"Rect","props":{"y":1134,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#a4a4a4"}},{"type":"Rect","props":{"y":0,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#b9b9b9"}},{"type":"Rect","props":{"y":216,"x":2,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"}}]},{"type":"List","props":{"y":902,"x":1,"width":728,"var":"itemList","spaceX":18,"repeatY":1,"height":134},"child":[{"type":"Item","props":{"y":0,"x":0,"runtime":"Item","name":"render"}}]},{"type":"Image","props":{"y":474,"x":278,"var":"pic"}},{"type":"Label","props":{"y":415,"x":262,"width":226,"var":"tfName","text":"1","height":24,"fontSize":28,"color":"#000000","align":"center"}},{"type":"Button","props":{"y":230,"x":10,"var":"btnItem","stateNum":3,"skin":"common/btn_0.png","labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"ITEM"}},{"type":"Button","props":{"y":230,"x":260,"var":"btnEquip","stateNum":3,"skin":"common/btn_0.png","labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"EQUIP"}},{"type":"Button","props":{"y":1077,"x":288,"var":"btnUse","stateNum":1,"skin":"common/btn_1.png","mouseEnabled":true,"label":"装备"}},{"type":"List","props":{"y":445,"x":593,"width":125,"var":"proList","height":143},"child":[{"type":"Box","props":{"y":0,"x":0,"width":115,"name":"render","height":29},"child":[{"type":"Label","props":{"y":0,"x":0,"width":115,"text":"label","name":"lb","height":27,"fontSize":24,"color":"#ffffff"}}]}]}]};
         constructor(){ super()}
         createChildren():void {
         			View.regComponent("Item",Item);
@@ -114,8 +147,9 @@ module ui.fight {
 module ui.main {
     export class MainMenuViewUI extends View {
 		public btnBag:Laya.Image;
+		public btnStory:Laya.Image;
 
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":200},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"share/bgBar.png","sizeGrid":"28,20,34,21","height":200}},{"type":"Image","props":{"y":40,"x":340,"var":"btnBag","skin":"main/btn_role.png","mouseEnabled":true}},{"type":"Image","props":{"y":40,"x":74,"skin":"main/btn_ranking.png"}},{"type":"Image","props":{"y":40,"x":615,"skin":"main/btn_card.png"}},{"type":"Label","props":{"y":160,"x":81,"text":"排行榜","fontSize":25,"color":"#ffffff","align":"center"}},{"type":"Label","props":{"y":160,"x":360,"text":"背包","fontSize":25,"color":"#ffffff","align":"center"}},{"type":"Label","props":{"y":160,"x":610,"text":"音乐卡片","fontSize":25,"color":"#ffffff","align":"center"}}]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":200},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"share/bgBar.png","sizeGrid":"28,20,34,21","height":200}},{"type":"Image","props":{"y":40,"x":340,"var":"btnBag","skin":"main/btn_role.png","mouseEnabled":true}},{"type":"Image","props":{"y":40,"x":74,"var":"btnStory","skin":"main/btn_ranking.png","mouseEnabled":true}},{"type":"Image","props":{"y":40,"x":615,"skin":"main/btn_card.png"}},{"type":"Label","props":{"y":160,"x":81,"text":"剧情","fontSize":25,"color":"#ffffff","align":"center"}},{"type":"Label","props":{"y":160,"x":360,"text":"背包","fontSize":25,"color":"#ffffff","align":"center"}},{"type":"Label","props":{"y":160,"x":610,"text":"音乐卡片","fontSize":25,"color":"#ffffff","align":"center"}}]};
         constructor(){ super()}
         createChildren():void {
         

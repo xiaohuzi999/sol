@@ -23,6 +23,7 @@ var MainTopView = /** @class */ (function (_super) {
     }
     MainTopView.prototype.createUI = function () {
         this.addChild(this._view);
+        this.mouseThrough = this._view.mouseThrough = true;
     };
     MainTopView.prototype.onUpdte = function () {
         var user = User.getInstance();

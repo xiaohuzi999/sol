@@ -63,6 +63,14 @@ class BagView extends xframe.XWindow{
         } 
     }
 
+    private onC(e:Laya.Event):void{
+        switch(e.target){
+            case this._view.btnUse:
+            xframe.XFacade.instance.showModule(BagEquipView);
+            break; 
+        }
+    }
+
     protected createUI():void{
         this._view = new ui.bag.BagViewUI();
         this.addChild(this._view);
@@ -77,6 +85,7 @@ class BagView extends xframe.XWindow{
         this._view.itemList.selectHandler = Handler.create(this, this.onItemSelect, null, false);
         this._view.proList.renderHandler = Handler.create(this, this.onRendPro, null, false);
         this._group.on(Laya.Event.CHANGE, this, this.onChange);
+        this._view.on(Laya.Event.CLICK, this, this.onC);
     }
 
     protected removeEventListener():void{
@@ -85,5 +94,6 @@ class BagView extends xframe.XWindow{
         this._view.proList.renderHandler.recover();
         this._view.proList.renderHandler = null;
         this._group.off(Laya.Event.CHANGE, this, this.onChange);
+        this._view.off(Laya.Event.CLICK, this, this.onC);
     }
 }

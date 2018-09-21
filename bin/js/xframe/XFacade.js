@@ -48,7 +48,7 @@ var xframe;
                 args[_i - 1] = arguments[_i];
             }
             console.log("showModule=======>", type.name, "<==========");
-            xframe.ModuleManager.showModule.apply(xframe.ModuleManager, [type].concat(args));
+            return xframe.ModuleManager.showModule.apply(xframe.ModuleManager, [type].concat(args));
         };
         /**
          * 关闭一个模块,从舞台移除

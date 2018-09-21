@@ -16,7 +16,9 @@ var xframe;
          * @param view 功能界面,
          */
         LayerManager.openWindow = function (view) {
-            LayerManager.setLayer(view, view.layer);
+            if (!view.displayedInStage) {
+                LayerManager.setLayer(view, view.layer);
+            }
             LayerManager.setPosition(view, view.align);
         };
         /**

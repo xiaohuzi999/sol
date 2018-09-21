@@ -23,12 +23,35 @@ var MainMenuView = /** @class */ (function (_super) {
     MainMenuView.prototype.onClick = function (e) {
         switch (e.target) {
             case this._view.btnBag:
-                xframe.XFacade.instance.showModule(BagView);
+                this.curWin = xframe.XFacade.instance.getView(BagView);
+                break;
+            case this._view.btnStory:
+                this.curWin = xframe.XFacade.instance.getView(MainView);
                 break;
         }
     };
+    Object.defineProperty(MainMenuView.prototype, "curWin", {
+        get: function () {
+            return this._curWin;
+        },
+        set: function (w) {
+            if (this._curWin != w) {
+                if (this._curWin) {
+                    this._curWin.close();
+                }
+                this._curWin = w;
+                if (this._curWin) {
+                    this._curWin.show();
+                }
+            }
+        },
+        enumerable: true,
+        configurable: true
+    });
     MainMenuView.prototype.createUI = function () {
         this.addChild(this._view);
+        this.mouseThrough = this._view.mouseThrough = true;
+        this.curWin = xframe.XFacade.instance.getView(MainView);
     };
     MainMenuView.prototype.addEventListener = function () {
         this._view.on(Laya.Event.CLICK, this, this.onClick);

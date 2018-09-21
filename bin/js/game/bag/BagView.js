@@ -63,6 +63,13 @@ var BagView = /** @class */ (function (_super) {
             return proList;
         }
     };
+    BagView.prototype.onC = function (e) {
+        switch (e.target) {
+            case this._view.btnUse:
+                xframe.XFacade.instance.showModule(BagEquipView);
+                break;
+        }
+    };
     BagView.prototype.createUI = function () {
         this._view = new ui.bag.BagViewUI();
         this.addChild(this._view);
@@ -75,6 +82,7 @@ var BagView = /** @class */ (function (_super) {
         this._view.itemList.selectHandler = Handler.create(this, this.onItemSelect, null, false);
         this._view.proList.renderHandler = Handler.create(this, this.onRendPro, null, false);
         this._group.on(Laya.Event.CHANGE, this, this.onChange);
+        this._view.on(Laya.Event.CLICK, this, this.onC);
     };
     BagView.prototype.removeEventListener = function () {
         this._view.itemList.selectHandler.recover();
@@ -82,6 +90,7 @@ var BagView = /** @class */ (function (_super) {
         this._view.proList.renderHandler.recover();
         this._view.proList.renderHandler = null;
         this._group.off(Laya.Event.CHANGE, this, this.onChange);
+        this._view.off(Laya.Event.CLICK, this, this.onC);
     };
     return BagView;
 }(xframe.XWindow));

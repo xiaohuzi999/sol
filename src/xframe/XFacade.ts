@@ -47,9 +47,9 @@ module xframe{
 		 * @param type 类型
 		 * @param args 数据;
 		 */
-		public showModule(type:any,...args):void{
+		public showModule(type:any,...args):any{
 			console.log("showModule=======>", type.name,"<==========");
-			ModuleManager.showModule.apply(ModuleManager,[type].concat(args));
+			return ModuleManager.showModule.apply(ModuleManager,[type].concat(args));
 		}
 		
 		/**
