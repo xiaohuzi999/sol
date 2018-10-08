@@ -29,6 +29,7 @@
 		"name": "高级软剑",
 		"price": 0,
 		"value": 0,
+		"quality":1,
 		"max": 1,
 		"property": {
 			"agility": 20,
@@ -44,6 +45,7 @@
 		"name": "血灵剑",
 		"price": 0,
 		"value": 0,
+		"quality":2,
 		"max": 1,
 		"property": {
 			"agility": 30,
@@ -59,6 +61,7 @@
 		"name": "寒灵剑",
 		"price": 0,
 		"value": 0,
+		"quality":2,
 		"max": 1,
 		"property": {
 			"agility": 50,
@@ -75,6 +78,7 @@
 		"price": 0,
 		"value": 0,
 		"max": 1,
+		"quality":3,
 		"property": {
 			"agility": 60,
 			"attack": 60,
@@ -89,6 +93,7 @@
 		"name": "三阳开泰斧",
 		"price": 0,
 		"value": 0,
+		"quality":3,
 		"max": 1,
 		"property": {
 			"agility": 80,
@@ -104,6 +109,7 @@
 		"name": "诛仙剑",
 		"price": 0,
 		"value": 0,
+		"quality":4,
 		"max": 1,
 		"property": {
 			"agility": 300,
@@ -119,6 +125,7 @@
 		"name": "玄屠剑",
 		"price": 0,
 		"value": 0,
+		"quality":4,
 		"max": 1,
 		"property": {
 			"agility": 40,

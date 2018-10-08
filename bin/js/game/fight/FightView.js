@@ -14,7 +14,9 @@ var __extends = (this && this.__extends) || (function () {
 var FightView = /** @class */ (function (_super) {
     __extends(FightView, _super);
     function FightView() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        _this._layer = xframe.LayerManager.LAYER_POP;
+        return _this;
     }
     FightView.prototype.show = function () {
         var args = [];
@@ -49,7 +51,6 @@ var FightView = /** @class */ (function (_super) {
     //
     FightView.prototype.execFightEff = function () {
         for (var i in this._curVo.fightInfo) {
-            trace("i________________", i);
             var fighter = this.getFighter(i);
             fighter.update(this._curVo.fightInfo[i]);
             fighter.beAttacked();

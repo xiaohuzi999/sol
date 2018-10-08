@@ -12,8 +12,7 @@ class MainView extends xframe.XWindow{
         switch(e.target){
             case this._view.btnStart:
                 //this.close();
-                //xframe.XFacade.instance.showModule(StoryView, Laya.loader.getRes("cfgs/chap_0.txt"));
-                xframe.XFacade.instance.showModule(BagView);
+                xframe.XFacade.instance.showModule(StoryView, Laya.loader.getRes("cfgs/chap_0.txt"));
             break;
         }
     }

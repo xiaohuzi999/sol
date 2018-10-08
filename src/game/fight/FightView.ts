@@ -8,6 +8,7 @@ class FightView extends xframe.XWindow{
     private _fighters:HeroItem[];
     constructor(){
         super();
+        this._layer = xframe.LayerManager.LAYER_POP;
     }
 
     public show(...args):void{
@@ -42,7 +43,6 @@ class FightView extends xframe.XWindow{
     //
     private execFightEff():void{
         for(let i in this._curVo.fightInfo){
-            trace("i________________",i)
             let fighter:any = this.getFighter(i);
             fighter.update(this._curVo.fightInfo[i])
             fighter.beAttacked();

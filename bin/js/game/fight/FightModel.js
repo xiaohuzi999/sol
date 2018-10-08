@@ -16,11 +16,13 @@ var FightModel = /** @class */ (function () {
         this._home = new Array();
         for (var i = 0; i < homeTeam.length; i++) {
             this._home.push(xframe.XUtils.clone(homeTeam[i]));
+            this._home[i].power = 0;
         }
         this._away = new Array();
         for (var i = 0; i < awayTeam.length; i++) {
             this._away.push(xframe.XUtils.clone(awayTeam[i]));
             this._away[i].isNpc = true;
+            this._away[i].power = 0;
             this._away[i].fightTeam = 1;
         }
         this._away = this._away.reverse();
@@ -46,39 +48,6 @@ var FightModel = /** @class */ (function () {
         }
         return false;
     };
-    /**加血*/
-    /*
-    public static recoverHP(itemId:number, roleId:string):void{
-        var info:any = ItemData.getItemData(itemId);
-        var num = info.itemEffectValue;
-        var role:Role;
-        for(var i:number=0; i<FightModel._fightList.length; i++){
-            if(FightModel._fightList[i].roleId == roleId){
-                role = FightModel._fightList[i];
-                break;
-            }
-        }
-        if(role){
-            role.hp += num;
-            if(role.hp > role.maxHp){
-                role.hp = role.maxHp;
-            }
-        }else{
-            XTip.showTip("角色已阵亡~");
-            return;
-        }
-        var vo:FightVo = new FightVo();
-        vo.nowId = User.getInstance().role.roleId;
-        vo.action = FightVo.RECOVER;
-        vo.fightInfo[role.roleId] = {"hp":role.hp};
-        //1扣道具
-        BagModel.delItemByNum(itemId, 1);
-        //2,小回合结束，派发事件
-        var event:XEvent = new XEvent(FightModel.UPDATEINFO);
-        event.data = vo;
-        MainDispatcher.getInstance().dispatchEvent(event);
-    }
-    */
     /**
      * 开始战斗
      */
@@ -170,11 +139,11 @@ var FightModel = /** @class */ (function () {
         //1，判定对象，可能受技能影响--------------------------
         if (!target) {
             if (this._home.indexOf(role) != -1) { //主队//改成第一个目标了
-                target = this._away[0 /*FightModel.getRnd(FightModel._away.length)*/];
+                target = this._away[0];
                 // target = FightModel._away[FightModel.getRnd(FightModel._away.length)];
             }
             else {
-                target = this._home[0 /*FightModel.getRnd(FightModel._home.length)*/];
+                target = this._home[0];
                 // target = FightModel._home[FightModel.getRnd(FightModel._home.length)];
             }
         }
@@ -189,12 +158,14 @@ var FightModel = /** @class */ (function () {
             }
         }
         else { //AI托管
-            if (target.fightTeam == this._currentRole.fightTeam) { //同队伍，暂时不处理----------------------------
-                console.log("Special skill");
+            list = this.exSkill(this._currentRole, vo);
+            /*
+            if(target.fightTeam == this._currentRole.fightTeam){//同队伍，暂时不处理----------------------------
+                console.log("Special skill")
+            }else{
+                this.exAttack(this._currentRole, target, vo)
             }
-            else {
-                this.exAttack(this._currentRole, target, vo);
-            }
+            */
         }
         //3，操作结果------------------------------------------------
         if (list && list.length > 0) {
@@ -269,44 +240,86 @@ var FightModel = /** @class */ (function () {
         vo.action = FightVo.ATTACK;
         vo.fightInfo[beAttRole.uid] = { "hp": beAttRole.hp };
     };
-    /**执行技能攻击*/
     FightModel.exSkill = function (skillRole, vo) {
-        /*
-        var skillData:any = SkillData.getSkillInfo(FightModel._roleSkill);
-        var targets:Role[] = new Array();
-        if(skillData.skillType == SkillType.ONE){
-            if(FightModel._home.indexOf(skillRole) != -1){
-                targets = [FightModel._away[0]];
-            }else{
-                targets = [FightModel._home[0]];
-            }
-        }else if(skillData.skillType == SkillType.ALL){
-            if(FightModel._home.indexOf(skillRole) != -1){
-                targets = FightModel._away;
-            }else{
-                targets = FightModel._home;
+        trace("skillRole.power========", skillRole.power);
+        //寻找当前能执行的技能；
+        var list = skillRole.skills;
+        for (var i = list.length - 1; i > -1; i--) {
+            var skillData = DBSkill.getSkill(list[i]);
+            if (skillData && skillRole.power >= skillData.power) {
+                break;
             }
         }
-
-        for(var i:number=0; i<targets.length; i++){
-            var hurt:number = skillRole.attack * (skillData.skillEffect/100)*5 -targets[i].defend*2 ;           //伤害=（（人物攻击+装备攻击+技能加成1）*（1+技能加成2）*5-（人物防御+装备防御+技能加成1）*（1+技能加成2）*2）*（1+伤害增幅）*（1+暴击加成）
-
-            hurt = parseInt(hurt+"");
-            if(hurt <=0){
-                hurt = 1;
-            }
-            targets[i].hp = targets[i].hp - hurt;
-            if(targets[i].hp < 0){
-                targets[i].hp = 0;
-            }
-            vo.fightInfo[targets[i].uid] = {"hp":targets[i].hp};
+        if (!skillData) {
+            skillData = { id: 101, name: "T01", num: 1, target: 2, type: 1, rate: 1, power: 0, addPower: 50 };
         }
+        trace("exSkill::", skillData.name);
+        //寻找目标===================================
+        var targets = [];
+        var tmp;
+        if (skillData.target == DBSkill.TARGET_HOME) {
+            if (skillData.num == 1) {
+                targets.push(skillRole);
+            }
+            else {
+                for (var i = 0; i < skillData.num; i++) {
+                    if (skillRole.isNpc) {
+                        this._away[i] && targets.push(this._away[i]);
+                    }
+                    else {
+                        this._home[i] && targets.push(this._home[i]);
+                    }
+                }
+            }
+        }
+        else if (skillData.target == DBSkill.TARGET_AWAY) {
+            for (var i = 0; i < skillData.num; i++) {
+                if (skillRole.isNpc) {
+                    this._home[i] && targets.push(this._home[i]);
+                }
+                else {
+                    this._away[i] && targets.push(this._away[i]);
+                }
+            }
+        }
+        else if (skillData.target == DBSkill.TARGET_ALL) {
+            for (var i = 0; i < skillData.num; i++) {
+                this._fightList[i] && targets.push(this._fightList[i]);
+            }
+        } //有情况未列举完
+        //技能效果解析
+        if (skillData.buff) {
+            var makeBuff = Math.random() < skillData.buffRate;
+            var buffData = DBBuff.getBuff(skillData.buff);
+        }
+        for (var i = 0; i < targets.length; i++) {
+            //计算伤害=============
+            var hurt = skillRole.attack * skillData.rate;
+            //BUFF伤害加成；
+            hurt = parseInt(hurt + "");
+            if (hurt > 0) {
+                //TODO：BUFF减伤；
+                targets[i].hp = Math.max(0, targets[i].hp - hurt);
+                vo.fightInfo[targets[i].uid] = { "hp": targets[i].hp };
+            }
+            //加BUFF,BUFF
+            if (buffData) {
+                if (!this._buffInfo[targets[i].uid]) {
+                    this._buffInfo[targets[i].uid] = {};
+                }
+                this._buffInfo[targets[i].uid][buffData.id] = buffData.rnd;
+                //处理状态BUFF
+                if (buffData.type == DBBuff.TYPE_DIZZY) {
+                    targets[i].fightState = Role.FS_DIZZY;
+                }
+            }
+        }
+        skillRole.power -= skillData.power;
+        skillRole.power += skillData.addPower;
         //生成操作列表
         vo.action = FightVo.SKILL;
-        vo.skillId = FightModel._roleSkill;
-        FightModel._roleSkill = "";
+        vo.skillId = skillData.id + "";
         return targets;
-        */
     };
     /**辅助-取随机数0----num-1*/
     FightModel.getRnd = function (num) {
@@ -340,6 +353,8 @@ var FightModel = /** @class */ (function () {
     FightModel.WIN = "win";
     /**事件-失败*/
     FightModel.LOSE = "lose";
+    /**执行技能攻击,新核心*/
+    FightModel._buffInfo = {};
     return FightModel;
 }());
 //# sourceMappingURL=FightModel.js.map

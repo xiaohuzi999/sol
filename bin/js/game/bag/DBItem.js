@@ -29,6 +29,8 @@ var DBItem = /** @class */ (function () {
         enumerable: true,
         configurable: true
     });
+    //绿，蓝，紫，橙，红
+    DBItem.COLORS = [0x006600, 0x0000FF, 0x8B00FF, 0xFF7F00, 0xff0000];
     return DBItem;
 }());
 //# sourceMappingURL=DBItem.js.map

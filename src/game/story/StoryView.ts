@@ -11,6 +11,7 @@ class StoryView extends xframe.XWindow{
     private _curDialog:DialogVo;
     constructor(){
         super();
+        this._layer = xframe.LayerManager.LAYER_POP;
     }
 
     public show(...args):void{

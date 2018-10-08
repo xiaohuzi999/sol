@@ -17,7 +17,9 @@ function beginLoad() {
         "res/atlas/fight.atlas",
         "cfgs/chap_0.txt",
         "cfgs/npc.txt",
-        "cfgs/items.txt"
+        "cfgs/items.txt",
+        "cfgs/skill.txt",
+        "cfgs/buff.txt"
     ], Handler.create(null, onLoaded));
 }
 function onLoaded() {

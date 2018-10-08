@@ -3,6 +3,7 @@
 */
 var ItemVo = /** @class */ (function () {
     function ItemVo() {
+        this.quality = 0;
     }
     /**类型-道具 */
     ItemVo.ITEM = 1;

@@ -14,7 +14,9 @@ var __extends = (this && this.__extends) || (function () {
 var StoryView = /** @class */ (function (_super) {
     __extends(StoryView, _super);
     function StoryView() {
-        return _super.call(this) || this;
+        var _this = _super.call(this) || this;
+        _this._layer = xframe.LayerManager.LAYER_POP;
+        return _this;
     }
     StoryView.prototype.show = function () {
         var args = [];

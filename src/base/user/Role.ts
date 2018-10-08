@@ -53,6 +53,9 @@ class Role{
     public isNpc:boolean = false;
     /**所在队伍*/
     public fightTeam:number = 0;
+    public fightState:number = 0;
+    /**怒气值 */
+    public power:number = 0;
 
     /**状态 */
     public state:number = 0;
@@ -61,6 +64,11 @@ class Role{
     public static readonly NORMAL:number = 0;
     /**状态常量-参战 */
     public static readonly IN_FIGHT:number = 1;
+
+    /**战斗状态常量-正常 */
+    public static readonly FS_NORMAL:number = 0;
+    /**战斗状态常量-眩晕 */
+    public static readonly FS_DIZZY:number = 1;
 
     public constructor(data:any=null) {
         if(data){

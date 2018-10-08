@@ -37,7 +37,6 @@ package com.xiaohuzi999.xControls.util
 			return data[key];
 		}
 		
-		
 		/***/
 		private static function get data():Object{
 			return SharedObject.getLocal(_name).data

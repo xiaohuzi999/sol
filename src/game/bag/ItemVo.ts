@@ -16,6 +16,7 @@ class ItemVo{
     public value: any;
     //max number of the item;
     public max:number;
+    public quality:number = 0;
     //item property, usally for equipment;
     public property:{hp?:number, attak?:number, dodge?:number, crit?:number, physique?:number, agility?:number, strength?:number};
     //item type

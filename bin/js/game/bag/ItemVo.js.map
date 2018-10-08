@@ -1,1 +1,1 @@
-{"version":3,"file":"ItemVo.js","sourceRoot":"","sources":["../../../../src/game/bag/ItemVo.ts"],"names":[],"mappings":"AAAA;;EAEE;AACF;IA6BI;IACA,CAAC;IAND,WAAW;IACY,WAAI,GAAU,CAAC,CAAC;IACvC,QAAQ;IACe,YAAK,GAAU,CAAC,CAAC;IAI5C,aAAC;CAAA,AA/BD,IA+BC"}
+{"version":3,"file":"ItemVo.js","sourceRoot":"","sources":["../../../../src/game/bag/ItemVo.ts"],"names":[],"mappings":"AAAA;;EAEE;AACF;IA8BI;QAfO,YAAO,GAAU,CAAC,CAAC;IAgB1B,CAAC;IAND,WAAW;IACY,WAAI,GAAU,CAAC,CAAC;IACvC,QAAQ;IACe,YAAK,GAAU,CAAC,CAAC;IAI5C,aAAC;CAAA,AAhCD,IAgCC"}

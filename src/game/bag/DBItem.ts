@@ -4,8 +4,10 @@
 class DBItem{
     //item database
     private static _db:any;
+    //绿，蓝，紫，橙，红
+    public static COLORS:number[] = [0x006600, 0x0000FF, 0x8B00FF, 0xFF7F00, 0xff0000];
     constructor(){
-
+        
     }
 
     /**获取数据源 */
