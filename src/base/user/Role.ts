@@ -69,6 +69,8 @@ class Role{
     public static readonly FS_NORMAL:number = 0;
     /**战斗状态常量-眩晕 */
     public static readonly FS_DIZZY:number = 1;
+    /**战斗状态常量-混乱 */
+    public static readonly FS_CHAOS:number = 1;
 
     public constructor(data:any=null) {
         if(data){

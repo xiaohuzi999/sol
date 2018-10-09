@@ -17,8 +17,6 @@ class FightModel{
     private static _currentRole:Role;
     //当前回合
     private static _currentRnd:number;
-    /**玩家技能id-判定是否使用了技能*/
-    private static _roleSkill:string;
 
     /**NPC总数据*/
     private static _npcData:any;
@@ -41,7 +39,6 @@ class FightModel{
      * */
     public static initFight(homeTeam:Role[], awayTeam:Role[]):void{
         this._currentRnd = 0;
-        this._roleSkill = "";
         this._home = new Array();
         for(var i:number=0; i<homeTeam.length; i++){
             this._home.push(xframe.XUtils.clone(homeTeam[i]));
@@ -70,47 +67,19 @@ class FightModel{
         return -1;
     }
 
-    /**技能*/
-    public static playerSkill(skillId:string):boolean{
-        if(!this._roleSkill){
-            this._roleSkill = skillId;
-            return true;
-        }
-        return false;
-    }
-
     /**
      * 开始战斗
      */
     public static startFight():void{
         //console.log("startFight============================")
         var role:Role = this._waitList.shift();
-        this._currentRole = role;
-        if(this._roleSkill && role.uid == User.getInstance().role.uid){
-            this.excuteAI(role,null,FightVo.SKILL, this._roleSkill);
+        if(role.fightState == Role.FS_DIZZY){
+            trace("some one dizzy---------------------------------")
+            this.actionComplete();
         }else{
+            this._currentRole = role;
             this.excuteAI(role);
         }
-        return;
-        /*
-        //改成自动战斗================================
-        if(role.isNpc){//自动操作
-            //console.log("npc doing========================")
-            FightModel.excuteAI(role)
-        }else{//
-            var event:XEvent = new XEvent(FightModel.TURN);
-            event.data = role.roleId;
-            MainDispatcher.getInstance().dispatchEvent(event);
-        }
-        */
-    }
-
-    /**跳过战斗*/
-    public static break():void{
-        while(!(this._home.length == 0 || this._away.length==0)){
-            this.actionComplete();
-        }
-        this.actionComplete();
     }
 
     /**操作结束——单次操作结束*/
@@ -132,6 +101,25 @@ class FightModel{
             //
             xframe.XEvent.instance.event(FightModel.WIN, reward);
         }else{
+            //更新BUFF回合数;
+            for(let i in this._buffInfo){
+               for(let j in this._buffInfo[i]){
+                   let info:any[] = this._buffInfo[i][j];
+                   if(info){
+                       info[0] ++;
+                       if(info[0] > info[1]){
+                           //状态解除
+                           let role:Role = this.getRole(i);
+                           if(role.fightState != Role.FS_NORMAL && info[2] == role.fightState){
+                               role.fightState = Role.FS_NORMAL
+                           }
+                           //扔掉数据
+                           delete this._buffInfo[i][j];
+                           trace("删除BUFF——————", i,j);
+                       }
+                   }
+               }
+            }
             //
             if(this._waitList.length == 0){//回合结束
                 trace("回合结束===============================================")
@@ -287,7 +275,7 @@ class FightModel{
         }
         trace("exSkill::",skillData.name);
 
-        //寻找目标===================================
+        //寻找目标==========================================================
         var targets:Role[] = [];
         var tmp:Role[];
         if(skillData.target == DBSkill.TARGET_HOME){
@@ -317,14 +305,11 @@ class FightModel{
         }//有情况未列举完
         
 
-        //技能效果解析
-        if(skillData.buff){
-            let makeBuff:boolean = Math.random() < skillData.buffRate;
-            var buffData:{id:number, name:string, num:number, target:number, type:number, rnd:number, value:any} = DBBuff.getBuff(skillData.buff);
-        }
+        //技能效果(伤害)解析==============================================================
         for(let i=0; i<targets.length; i++){
             //计算伤害=============
             var hurt:number = skillRole.attack * skillData.rate;     
+            hurt = this.getHurt(this._buffInfo[skillRole.uid], hurt);
             //BUFF伤害加成；
             hurt = parseInt(hurt+"");   
             if(hurt > 0){
@@ -333,20 +318,36 @@ class FightModel{
                 vo.fightInfo[targets[i].uid] = {"hp":targets[i].hp};
             }
             targets[i].power += 10;
+        }
 
-            //加BUFF,BUFF
-            if(buffData){
-                if(!this._buffInfo[targets[i].uid]){
-                    this._buffInfo[targets[i].uid] = {};
-                }
-                this._buffInfo[targets[i].uid][buffData.id] = buffData.rnd;
-
-                //处理状态BUFF
-                if(buffData.type == DBBuff.TYPE_DIZZY){
-                    targets[i].fightState = Role.FS_DIZZY;
+        //BUFF解析===============================================================
+        if(skillData.buff){
+            let makeBuff:boolean = Math.random() < skillData.buffRate;
+            if(makeBuff){
+                let buffData:BuffVo = DBBuff.getBuff(skillData.buff);
+                if(buffData){
+                    let tmp:Role[];
+                    if(buffData.target == BuffVo.TARGET_HOME){
+                        if(buffData.num == 1){
+                            this.addBuff(skillRole, buffData);
+                        }else{
+                            tmp = skillRole.isNpc?this._away:this._home;
+                            for(let i=0; i<tmp.length; i++){
+                                this.addBuff(tmp[i], buffData);
+                            }
+                        }
+                    }else if(buffData.target == BuffVo.TARGET_AWAY){
+                        if(buffData.num == 1){
+                            this.addBuff(targets[0], buffData);
+                        }else{
+                            tmp = skillRole.isNpc?this._home:this._away;
+                            for(let i=0; i<tmp.length; i++){
+                                this.addBuff(tmp[i], buffData);
+                            }
+                        }
+                    }
                 }
             }
-            
         }
 
         
@@ -358,14 +359,50 @@ class FightModel{
         return targets;
     }
 
+    /**加BUFF */
+    private static addBuff(role:Role, buff:BuffVo):void{
+        trace("加BUFF======================", role.uid, buff.id)
+        if(!this._buffInfo[role.uid]){
+            this._buffInfo[role.uid] = {};
+        }
+        //todo同类BUFF重复加的问题
+        //格式【当前回合，持续回合, BUFF附加状态】
+        let state:number = Role.FS_NORMAL
+        if(buff.type == BuffVo.TYPE_DIZZY){
+            state = Role.FS_DIZZY;
+            role.fightState = state;
+        }else if(buff.type == BuffVo.TYPE_CHAOS){
+            state = Role.FS_CHAOS
+            role.fightState = state;
+        }
+        this._buffInfo[role.uid][buff.id] = [0, buff.rnd, state];
+    }
+
+    /**辅助-计算BUFF伤害加成 */
+    private static getHurt(buffInfo:any, srcHurt:number):number{
+        var nowHurt:number = srcHurt;
+        for(var i in buffInfo){
+            if(i.charAt(0) == BuffVo.TYPE_ATT+""){
+                let buff:BuffVo = DBBuff.getBuff(i);
+                if(buff.value && buff.value.attack){
+                    let val:string = buff.value.attack;
+                    if(val.indexOf("%") != -1){
+                        val = val.substr(0, val.length-1);
+                        nowHurt = srcHurt*(1+parseFloat(val)/100);
+                    }else{
+                        nowHurt += parseFloat(val);
+                    }
+                }
+            }
+        }
+        trace("getHurt............", srcHurt, nowHurt);
+        return nowHurt;
+    }
+
 
     /**辅助-取随机数0----num-1*/
     private static getRnd(num:number):number{
         return Math.floor(Math.random()*num);
-    }
-
-    public static getNpcData(npcId:string):any{
-        return FightModel._npcData[npcId]
     }
 
     /**获取战斗列表----战斗需要进行配置*/

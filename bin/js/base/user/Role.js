@@ -75,6 +75,8 @@ var Role = /** @class */ (function () {
     Role.FS_NORMAL = 0;
     /**战斗状态常量-眩晕 */
     Role.FS_DIZZY = 1;
+    /**战斗状态常量-混乱 */
+    Role.FS_CHAOS = 1;
     return Role;
 }());
 //# sourceMappingURL=Role.js.map
