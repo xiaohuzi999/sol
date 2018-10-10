@@ -75,29 +75,28 @@ var FightModel = /** @class */ (function () {
             xframe.XEvent.instance.event(FightModel.WIN, reward);
         }
         else {
-            //更新BUFF回合数;
-            for (var i in this._buffInfo) {
-                for (var j in this._buffInfo[i]) {
-                    var info = this._buffInfo[i][j];
-                    if (info) {
-                        info[0]++;
-                        if (info[0] > info[1]) {
-                            //状态解除
-                            var role = this.getRole(i);
-                            if (role.fightState != Role.FS_NORMAL && info[2] == role.fightState) {
-                                role.fightState = Role.FS_NORMAL;
+            //
+            if (this._waitList.length == 0) { //回合结束
+                this._waitList = this._fightList.slice(0, this._fightList.length);
+                //更新BUFF回合数;
+                for (var i in this._buffInfo) {
+                    for (var j in this._buffInfo[i]) {
+                        var info = this._buffInfo[i][j];
+                        if (info) {
+                            info[0]++;
+                            if (info[0] > info[1]) {
+                                //状态解除
+                                var role = this.getRole(i);
+                                if (role.fightState != Role.FS_NORMAL && info[2] == role.fightState) {
+                                    role.fightState = Role.FS_NORMAL;
+                                }
+                                //扔掉数据
+                                delete this._buffInfo[i][j];
+                                trace("删除BUFF——————", i, j);
                             }
-                            //扔掉数据
-                            delete this._buffInfo[i][j];
-                            trace("删除BUFF——————", i, j);
                         }
                     }
                 }
-            }
-            //
-            if (this._waitList.length == 0) { //回合结束
-                trace("回合结束===============================================");
-                this._waitList = this._fightList.slice(0, this._fightList.length);
             }
             this.startFight();
         }
@@ -344,6 +343,7 @@ var FightModel = /** @class */ (function () {
         if (buff.type == BuffVo.TYPE_DIZZY) {
             state = Role.FS_DIZZY;
             role.fightState = state;
+            trace("sb has dizzied......................", buff);
         }
         else if (buff.type == BuffVo.TYPE_CHAOS) {
             state = Role.FS_CHAOS;

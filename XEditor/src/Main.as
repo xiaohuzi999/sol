@@ -57,41 +57,44 @@ package{
 			buff[1102] = {id:105, name:"中毒2", num:2,target:2, type:1, rnd:3, value:{hp:"-10%"}};
 			buff[1102] = {id:106, name:"中毒3", num:5,target:2, type:1, rnd:3, value:{hp:"-10%"}};
 			
-			buff[2001] = {id:107, name:"强攻1", num:1,target:1, type:1, rnd:2, value:{attack:"25%"}};
-			buff[2002] = {id:108, name:"强攻2", num:2,target:1, type:1, rnd:3, value:{attack:"25%"}};
-			buff[2003] = {id:109, name:"强攻3", num:5,target:1, type:1, rnd:3, value:{attack:"25%"}};
-			buff[2101] = {id:110, name:"弱攻1", num:1,target:2, type:1, rnd:3, value:{attack:"-10%"}};
-			buff[2102] = {id:111, name:"弱攻2", num:2,target:2, type:1, rnd:3, value:{attack:"-10%"}};
-			buff[2103] = {id:112, name:"弱攻3", num:5,target:2, type:1, rnd:3, value:{attack:"-10%"}};
+			buff[2001] = {id:107, name:"强攻1", num:1,target:1, type:2, rnd:2, value:{attack:"25%"}};
+			buff[2002] = {id:108, name:"强攻2", num:2,target:1, type:2, rnd:3, value:{attack:"25%"}};
+			buff[2003] = {id:109, name:"强攻3", num:5,target:1, type:2, rnd:3, value:{attack:"25%"}};
+			buff[2101] = {id:110, name:"弱攻1", num:1,target:2, type:2, rnd:3, value:{attack:"-10%"}};
+			buff[2102] = {id:111, name:"弱攻2", num:2,target:2, type:2, rnd:3, value:{attack:"-10%"}};
+			buff[2103] = {id:112, name:"弱攻3", num:5,target:2, type:2, rnd:3, value:{attack:"-10%"}};
 			
-			buff[3001] = {id:113, name:"减伤1", num:1,target:1, type:1, rnd:3, value:{defend:"25%"}};
-			buff[3002] = {id:114, name:"减伤2", num:2,target:1, type:1, rnd:3, value:{defend:"25%"}};
-			buff[3003] = {id:115, name:"减伤3", num:5,target:1, type:1, rnd:3, value:{defend:"25%"}};
-			buff[3101] = {id:116, name:"加伤1", num:1,target:2, type:1, rnd:3, value:{defend:"-10%"}};
-			buff[3102] = {id:117, name:"加伤2", num:2,target:2, type:1, rnd:3, value:{defend:"-10%"}};
-			buff[3103] = {id:118, name:"加伤3", num:5,target:2, type:1, rnd:3, value:{defend:"-10%"}};
+			buff[3001] = {id:113, name:"减伤1", num:1,target:1, type:3, rnd:3, value:{defend:"25%"}};
+			buff[3002] = {id:114, name:"减伤2", num:2,target:1, type:3, rnd:3, value:{defend:"25%"}};
+			buff[3003] = {id:115, name:"减伤3", num:5,target:1, type:3, rnd:3, value:{defend:"25%"}};
+			buff[3101] = {id:116, name:"加伤1", num:1,target:2, type:3, rnd:3, value:{defend:"-10%"}};
+			buff[3102] = {id:117, name:"加伤2", num:2,target:2, type:3, rnd:3, value:{defend:"-10%"}};
+			buff[3103] = {id:118, name:"加伤3", num:5,target:2, type:3, rnd:3, value:{defend:"-10%"}};
 			
 			//特殊
-			buff[7001] = {id:201, name:"眩晕1", num:1,target:1, type:2, rnd:2, value:{}};
-			buff[7002] = {id:202, name:"眩晕2", num:2,target:1, type:2, rnd:2, value:{}};
-			buff[7003] = {id:203, name:"眩晕3", num:5,target:1, type:2, rnd:2, value:{}};
-			buff[8001] = {id:301, name:"混乱1", num:1,target:2, type:3, rnd:2, value:{}};
-			buff[8002] = {id:302, name:"混乱2", num:2,target:2, type:3, rnd:2, value:{}};
-			buff[8003] = {id:303, name:"混乱3", num:5,target:2, type:3, rnd:2, value:{}};
+			buff[7001] = {id:201, name:"眩晕1", num:1,target:2, type:7, rnd:2, value:{}};
+			buff[7002] = {id:202, name:"眩晕2", num:2,target:2, type:7, rnd:2, value:{}};
+			buff[7003] = {id:203, name:"眩晕3", num:5,target:2, type:7, rnd:2, value:{}};
+			buff[8001] = {id:301, name:"混乱1", num:1,target:2, type:8, rnd:2, value:{}};
+			buff[8002] = {id:302, name:"混乱2", num:2,target:2, type:8, rnd:2, value:{}};
+			buff[8003] = {id:303, name:"混乱3", num:5,target:2, type:8, rnd:2, value:{}};
 			
 			var skill:Object = {};
 			//num 作用目标数， target 作用对象，1-己方，2-对方，0-不限 ，type 类型 1，伤害。 2眩晕类 3，混乱类, rate 损血比例
 			skill[1101]= {id:1101, name:"S01", num:1,target:2, type:1, rate:1, power:0, addPower:50};
-			skill[1102]= {id:1101, name:"S02", num:1,target:2, type:1, rate:1.5, buff:2001, buffRate:1, power:50, addPower:0};
+			skill[1102]= {id:1102, name:"S02", num:1,target:2, type:1, rate:1.5, buff:7001, buffRate:1, power:50, addPower:0};
+			
+			skill[1103]= {id:1103, name:"S03", num:1,target:2, type:1, rate:1, power:0, addPower:50};
+			skill[1104]= {id:1104, name:"S04", num:5,target:1, type:1, rate:1.5, buff:1001, buffRate:1, power:50, addPower:0};
 			
 			skill[2101]= {id:2101, name:"撕咬", num:1,target:2, type:1, rate:1, power:0, addPower:50};
-			skill[2102]= {id:2101, name:"野蛮冲撞", num:1,target:2, type:1, rate:1.5, buff:2001, buffRate:0.5, power:100, addPower:0};
+			skill[2102]= {id:2102, name:"野蛮冲撞", num:1,target:2, type:1, rate:1.5, buff:2001, buffRate:0.5, power:100, addPower:0};
 			
 			for(var i:String in buff){
 				buff[i].id = parseInt(i);
 			}
 			
-			/*
+			
 			var fliePath:String = "D:/buff.txt";
 			var file:File = File.applicationDirectory.resolvePath(fliePath);
 			var fs:FileStream=new FileStream();
@@ -100,7 +103,7 @@ package{
 			fs.open(file,FileMode.UPDATE);
 			fs.writeBytes(bt);
 			fs.close();
-			*/
+			
 		}
 		
 		private function onSelectItem(event:Event):void{

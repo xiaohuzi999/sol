@@ -101,29 +101,29 @@ class FightModel{
             //
             xframe.XEvent.instance.event(FightModel.WIN, reward);
         }else{
-            //更新BUFF回合数;
-            for(let i in this._buffInfo){
-               for(let j in this._buffInfo[i]){
-                   let info:any[] = this._buffInfo[i][j];
-                   if(info){
-                       info[0] ++;
-                       if(info[0] > info[1]){
-                           //状态解除
-                           let role:Role = this.getRole(i);
-                           if(role.fightState != Role.FS_NORMAL && info[2] == role.fightState){
-                               role.fightState = Role.FS_NORMAL
-                           }
-                           //扔掉数据
-                           delete this._buffInfo[i][j];
-                           trace("删除BUFF——————", i,j);
-                       }
-                   }
-               }
-            }
             //
             if(this._waitList.length == 0){//回合结束
-                trace("回合结束===============================================")
                 this._waitList = this._fightList.slice(0, this._fightList.length);
+
+                 //更新BUFF回合数;
+                for(let i in this._buffInfo){
+                for(let j in this._buffInfo[i]){
+                    let info:any[] = this._buffInfo[i][j];
+                    if(info){
+                        info[0] ++;
+                        if(info[0] > info[1]){
+                            //状态解除
+                            let role:Role = this.getRole(i);
+                            if(role.fightState != Role.FS_NORMAL && info[2] == role.fightState){
+                                role.fightState = Role.FS_NORMAL
+                            }
+                            //扔掉数据
+                            delete this._buffInfo[i][j];
+                            trace("删除BUFF——————", i,j);
+                        }
+                    }
+                }
+                }
             }
             this.startFight();
         }
@@ -265,7 +265,7 @@ class FightModel{
         //寻找当前能执行的技能；
         var list:any = skillRole.skills;
         for(let i=list.length-1; i>-1; i--){
-            var skillData:{id:number, name:string, num:number,target:number, type:number, rate:number, power:number,addPower:number, buff?:number, buffRate?:number} = DBSkill.getSkill(list[i]);
+            var skillData:SkillVo = DBSkill.getSkill(list[i]);
             if(skillData && skillRole.power >= skillData.power){
                 break;
             }
@@ -277,8 +277,9 @@ class FightModel{
 
         //寻找目标==========================================================
         var targets:Role[] = [];
-        var tmp:Role[];
-        if(skillData.target == DBSkill.TARGET_HOME){
+         let tmp:Role[];
+        //本方
+        if(skillData.target == SkillVo.TARGET_HOME){
             if(skillData.num == 1){
                 targets.push(skillRole)
             }else{
@@ -290,7 +291,9 @@ class FightModel{
                     }
                 }
             }
-        }else if(skillData.target == DBSkill.TARGET_AWAY){
+        }
+        //对方
+        else if(skillData.target == SkillVo.TARGET_AWAY){
             for(let i=0; i<skillData.num; i++){
                 if(skillRole.isNpc){
                     this._home[i] && targets.push(this._home[i])
@@ -298,11 +301,38 @@ class FightModel{
                     this._away[i] && targets.push(this._away[i])
                 }
             }
-        }else if(skillData.target == DBSkill.TARGET_ALL){
+        }
+        //本方随机
+        else if(skillData.target == SkillVo.TARGET_H_RAN){
             for(let i=0; i<skillData.num; i++){
-                this._fightList[i] && targets.push(this._fightList[i])
+                if(skillRole.isNpc){
+                    tmp = xframe.XUtils.randomArr(this._away)
+                }else{
+                    tmp = xframe.XUtils.randomArr(this._home)
+                }
+                if(tmp[i]){
+                    targets.push(this._home[i])
+                }else{
+                    break;
+                }
             }
-        }//有情况未列举完
+        }
+        //对方随机
+        else if(skillData.target == SkillVo.TARGET_A_RAN){
+            for(let i=0; i<skillData.num; i++){
+                if(skillRole.isNpc){
+                    tmp = xframe.XUtils.randomArr(this._home)
+                }else{
+                    tmp = xframe.XUtils.randomArr(this._away)
+                }
+                if(tmp[i]){
+                    targets.push(this._home[i])
+                }else{
+                    break;
+                }
+            }
+        }
+        //缺2中情况
         
 
         //技能效果(伤害)解析==============================================================
@@ -371,6 +401,7 @@ class FightModel{
         if(buff.type == BuffVo.TYPE_DIZZY){
             state = Role.FS_DIZZY;
             role.fightState = state;
+            trace("sb has dizzied......................",buff)
         }else if(buff.type == BuffVo.TYPE_CHAOS){
             state = Role.FS_CHAOS
             role.fightState = state;

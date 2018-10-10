@@ -81,6 +81,35 @@ module xframe{
 		public static checkHit(dis:Laya.Sprite):boolean{
 			return dis.visible && dis.mouseX > 0 && dis.mouseY > 0 && dis.mouseX <= dis.width && dis.mouseY <= dis.height;
 		}
+
+		/**
+		 * 数组随机排序
+		 * @param arr 源数组
+		 * @return 新数组
+		 * 
+		*/
+		public static randomArr(arr:any[]):any[]
+		{
+			let outputArr:any[] = arr.slice();
+			let i:number = outputArr.length;
+			let temp:any;
+			let indexA:number;
+			let indexB:number;
+			
+			while (i)
+			{
+				indexA = i-1;
+				indexB = Math.floor(Math.random() * i);
+				i--;
+				
+				if (indexA == indexB) continue;
+				temp = outputArr[indexA];
+				outputArr[indexA] = outputArr[indexB];
+				outputArr[indexB] = temp;
+			}
+			
+			return outputArr;
+		}
 		
 		
 		/**
