@@ -16,6 +16,22 @@
 		"desc":"主角"
 	},
 	"1": {
+		"physiqueGrow": 0.95,
+		"physique": 9.5,
+		"pic": "fennisi",
+		"roleName": "古月",
+		"skills": [1103,1104],
+		"agility": 9.5,
+		"fightPic": "1009",
+		"quality": "D",
+		"id": "2",
+		"strength": 10,
+		"defendGrow": 0.95,
+		"agilityGrow": 0.95,
+		"strengthGrow": 1,
+		"desc":"狐，辅助"
+	},
+	"2": {
 		"physiqueGrow": 1.1,
 		"physique": 11,
 		"pic": "wumu",
@@ -30,22 +46,6 @@
 		"agilityGrow": 0.95,
 		"strengthGrow": 1,
 		"desc":"肉"
-	},
-	"2": {
-		"physiqueGrow": 0.95,
-		"physique": 9.5,
-		"pic": "fennisi",
-		"roleName": "古月",
-		"skills": ["治疗"],
-		"agility": 9.5,
-		"fightPic": "1009",
-		"quality": "D",
-		"id": "2",
-		"strength": 10,
-		"defendGrow": 0.95,
-		"agilityGrow": 0.95,
-		"strengthGrow": 1,
-		"desc":"狐，辅助"
 	},
 	"3": {
 		"physiqueGrow": 0.95,

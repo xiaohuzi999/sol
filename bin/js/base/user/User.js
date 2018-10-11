@@ -15,6 +15,12 @@ var User = /** @class */ (function () {
             this[i] = value[i];
         }
         trace(this.role);
+        //测试用======================================
+        var role = DBMonster.calcTotalPro(1);
+        role.state = Role.IN_FIGHT;
+        role.uid = 2;
+        this.heros.push(role);
+        //=============================================
         //
         xframe.XEvent.instance.event(User.UPDATE);
     };

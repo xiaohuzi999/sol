@@ -31,8 +31,8 @@ class FightView extends xframe.XWindow{
 
      /**战斗指令*/
     private execFight(vo:FightVo):void{
+        trace(vo.rId,"=================", vo.nowId, vo.action, vo.fightInfo)
         this._curVo = vo;
-        trace("excuteFight------->", vo.nowId);
         let fighter:any = this.getFighter(vo.nowId);
         fighter.attack(Handler.create(this, ()=>{
             FightModel.actionComplete();
@@ -50,7 +50,7 @@ class FightView extends xframe.XWindow{
     }
 
     private onFightEvent(type:string, data?:any):void{
-        trace("onFightEvent:::::::::::>", type, data)
+        //trace("onFightEvent:::::::::::>", type, data)
         switch(type){
             case FightModel.TURN:
                 //

@@ -16,7 +16,7 @@ module xframe{
 		 * @param obj 需要判定的对象
 		 * @return Boolean
 		 */
-		public static isEmpty(obj:Object):boolean{
+		public static isEmpty(obj:any):boolean{
 			for(var i in obj){
 				return false;
 			}
@@ -107,8 +107,16 @@ module xframe{
 				outputArr[indexA] = outputArr[indexB];
 				outputArr[indexB] = temp;
 			}
-			
+
 			return outputArr;
+		}
+
+		/**随机从数组中取出一个值 */
+		public static arrRandomValue(arr:any[]):any{
+			if(arr){
+				return arr[Math.floor(Math.random()*arr.length)];
+			}
+			return null;
 		}
 		
 		

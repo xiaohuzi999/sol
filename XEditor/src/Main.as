@@ -81,25 +81,25 @@ package{
 			
 			var skill:Object = {};
 			//num 作用目标数， target 作用对象，1-己方，2-对方，0-不限 ，type 类型 1，伤害。 2眩晕类 3，混乱类, rate 损血比例
-			skill[1101]= {id:1101, name:"S01", num:1,target:2, type:1, rate:1, power:0, addPower:50};
-			skill[1102]= {id:1102, name:"S02", num:1,target:2, type:1, rate:1.5, buff:7001, buffRate:1, power:50, addPower:0};
+			skill[1101]= {id:1101, name:"S01", num:1,target:2, type:1, rate:-1, power:0, addPower:50};
+			skill[1102]= {id:1102, name:"S02", num:1,target:2, type:1, rate:-1.5, buff:7001, buffRate:1, power:50, addPower:0};
 			
-			skill[1103]= {id:1103, name:"S03", num:1,target:2, type:1, rate:1, power:0, addPower:50};
-			skill[1104]= {id:1104, name:"S04", num:5,target:1, type:1, rate:1.5, buff:1001, buffRate:1, power:50, addPower:0};
+			skill[1103]= {id:1103, name:"S03", num:1,target:2, type:1, rate:-1, power:0, addPower:50};
+			skill[1104]= {id:1104, name:"ZY04", num:5,target:1, type:1, rate:1.2, buff:1001, buffRate:1, power:50, addPower:0};
 			
-			skill[2101]= {id:2101, name:"撕咬", num:1,target:2, type:1, rate:1, power:0, addPower:50};
-			skill[2102]= {id:2102, name:"野蛮冲撞", num:1,target:2, type:1, rate:1.5, buff:2001, buffRate:0.5, power:100, addPower:0};
+			skill[2101]= {id:2101, name:"撕咬", num:1,target:2, type:1, rate:-1, power:0, addPower:50};
+			skill[2102]= {id:2102, name:"野蛮冲撞", num:1,target:2, type:1, rate:-4, buff:2001, buffRate:0.5, power:100, addPower:0};
 			
 			for(var i:String in buff){
 				buff[i].id = parseInt(i);
 			}
 			
 			
-			var fliePath:String = "D:/buff.txt";
+			var fliePath:String = "D:/skill.txt";
 			var file:File = File.applicationDirectory.resolvePath(fliePath);
 			var fs:FileStream=new FileStream();
 			var bt:ByteArray=new ByteArray();
-			bt.writeUTFBytes(JSON.stringify(buff));
+			bt.writeUTFBytes(JSON.stringify(skill));
 			fs.open(file,FileMode.UPDATE);
 			fs.writeBytes(bt);
 			fs.close();

@@ -40,8 +40,8 @@ var FightView = /** @class */ (function (_super) {
     };
     /**战斗指令*/
     FightView.prototype.execFight = function (vo) {
+        trace(vo.rId, "=================", vo.nowId, vo.action, vo.fightInfo);
         this._curVo = vo;
-        trace("excuteFight------->", vo.nowId);
         var fighter = this.getFighter(vo.nowId);
         fighter.attack(Handler.create(this, function () {
             FightModel.actionComplete();
@@ -57,7 +57,7 @@ var FightView = /** @class */ (function (_super) {
         }
     };
     FightView.prototype.onFightEvent = function (type, data) {
-        trace("onFightEvent:::::::::::>", type, data);
+        //trace("onFightEvent:::::::::::>", type, data)
         switch (type) {
             case FightModel.TURN:
                 //

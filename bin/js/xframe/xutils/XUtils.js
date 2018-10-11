@@ -90,6 +90,30 @@ var xframe;
             return dis.visible && dis.mouseX > 0 && dis.mouseY > 0 && dis.mouseX <= dis.width && dis.mouseY <= dis.height;
         };
         /**
+         * 数组随机排序
+         * @param arr 源数组
+         * @return 新数组
+         *
+        */
+        XUtils.randomArr = function (arr) {
+            var outputArr = arr.slice();
+            var i = outputArr.length;
+            var temp;
+            var indexA;
+            var indexB;
+            while (i) {
+                indexA = i - 1;
+                indexB = Math.floor(Math.random() * i);
+                i--;
+                if (indexA == indexB)
+                    continue;
+                temp = outputArr[indexA];
+                outputArr[indexA] = outputArr[indexB];
+                outputArr[indexB] = temp;
+            }
+            return outputArr;
+        };
+        /**
          * 画椭圆
          * @param sp 绘图Graphics
          * @param x 起始点x
