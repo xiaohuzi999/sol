@@ -25,6 +25,26 @@ var HeroItem = /** @class */ (function (_super) {
     HeroItem.prototype.die = function () {
         FightAniUtils.die(this, this);
     };
+    /** */
+    HeroItem.prototype.showHp = function (hp) {
+        //效果
+        var delHp = hp - this._data.hp;
+        this._data.hp = hp;
+        if (this._data.hp <= 0) {
+            this.die();
+        }
+        if (delHp < 0) {
+            this.beAttacked();
+        }
+        trace(this._data.uid, " current hp ", this._data.hp, " __", delHp);
+    };
+    /**showBuff */
+    HeroItem.prototype.showBuff = function (buffId) {
+        trace(this._data.uid, " add buff ", buffId);
+    };
+    HeroItem.prototype.delBuff = function (buffId) {
+        trace(this._data.uid, " remove buff ", buffId);
+    };
     HeroItem.prototype.update = function (info) {
         for (var i in info) {
             this._data[i] = info[i];

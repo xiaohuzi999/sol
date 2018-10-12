@@ -113,6 +113,13 @@ var xframe;
             }
             return outputArr;
         };
+        /**随机从数组中取出一个值 */
+        XUtils.arrRandomValue = function (arr) {
+            if (arr) {
+                return arr[Math.floor(Math.random() * arr.length)];
+            }
+            return null;
+        };
         /**
          * 画椭圆
          * @param sp 绘图Graphics

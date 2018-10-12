@@ -43,17 +43,35 @@ var FightView = /** @class */ (function (_super) {
         trace(vo.rId, "=================", vo.nowId, vo.action, vo.fightInfo);
         this._curVo = vo;
         var fighter = this.getFighter(vo.nowId);
-        fighter.attack(Handler.create(this, function () {
-            FightModel.actionComplete();
-        }));
-        this.execFightEff();
+        if (fighter) {
+            fighter.attack(Handler.create(this, function () {
+                FightModel.actionComplete();
+            }));
+            this.execFightEff();
+        }
+        else { //回合开始，处理BUFF
+            this.execFightEff();
+            Laya.timer.once(2000, FightModel, FightModel.actionComplete);
+        }
     };
-    //
+    /**
+     * 效果解析
+     * {hp?:number, addBuff?:any,delBuff?:any}
+    */
     FightView.prototype.execFightEff = function () {
+        var fInfo;
         for (var i in this._curVo.fightInfo) {
             var fighter = this.getFighter(i);
-            fighter.update(this._curVo.fightInfo[i]);
-            fighter.beAttacked();
+            fInfo = this._curVo.fightInfo[i];
+            if (fInfo.hp) {
+                fighter.showHp(fInfo.hp);
+            }
+            if (fInfo.addBuff) {
+                fighter.showBuff(fInfo.addBuff);
+            }
+            if (fInfo.delBuff) {
+                fighter.delBuff(fInfo.delBuff);
+            }
         }
     };
     FightView.prototype.onFightEvent = function (type, data) {

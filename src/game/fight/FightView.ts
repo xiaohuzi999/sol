@@ -34,18 +34,38 @@ class FightView extends xframe.XWindow{
         trace(vo.rId,"=================", vo.nowId, vo.action, vo.fightInfo)
         this._curVo = vo;
         let fighter:any = this.getFighter(vo.nowId);
-        fighter.attack(Handler.create(this, ()=>{
-            FightModel.actionComplete();
-        }));
-        this.execFightEff();
+        if(fighter){
+            fighter.attack(Handler.create(this, ()=>{
+                FightModel.actionComplete();
+            }));
+            this.execFightEff();
+        }else{//回合开始，处理BUFF
+            this.execFightEff();
+            Laya.timer.once(1000,FightModel, FightModel.actionComplete);
+        }
     }
     
-    //
+    /**
+     * 效果解析 
+     * {hp?:number, addBuff?:any,delBuff?:any}
+    */
     private execFightEff():void{
+        var fInfo:{hp?:number, addBuff?:any,delBuff?:any};
         for(let i in this._curVo.fightInfo){
             let fighter:any = this.getFighter(i);
-            fighter.update(this._curVo.fightInfo[i])
-            fighter.beAttacked();
+            fInfo = this._curVo.fightInfo[i];
+            
+            if(fInfo.hp){
+                fighter.showHp(fInfo.hp);
+            }
+            
+            if(fInfo.addBuff){
+                fighter.showBuff(fInfo.addBuff)
+            }
+
+            if(fInfo.delBuff){
+                fighter.delBuff(fInfo.delBuff)
+            }
         }
     }
 

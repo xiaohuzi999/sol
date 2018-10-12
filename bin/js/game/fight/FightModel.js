@@ -80,6 +80,7 @@ var FightModel = /** @class */ (function () {
                 this._waitList = this._fightList.slice(0, this._fightList.length);
                 //todo更新表现数据==================================
                 //更新BUFF回合数=====================================
+                var vo;
                 for (var i in this._buffInfo) {
                     for (var j in this._buffInfo[i]) {
                         var info = this._buffInfo[i][j];
@@ -90,6 +91,16 @@ var FightModel = /** @class */ (function () {
                                 var role = this.getRole(i);
                                 if (role.fightState != Role.FS_NORMAL && info[2] == role.fightState) {
                                     role.fightState = Role.FS_NORMAL;
+                                }
+                                if (!vo) {
+                                    vo = new FightVo();
+                                    vo.rId = this._currentRnd;
+                                }
+                                if (vo.fightInfo[i]) {
+                                    vo.fightInfo[i]["delBuff"] = j;
+                                }
+                                else {
+                                    vo.fightInfo[i] = { delBuff: j };
                                 }
                                 //扔掉数据
                                 delete this._buffInfo[i][j];
@@ -110,10 +121,26 @@ var FightModel = /** @class */ (function () {
                                         role.hp += parseInt(bvo.value.hp);
                                     }
                                     trace("Recover buff .........", hp, role.hp);
+                                    if (!vo) {
+                                        vo = new FightVo();
+                                        vo.rId = this._currentRnd;
+                                    }
+                                    if (vo.fightInfo[i]) {
+                                        vo.fightInfo[i]["hp"] = role.hp;
+                                    }
+                                    else {
+                                        vo.fightInfo[i] = { hp: role.hp };
+                                    }
                                 }
                             }
                         }
                     }
+                }
+                //派发事件======================
+                if (vo) {
+                    xframe.XEvent.instance.event(FightModel.UPDATEINFO, vo);
+                    trace("BUFF 效果更新-----------------------------");
+                    return;
                 }
             }
             this.startFight();
@@ -133,11 +160,11 @@ var FightModel = /** @class */ (function () {
         if (!target) {
             if (this._home.indexOf(role) != -1) { //主队//改成第一个目标了
                 target = this._away[0];
-                // target = FightModel._away[FightModel.getRnd(FightModel._away.length)];
+                //target = xframe.XUtils.arrRandomValue(this._away);
             }
             else {
                 target = this._home[0];
-                // target = FightModel._home[FightModel.getRnd(FightModel._home.length)];
+                //target = xframe.XUtils.arrRandomValue(this._home);
             }
         }
         //2,操作------------------------------------------------
@@ -150,7 +177,7 @@ var FightModel = /** @class */ (function () {
                 //console.log(list.length,JSON.stringify(list))
             }
         }
-        else { //AI托管
+        else { //AI托管,自动
             list = this.exSkill(this._currentRole, vo);
         }
         //3，操作结果------------------------------------------------
@@ -226,7 +253,12 @@ var FightModel = /** @class */ (function () {
         }
         //生成操作列表
         vo.action = FightVo.ATTACK;
-        vo.fightInfo[beAttRole.uid] = { "hp": beAttRole.hp };
+        if (vo.fightInfo[beAttRole.uid]) {
+            vo.fightInfo[beAttRole.uid]["hp"] = beAttRole.hp;
+        }
+        else {
+            vo.fightInfo[beAttRole.uid] = { "hp": beAttRole.hp };
+        }
     };
     FightModel.exSkill = function (skillRole, vo) {
         //寻找当前能执行的技能；
@@ -355,7 +387,12 @@ var FightModel = /** @class */ (function () {
                 if (targets[i].hp > targets[i].maxHp) {
                     targets[i].hp = targets[i].maxHp;
                 }
-                vo.fightInfo[targets[i].uid] = { "hp": targets[i].hp };
+                if (vo.fightInfo[targets[i].uid]) {
+                    vo.fightInfo[targets[i].uid]["hp"] = targets[i].hp;
+                }
+                else {
+                    vo.fightInfo[targets[i].uid] = { "hp": targets[i].hp };
+                }
             }
             targets[i].power += 10;
         }
@@ -368,23 +405,23 @@ var FightModel = /** @class */ (function () {
                     var tmp_1;
                     if (buffData.target == BuffVo.TARGET_HOME) {
                         if (buffData.num == 1) {
-                            this.addBuff(skillRole, buffData);
+                            this.addBuff(skillRole, buffData, vo);
                         }
                         else {
                             tmp_1 = skillRole.isNpc ? this._away : this._home;
                             for (var i = 0; i < tmp_1.length; i++) {
-                                this.addBuff(tmp_1[i], buffData);
+                                this.addBuff(tmp_1[i], buffData, vo);
                             }
                         }
                     }
                     else if (buffData.target == BuffVo.TARGET_AWAY) {
                         if (buffData.num == 1) {
-                            this.addBuff(targets[0], buffData);
+                            this.addBuff(targets[0], buffData, vo);
                         }
                         else {
                             tmp_1 = skillRole.isNpc ? this._home : this._away;
                             for (var i = 0; i < tmp_1.length; i++) {
-                                this.addBuff(tmp_1[i], buffData);
+                                this.addBuff(tmp_1[i], buffData, vo);
                             }
                         }
                     }
@@ -399,7 +436,7 @@ var FightModel = /** @class */ (function () {
         return targets;
     };
     /**加BUFF */
-    FightModel.addBuff = function (role, buff) {
+    FightModel.addBuff = function (role, buff, vo) {
         trace("加BUFF======================", role.uid, buff.id);
         if (!this._buffInfo[role.uid]) {
             this._buffInfo[role.uid] = {};
@@ -410,13 +447,18 @@ var FightModel = /** @class */ (function () {
         if (buff.type == BuffVo.TYPE_DIZZY) {
             state = Role.FS_DIZZY;
             role.fightState = state;
-            trace("sb has dizzied......................", buff);
         }
         else if (buff.type == BuffVo.TYPE_CHAOS) {
             state = Role.FS_CHAOS;
             role.fightState = state;
         }
         this._buffInfo[role.uid][buff.id] = [0, buff.rnd, state];
+        if (vo.fightInfo[role.uid]) {
+            vo.fightInfo[role.uid]["addBuff"] = buff.id;
+        }
+        else {
+            vo.fightInfo[role.uid] = { addBuff: buff.id };
+        }
     };
     /**辅助-计算BUFF伤害加成 */
     FightModel.getHurt = function (buffInfo, srcHurt) {
@@ -437,10 +479,6 @@ var FightModel = /** @class */ (function () {
             }
         }
         return nowHurt;
-    };
-    /**辅助-取随机数0----num-1*/
-    FightModel.getRnd = function (num) {
-        return Math.floor(Math.random() * num);
     };
     /**初始化NPC*/
     FightModel.initNpc = function (fighters) {
