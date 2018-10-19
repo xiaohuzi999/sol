@@ -6,6 +6,7 @@ package com.xiaohuzi999.xControls.util
 	import flash.display.DisplayObjectContainer;
 	import flash.display.InteractiveObject;
 	import flash.display.MovieClip;
+	import flash.display.Sprite;
 	import flash.display.Stage;
 	import flash.events.Event;
 	import flash.geom.Point;
@@ -189,6 +190,11 @@ package com.xiaohuzi999.xControls.util
 		  */
 		 public static function pack(data:Object, res:Boolean=true,code:int = 0):Object{
 			 return {Res:res, Data:data, Code:code};
+		 }
+		 
+		 /**碰撞检测*/
+		 public static function checkHit(sp:Sprite):Boolean{
+			 return sp.visible && sp.mouseX>0 && sp.mouseY>0 && sp.mouseX < sp.width && sp.mouseY < sp.height;
 		 }
 	}
 }

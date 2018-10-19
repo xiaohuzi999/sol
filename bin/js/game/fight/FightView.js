@@ -51,7 +51,7 @@ var FightView = /** @class */ (function (_super) {
         }
         else { //回合开始，处理BUFF
             this.execFightEff();
-            Laya.timer.once(2000, FightModel, FightModel.actionComplete);
+            Laya.timer.once(1000, FightModel, FightModel.actionComplete);
         }
     };
     /**
