@@ -53,7 +53,7 @@ package com.xiaohuzi999.storyEditor
 			var btnIndex:int = 0;
 			var oldRecordId:int = -1;
 			if(showOldPos && _group.selectedButton){
-				oldRecordId = _group.selectedButton.data.recordId;
+				oldRecordId = _group.selectedButton.data.id;
 			}
 			
 			for(var i:uint=0; i<recordList.length; i++){
@@ -63,7 +63,7 @@ package com.xiaohuzi999.storyEditor
 				item.addEventListener(MouseEvent.RIGHT_MOUSE_DOWN, onSelectItem);
 				_btns.push(item);
 				item.contextMenu = _menu;
-				if(recordList[i].recordId == oldRecordId){
+				if(recordList[i].id == oldRecordId){
 					btnIndex = i;
 				}
 				//item.showIcon();
@@ -83,23 +83,23 @@ package com.xiaohuzi999.storyEditor
 					if(_menuItem.data.parentId){//分歧剧情
 						vo = {parentId:_menuItem.data.parentId,parentName:_menuItem.data.parentName}
 					}
-					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.recordId,vo:vo, type:"0"}));
+					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id,vo:vo, type:"0"}));
 					break
 				case "复制":
 					if(_menuItem.data.label_1){
 						XTip.showTip("分支剧情不能复制");
 					}else{
-						this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.recordId, vo:_menuItem.data, type:"0"}));
+						this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id, vo:_menuItem.data, type:"0"}));
 					}
 					break;
 				case "删除":
 					if(_group.buttons.length > 1){
-						this.dispatchEvent(new XEvent(DEL_DIALOG, _menuItem.data.recordId));
+						this.dispatchEvent(new XEvent(DEL_DIALOG, _menuItem.data.id));
 					}
 					break;
 				default://创建分支剧情
 					var arr:Array = String(event.currentTarget.data).split("|");
-					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.recordId, vo:{parentId:_menuItem.data.recordId,parentName:arr[0]},type:arr[1]}));
+					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id, vo:{parentId:_menuItem.data.id,parentName:arr[0]},type:arr[1]}));
 					break;
 			}
 		}

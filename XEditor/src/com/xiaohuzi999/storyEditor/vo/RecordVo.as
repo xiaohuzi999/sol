@@ -9,21 +9,24 @@ package com.xiaohuzi999.storyEditor.vo
 	public class RecordVo
 	{
 		//id
-		public var recordId:String;
+		public var id:String;
 		//
 		//绘图层==============================================================================
 		//地图
-		public var bg:String;
-		/**立绘,格式——图片id|x|y|XScale|alpha;*/
-		public var leftPlayer:Object;
+		public var bg:Object;
+		/**立绘,格式——图片name|x|y|scaleX|alpha;*/
+		public var p0:Object;
 		/**立绘——图片id|x|y|XScale|alpha;*/
-		public var rightPlayer:Object;
+		public var p1:Object;
+		//
+		public var p2:Object;
+		public var p3:Object;
 		/**表情--图片id|x|y*/
-		public var leftMood:Object;
+		public var lm:Object;
 		/**表情--图片id|x|y*/
-		public var rightMood:Object;
+		public var rm:Object;
 		//特效
-		public var effect:String;
+		public var eff:Object;
 		
 		
 		//数据层================================================================================

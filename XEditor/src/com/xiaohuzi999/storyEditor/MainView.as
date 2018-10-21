@@ -10,9 +10,7 @@ package com.xiaohuzi999.storyEditor
 	import com.xiaohuzi999.xControls.util.xEvent.XEvent;
 	
 	import flash.display.MovieClip;
-	import flash.display.Sprite;
 	import flash.events.Event;
-	import flash.system.System;
 
 	/**
 	 * MainView
@@ -44,7 +42,7 @@ package com.xiaohuzi999.storyEditor
 			}
 		}
 		
-		/***/
+		/**选择剧情组*/
 		private function onChangeStory(event:XEvent = null):void{
 			_currentSotryInfo = event.data;
 			_currentSotryInfo = DB.getStoryByName(_currentSotryInfo.storyName);
@@ -76,15 +74,15 @@ package com.xiaohuzi999.storyEditor
 			var prevVo:RecordVo = (_rightPanel.prevItem?_rightPanel.prevItem.data as RecordVo : null);
 			if(prevVo){
 				if(isLeft){
-					if(curVo.leftPlayer && prevVo.leftPlayer && (curVo.leftPlayer.name == prevVo.leftPlayer.name)){
-						curVo.leftPlayer.x = prevVo.leftPlayer.x;
-						curVo.leftPlayer.y = prevVo.leftPlayer.y
+					if(curVo.p0 && prevVo.p0 && (curVo.p0.name == prevVo.p0.name)){
+						curVo.p0.x = prevVo.p0.x;
+						curVo.p0.y = prevVo.p0.y
 						formatView(null);
 					}
 				}else{
-					if(curVo.rightPlayer && prevVo.rightPlayer && (curVo.rightPlayer.name == prevVo.rightPlayer.name)){
-						curVo.rightPlayer.x = prevVo.rightPlayer.x;
-						curVo.rightPlayer.y = prevVo.rightPlayer.y
+					if(curVo.p1 && prevVo.p1 && (curVo.p1.name == prevVo.p1.name)){
+						curVo.p1.x = prevVo.p1.x;
+						curVo.p1.y = prevVo.p1.y
 						formatView(null);
 					}
 				}
@@ -143,17 +141,17 @@ package com.xiaohuzi999.storyEditor
 			$ui = new EditorUI();
 			this.addChild($ui);
 			
-			_midPanel = new MidCom($ui.midleMC);
-			_midPanel.x = 320;
-			this.addChild(_midPanel);
-			
 			_leftPane = new LeftCom($ui.leftMC);
 			this.addChild(_leftPane);
 			_leftPane.x = 8;
 			
+			_midPanel = new MidCom($ui.midleMC);
+			_midPanel.x = 370;
+			this.addChild(_midPanel);
+			
 			_rightPanel = new RightCom($ui.rightMC);
 			this.addChild(_rightPanel);
-			_rightPanel.x = 1063;
+			_rightPanel.x = 1163;
 		}
 		
 		override protected function initEvent():void{

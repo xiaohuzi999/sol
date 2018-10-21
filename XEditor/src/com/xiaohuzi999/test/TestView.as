@@ -85,58 +85,58 @@ package com.xiaohuzi999.test
 			//切换特效
 			_curData = data;
 			if(data.bg){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg)+".jpg", onLoadPic, [_bg]);
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg.name)+".jpg", onLoadPic, [_bg]);
 			}
 			//左立绘
-			if(!XUtil.isEmpty(data.leftPlayer)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.leftPlayer.name)+".png", onLoadPic, [_leftPlayerBm]);
-				if(data.leftPlayer.scaleX){
-					_leftPlayerBm.scaleX = data.leftPlayer.scaleX
+			if(!XUtil.isEmpty(data.p0)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p0.name)+".png", onLoadPic, [_leftPlayerBm]);
+				if(data.p0.scaleX){
+					_leftPlayerBm.scaleX = data.p0.scaleX
 				}else{
 					_leftPlayerBm.scaleX = 1
 				}
-				if(data.leftPlayer.alpha != undefined){
-					_leftPlayerBm.alpha = data.leftPlayer.alpha;
+				if(data.p0.alpha != undefined){
+					_leftPlayerBm.alpha = data.p0.alpha;
 				}else{
 					_leftPlayerBm.alpha = 1;
 				}
-				_leftPlayerBm.x = data.leftPlayer.x
-				_leftPlayerBm.y = data.leftPlayer.y
+				_leftPlayerBm.x = data.p0.x
+				_leftPlayerBm.y = data.p0.y
 			}else{
 				_leftPlayerBm.bitmapData = null;
 			}
 			
 			//右立绘
-			if(!XUtil.isEmpty(data.rightPlayer)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.rightPlayer.name)+".png", onLoadPic,[_rightPlayerBm]);
-				if(data.rightPlayer.scaleX){
-					_rightPlayerBm.scaleX = data.rightPlayer.scaleX
+			if(!XUtil.isEmpty(data.p1)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p1.name)+".png", onLoadPic,[_rightPlayerBm]);
+				if(data.p1.scaleX){
+					_rightPlayerBm.scaleX = data.p1.scaleX
 				}else{
 					_rightPlayerBm.scaleX = 1
 				}
-				if(data.rightPlayer.alpha != undefined){
-					_rightPlayerBm.alpha = data.rightPlayer.alpha
+				if(data.p1.alpha != undefined){
+					_rightPlayerBm.alpha = data.p1.alpha
 				}else{
 					_rightPlayerBm.alpha = 1;
 				}
-				_rightPlayerBm.x = data.rightPlayer.x
-				_rightPlayerBm.y = data.rightPlayer.y;
+				_rightPlayerBm.x = data.p1.x
+				_rightPlayerBm.y = data.p1.y;
 			}else{
 				_rightPlayerBm.bitmapData = null;
 			}
 			//左表情
-			if(!XUtil.isEmpty(data.leftMood)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.MOOD_URL, data.leftMood.name)+".png", onLoadPic,[_leftMoodBm]);
-				_leftMoodBm.x = data.leftMood.x
-				_leftMoodBm.y = data.leftMood.y;
+			if(!XUtil.isEmpty(data.lm)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.MOOD_URL, data.lm.name)+".png", onLoadPic,[_leftMoodBm]);
+				_leftMoodBm.x = data.lm.x
+				_leftMoodBm.y = data.lm.y;
 			}else{
 				_leftMoodBm.bitmapData = null;
 			}
 			//右表情
-			if(!XUtil.isEmpty(data.rightMood)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.MOOD_URL, data.rightMood.name)+".png", onLoadPic,[_rightMoodBm]);
-				_rightMoodBm.x = data.rightMood.x
-				_rightMoodBm.y = data.rightMood.y;
+			if(!XUtil.isEmpty(data.rm)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.MOOD_URL, data.rm.name)+".png", onLoadPic,[_rightMoodBm]);
+				_rightMoodBm.x = data.rm.x
+				_rightMoodBm.y = data.rm.y;
 			}else{
 				_rightMoodBm.bitmapData = null;
 			}
@@ -199,7 +199,7 @@ package com.xiaohuzi999.test
 			
 			function addDialog(data:RecordVo):void{
 				var item:DialogCom = new DialogCom();
-				var isLeft:Boolean = (!XUtil.isEmpty(data.leftPlayer) && data.leftPlayer.name && (!data.leftPlayer.alpha || data.leftPlayer.alpha == 1))
+				var isLeft:Boolean = (!XUtil.isEmpty(data.p0) && data.p0.name && (!data.p0.alpha || data.p0.alpha == 1))
 				item.showDilog(data.name, data.dialog, isLeft);
 				_items.unshift(item);
 				_itemC.addChild(item);

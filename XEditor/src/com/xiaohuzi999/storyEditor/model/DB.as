@@ -41,6 +41,7 @@ package com.xiaohuzi999.storyEditor.model
 		
 		/**初始化*/
 		public static function init(localData:String = null):void{
+			//XCookie.set(NAME, null);
 			if(localData){
 				XCookie.set(NAME, JSON.parse(localData));
 			}
@@ -57,7 +58,7 @@ package com.xiaohuzi999.storyEditor.model
 				storyVo.dialogList = new Object();
 				for(var j:String in list[i].dialogList){
 					recordVo = new RecordVo(list[i].dialogList[j]);
-					storyVo.dialogList[recordVo.recordId] = recordVo
+					storyVo.dialogList[recordVo.id] = recordVo
 				}
 				_storyList.push(storyVo);
 			}
@@ -81,7 +82,7 @@ package com.xiaohuzi999.storyEditor.model
 			storyInfo.condition = condition;
 			storyInfo.type = type;
 			//初始化数据
-			storyInfo.dialogList["0"] = new RecordVo({"recordId":0});
+			storyInfo.dialogList["0"] = new RecordVo({"id":0});
 			_storyList.push(storyInfo);
 			_storyList.sortOn("storyId", Array.NUMERIC);
 			save();
@@ -129,9 +130,9 @@ package com.xiaohuzi999.storyEditor.model
 		/**修改剧情信息*/
 		public static function modifyDialog(storyName:String, dialogInfo:Object):void{
 			var storyInfo:Object = getStoryByName(storyName);
-			var tempInfo:Object = getDialogInfo(storyInfo, dialogInfo.recordId);
+			var tempInfo:Object = getDialogInfo(storyInfo, dialogInfo.id);
 			if(!tempInfo){
-				storyInfo.dialogList[tempInfo.recordId] = tempInfo;
+				storyInfo.dialogList[tempInfo.id] = tempInfo;
 			}else{
 				dialogInfo = JSON.parse(JSON.stringify(dialogInfo))
 				for(var i:String in dialogInfo){
@@ -157,8 +158,8 @@ package com.xiaohuzi999.storyEditor.model
 			var storyInfo:Object = getStoryByName(storyName);
 			var list:Object = storyInfo.dialogList;
 			
-			//dialogInfo.recordId = GUID.create();
-			dialogInfo.recordId = storyInfo.diaIndex;
+			//dialogInfo.id = GUID.create();
+			dialogInfo.id = storyInfo.diaIndex;
 			storyInfo.diaIndex ++ ;
 			
 			//取出插入数据=====================
@@ -169,10 +170,10 @@ package com.xiaohuzi999.storyEditor.model
 			}
 			//
 			dialogInfo["nextRecordId_"+0] = preData["nextRecordId_"+key];
-			preData["nextRecordId_"+key] = dialogInfo.recordId;
+			preData["nextRecordId_"+key] = dialogInfo.id;
 			
 			//插入
-			list[dialogInfo.recordId] = dialogInfo;
+			list[dialogInfo.id] = dialogInfo;
 			save();
 		}
 		
@@ -188,7 +189,7 @@ package com.xiaohuzi999.storyEditor.model
 			var nextId:String = dialogInfo.nextRecordId_0
 			if(dialogInfo.label_1){
 				for(i in list){
-					if(list[i].parentId == dialogInfo.recordId){//
+					if(list[i].parentId == dialogInfo.id){//
 						if(!tempInfo){
 							tempInfo = getDialogInfo(storyInfo, list[i].nextRecordId_0);
 							if(tempInfo && tempInfo.parentId  == list[i].parentId){
@@ -205,7 +206,7 @@ package com.xiaohuzi999.storyEditor.model
 			}else{
 				//删除
 				for(i in list){
-					if(list[i].recordId == id){
+					if(list[i].id == id){
 						list[i] = null;
 						delete list[i];
 						break;
@@ -243,9 +244,9 @@ package com.xiaohuzi999.storyEditor.model
 						if(info["nextRecordId_"+j]){
 							currentId = info["nextRecordId_"+j];
 							if(!endData){
-								endData = getDiffDialogList(list, info.recordId, currentId);
+								endData = getDiffDialogList(list, info.id, currentId);
 							}else{
-								getDiffDialogList(list, info.recordId, currentId);
+								getDiffDialogList(list, info.id, currentId);
 							}
 						}else{
 							break;
@@ -258,7 +259,7 @@ package com.xiaohuzi999.storyEditor.model
 					info = endData;
 					endData = null;
 				}else{
-					//trace(info.recordId,info.nextRecordId_0);
+					//trace(info.id,info.nextRecordId_0);
 					tempInfo = getDialogInfo(storyInfo, info.nextRecordId_0);
 					if(tempInfo){
 						list.push(tempInfo);
@@ -303,15 +304,15 @@ package com.xiaohuzi999.storyEditor.model
 			var nowRecord:Object;
 			var targetRecord:Object;
 			for(var i:String in dialogInfo){
-				if(dialogInfo[i].recordId == record.recordId){
+				if(dialogInfo[i].id == record.id){
 					nowRecord = dialogInfo[i];
-				}else if(dialogInfo[i].nextRecordId_0 == record.recordId || dialogInfo[i].nextRecordId_1 == record.recordId || 
-					dialogInfo[i].nextRecordId_2 == record.recordId || dialogInfo[i].nextRecordId_3 == record.recordId){
+				}else if(dialogInfo[i].nextRecordId_0 == record.id || dialogInfo[i].nextRecordId_1 == record.id || 
+					dialogInfo[i].nextRecordId_2 == record.id || dialogInfo[i].nextRecordId_3 == record.id){
 					targetRecord = dialogInfo[i];
 				}
 				if(nowRecord && targetRecord){
-					nowRecord.leftPlayer = targetRecord.leftPlayer
-					nowRecord.rightPlayer = targetRecord.rightPlayer
+					nowRecord.p0 = targetRecord.p0
+					nowRecord.p1 = targetRecord.p1
 					break;
 				}
 			}

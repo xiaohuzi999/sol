@@ -28,7 +28,7 @@ package{
 	 * Main.as 2015-5-18 下午2:56:11
 	 * version 1.0
 	 */
-	[SWF(width="1504",height="720")]
+	[SWF(width="1604",height="720")]
 	public class Main extends Sprite
 	{
 		private var window:NativeWindow = stage.nativeWindow;
@@ -39,6 +39,12 @@ package{
 		/***/
 		private var txtFileFilter:FileFilter = new FileFilter("文本文件(*.txt)", "*.txt;*.txt"); 
 
+		private static const MENU_NEW:String = "新建Ctrl+N";
+		private static const MENU_OPEN:String = "打开Ctrl+O";
+		private static const MENU_SAVE:String = "保存Ctrl+S";
+		private static const MENU_CLOSE:String = "退出Ctrl+Q"
+		
+		private static const MENUS:Array = [MENU_NEW,MENU_OPEN, MENU_SAVE, MENU_CLOSE];
 		public function Main()
 		{
 			// 支持 autoOrient
@@ -107,25 +113,30 @@ package{
 		}
 		
 		private function onSelectItem(event:Event):void{
-			switch(event.currentTarget.label){
-				case "退出":
+			doMenuAct(event.currentTarget.label);
+		}
+		
+		private function doMenuAct(menu:String):void{
+			switch(menu){
+				case MENU_CLOSE:
 					NativeApplication.nativeApplication.exit();
 					break;
-				case "打开":
+				case MENU_OPEN:
 					file = new File;
 					file.addEventListener(Event.SELECT, selectOpenFile);
 					file.browseForOpen("打开文本文件", [txtFileFilter]); 
 					break;
-				case "保存":
+				case MENU_SAVE:
 					var file:File = new File("/未命名.txt");
 					file.addEventListener(Event.SELECT, selectSaveFile);
 					file.browseForSave("保存"); 
 					break;
-				case "新建":
+				case MENU_NEW:
 					DB.importData("{}");
 					break;
 			}
 		}
+		
 		//
 		private function selectOpenFile(event:Event):void {
 			var file:File = event.target as File;
@@ -163,9 +174,23 @@ package{
 		/**快捷键*/
 		public function onKeyDown(event:KeyboardEvent):void{
 			if(event.ctrlKey){
-				if(event.keyCode == Keyboard.ENTER){
-					//测试代码
-					(ModelManager.getInstance(TestView) as TestView).showStory((ModelManager.getInstance(MainView) as MainView).currentStory);
+				switch(event.keyCode){
+					case Keyboard.O:
+						doMenuAct(MENU_OPEN)
+						break;
+					case Keyboard.N:
+						doMenuAct(MENU_NEW)
+						break;
+					case Keyboard.Q:
+						doMenuAct(MENU_CLOSE)
+						break;
+					case Keyboard.S:
+						doMenuAct(MENU_SAVE)
+						break;
+					case Keyboard.ENTER:
+						(ModelManager.getInstance(TestView) as TestView).showStory((ModelManager.getInstance(MainView) as MainView).currentStory);
+						//(MODELMANAGER.GETINSTANCE(TESTVIEW) AS TESTVIEW).SHOWSTORY((MODELMANAGER.GETINSTANCE(MAINVIEW) AS MAINVIEW).CURRENTSTORY);
+						break;
 				}
 			}else if(event.keyCode == Keyboard.ESCAPE){
 				XWindow.closeAllWindows([]);
@@ -174,22 +199,11 @@ package{
 
 		
 		private function init():void{
-			item = new NativeMenuItem("新建");
-			fileMenu.addItem(item);
-			item.addEventListener(Event.SELECT, onSelectItem);
-			
-			var item:NativeMenuItem = new NativeMenuItem("打开");
-			fileMenu.addItem(item);
-			item.addEventListener(Event.SELECT, onSelectItem);
-
-			item = new NativeMenuItem("保存");
-			fileMenu.addItem(item);
-			item.addEventListener(Event.SELECT, onSelectItem);
-			
-			item = new NativeMenuItem("退出");
-			fileMenu.addItem(item);
-			item.addEventListener(Event.SELECT, onSelectItem);
-			
+			for(var i:int=0; i<MENUS.length; i++){
+				var item:NativeMenuItem = new NativeMenuItem(MENUS[i]);
+				fileMenu.addItem(item);
+				item.addEventListener(Event.SELECT, onSelectItem);
+			}
 			rootMenu.addSubmenu(fileMenu, "文件");
 			window.menu = rootMenu;
 			

@@ -87,33 +87,28 @@ package com.xiaohuzi999.storyEditor
 				_icon.scaleX = _icon.scaleY = 0.13;
 				_icon.x = _icon.y = 2;
 			}
-			if(_icon.bg == data.bg && _icon.leftPlayer == data.leftPlayer && _icon.rightPlayer == data.rightPlayer){
+			if(_icon.bg == data.bg && _icon.p0 == data.p0 && _icon.p1 == data.p1){
 				return;
 			}
 			_icon.bg = data.bg;
-			_icon.leftPlayer = data.leftPlayer;
-			_icon.rightPlayer = data.rightPlayer;
+			_icon.p0 = data.p0;
+			_icon.p1 = data.p1;
 			while(_icon.numChildren){
 				_icon.removeChildAt(0);
 			}
 			//背景
 			if(data.bg){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg)+".jpg", onLoadBG);
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg.name)+".jpg", onLeft, [data.bg]);
 			}
 			//左立绘
-			if(!XUtil.isEmpty(data.leftPlayer)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.leftPlayer.name)+".png", onLeft, [data.leftPlayer]);
+			if(!XUtil.isEmpty(data.p0)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p0.name)+".png", onLeft, [data.p0]);
 			}
 			
 			//右立绘
-			if(!XUtil.isEmpty(data.rightPlayer)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.rightPlayer.name)+".png", onLeft, [data.rightPlayer]);
+			if(!XUtil.isEmpty(data.p1)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p1.name)+".png", onLeft, [data.p1]);
 				
-			}
-			
-			function onLoadBG(info:LoaderInfo):void{
-				Bitmap(info.content).smoothing = true;
-				_icon.addChildAt(info.content, 0);
 			}
 			
 			function onLeft(info:Object, data:Object):void{

@@ -220,7 +220,6 @@ package com.xiaohuzi999.storyEditor
 		
 		/**选中剧本*/
 		private function onSelectStory(event:Event=null):void{
-			//重新格式化场景什么鸟的=============================
 			this.dispatchEvent(new XEvent(XEvent.CHANGE, _storyGroup.selectedButton.data));
 		}
 		
@@ -348,7 +347,7 @@ package com.xiaohuzi999.storyEditor
 			$chapNameTF = $ui.chapNameTF;
 			$chapNameTF.text = DB.chapName;
 			$picTF = $ui.picTF;
-			$picTF.text = DB.pic
+			$picTF.text = DB.pic+""
 			
 			$itemSp = $ui.itemSp;
 			$itemSp.setSize(304, 450);
