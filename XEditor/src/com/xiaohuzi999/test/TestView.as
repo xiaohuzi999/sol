@@ -1,5 +1,6 @@
 package com.xiaohuzi999.test
 {
+	import com.greensock.TweenLite;
 	import com.xiaohuzi999.storyEditor.model.Consts;
 	import com.xiaohuzi999.storyEditor.vo.RecordVo;
 	import com.xiaohuzi999.storyEditor.vo.StoryVo;
@@ -16,6 +17,7 @@ package com.xiaohuzi999.test
 	import flash.display.Shape;
 	import flash.display.Sprite;
 	import flash.events.MouseEvent;
+	import flash.filters.ColorMatrixFilter;
 	import flash.geom.Rectangle;
 	
 	import fl.containers.ScrollPane;
@@ -33,9 +35,11 @@ package com.xiaohuzi999.test
 		//底图
 		private var _bg:Bitmap;
 		/**左立绘*/
-		private var _leftPlayerBm:Bitmap;
+		private var _bm0:Bitmap;
 		/**右立绘*/
-		private var _rightPlayerBm:Bitmap;
+		private var _bm1:Bitmap;
+		private var _bm2:Bitmap;
+		private var _bm3:Bitmap;
 		/**情绪*/
 		private var _leftMoodBm:Bitmap;
 		private var _rightMoodBm:Bitmap;
@@ -55,6 +59,11 @@ package com.xiaohuzi999.test
 		private var _prevData:RecordVo;
 		/***/
 		private var _curData:RecordVo;
+		
+		private var _blackFilter:ColorMatrixFilter = new ColorMatrixFilter([1, 0, 0, 0, -100,
+			0, 1, 0, 0, -100, 
+			0, 0, 1, 0, -100, 
+			0, 0, 0, 1, 0]);
 		public function TestView()
 		{
 			init();
@@ -82,48 +91,115 @@ package com.xiaohuzi999.test
 					}
 				}
 			}
-			//切换特效
 			_curData = data;
+			var time:Number = .5;
+			if(data && data.time){
+				time = int(data.time)/1000;
+			}
+			
+			//切换特效
 			if(data.bg){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg.name)+".jpg", onLoadPic, [_bg]);
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg.n)+".jpg", onLoadPic, [_bg]);
+				if(_prevData && checkSame(_prevData.bg, data.bg)){
+					TweenLite.to(_bg, time, {x:data.bg.x || 0, y:data.bg.y || 0});
+				}else{
+					_bg.x = data.bg.x
+					_bg.y = data.bg.y
+				}
 			}
 			//左立绘
 			if(!XUtil.isEmpty(data.p0)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p0.name)+".png", onLoadPic, [_leftPlayerBm]);
-				if(data.p0.scaleX){
-					_leftPlayerBm.scaleX = data.p0.scaleX
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p0.n)+".png", onLoadPic, [_bm0]);
+				if(data.p0.sx){
+					_bm0.scaleX = data.p0.sx
 				}else{
-					_leftPlayerBm.scaleX = 1
+					_bm0.scaleX = 1
 				}
-				if(data.p0.alpha != undefined){
-					_leftPlayerBm.alpha = data.p0.alpha;
+				if(data.p0.b){
+					_bm0.filters = [_blackFilter];
 				}else{
-					_leftPlayerBm.alpha = 1;
+					_bm0.filters = [];
 				}
-				_leftPlayerBm.x = data.p0.x
-				_leftPlayerBm.y = data.p0.y
+				
+				if(_prevData && checkSame(_prevData.p0, data.p0)){
+					TweenLite.to(_bm0, time, {x:data.p0.x, y:data.p0.y});
+				}else{
+					_bm0.x = data.p0.x
+					_bm0.y = data.p0.y
+				}
 			}else{
-				_leftPlayerBm.bitmapData = null;
+				_bm0.bitmapData = null;
 			}
 			
 			//右立绘
 			if(!XUtil.isEmpty(data.p1)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p1.name)+".png", onLoadPic,[_rightPlayerBm]);
-				if(data.p1.scaleX){
-					_rightPlayerBm.scaleX = data.p1.scaleX
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p1.n)+".png", onLoadPic,[_bm1]);
+				if(data.p1.sx){
+					_bm1.scaleX = data.p1.sx
 				}else{
-					_rightPlayerBm.scaleX = 1
+					_bm1.scaleX = 1
 				}
-				if(data.p1.alpha != undefined){
-					_rightPlayerBm.alpha = data.p1.alpha
+				if(data.p1.b){
+					_bm1.filters = [_blackFilter];
 				}else{
-					_rightPlayerBm.alpha = 1;
+					_bm1.filters = [];
 				}
-				_rightPlayerBm.x = data.p1.x
-				_rightPlayerBm.y = data.p1.y;
+				if(_prevData && checkSame(_prevData.p1, data.p1)){
+					TweenLite.to(_bm1, time, {x:data.p1.x, y:data.p1.y});
+				}else{
+					_bm1.x = data.p1.x
+					_bm1.y = data.p1.y;
+				}
 			}else{
-				_rightPlayerBm.bitmapData = null;
+				_bm1.bitmapData = null;
 			}
+			
+			//立绘3
+			if(!XUtil.isEmpty(data.p2)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p2.n)+".png", onLoadPic,[_bm2]);
+				if(data.p2.sx){
+					_bm2.scaleX = data.p2.sx
+				}else{
+					_bm2.scaleX = 1
+				}
+				if(data.p2.b){
+					_bm2.filters = [_blackFilter];
+				}else{
+					_bm2.filters = [];
+				}
+				if(_prevData && checkSame(_prevData.p2, data.p2)){
+					TweenLite.to(_bm2, time, {x:data.p2.x, y:data.p2.y});
+				}else{
+					_bm2.x = data.p2.x
+					_bm2.y = data.p2.y;
+				}
+			}else{
+				_bm2.bitmapData = null;
+			}
+			
+			//立绘4
+			if(!XUtil.isEmpty(data.p3)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p3.n)+".png", onLoadPic,[_bm3]);
+				if(data.p3.sx){
+					_bm3.scaleX = data.p3.sx
+				}else{
+					_bm3.scaleX = 1
+				}
+				if(data.p3.b){
+					_bm3.filters = [_blackFilter];
+				}else{
+					_bm3.filters = [];
+				}
+				if(_prevData && checkSame(_prevData.p3, data.p3)){
+					TweenLite.to(_bm3, time, {x:data.p3.x, y:data.p3.y});
+				}else{
+					_bm3.x = data.p3.x
+					_bm3.y = data.p3.y;
+				}
+			}else{
+				_bm3.bitmapData = null;
+			}
+			
 			//左表情
 			if(!XUtil.isEmpty(data.lm)){
 				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.MOOD_URL, data.lm.name)+".png", onLoadPic,[_leftMoodBm]);
@@ -157,32 +233,32 @@ package com.xiaohuzi999.test
 			}
 			_diffBtns = new Array();
 			var btn:XSelectButton;
-			if(data.label_1){
-				btn = new XSelectButton(new DiffItemUI(), data.label_0,data.nextRecordId_0,false)
+			if(data.lb_1){
+				btn = new XSelectButton(new DiffItemUI(), data.lb_0,data.nId_0,false)
 				btn.addEventListener(MouseEvent.CLICK, onSelect);
 				_diffBtns.push(btn);
 				_specialSp.addChild(btn);
 				btn.x = 128;
 				btn.y = 20;
 			}
-			if(data.label_1){
-				btn = new XSelectButton(new DiffItemUI(), data.label_1,data.nextRecordId_1,false)
+			if(data.lb_1){
+				btn = new XSelectButton(new DiffItemUI(), data.lb_1,data.nId_1,false)
 				_diffBtns.push(btn);
 				btn.addEventListener(MouseEvent.CLICK, onSelect);
 				_specialSp.addChild(btn);
 				btn.x = 128;
 				btn.y = 88+20;
 			}
-			if(data.label_2){
-				btn = new XSelectButton(new DiffItemUI(), data.label_2,data.nextRecordId_2,false)
+			if(data.lb_2){
+				btn = new XSelectButton(new DiffItemUI(), data.lb_2,data.nId_2,false)
 				_diffBtns.push(btn);
 				_specialSp.addChild(btn);
 				btn.addEventListener(MouseEvent.CLICK, onSelect);
 				btn.x = 128;
 				btn.y = 88*2+20;
 			}
-			if(data.label_3){
-				btn = new XSelectButton(new DiffItemUI(), data.label_3,data.nextRecordId_3,false)
+			if(data.lb_3){
+				btn = new XSelectButton(new DiffItemUI(), data.lb_3,data.nId_3,false)
 				_diffBtns.push(btn);
 				btn.addEventListener(MouseEvent.CLICK, onSelect);
 				_specialSp.addChild(btn);
@@ -195,6 +271,14 @@ package com.xiaohuzi999.test
 			function onLoadPic(info:LoaderInfo, targetBM:Bitmap):void{
 				targetBM.bitmapData = Bitmap(info.content).bitmapData
 				targetBM.smoothing = true;
+			}
+			
+			//判定2个信息是否对等
+			function checkSame(obj1:Object, obj2:Object):Boolean{
+				if(obj1 && obj2 && obj1.name == obj2.name){
+					return true;
+				}
+				return false;
 			}
 			
 			function addDialog(data:RecordVo):void{
@@ -214,14 +298,14 @@ package com.xiaohuzi999.test
 		
 		/***/
 		private function clear():void{
-			_bg.bitmapData = _leftPlayerBm.bitmapData = _rightPlayerBm.bitmapData = _leftMoodBm.bitmapData = _rightMoodBm.bitmapData = null;
+			_bg.bitmapData = _bm0.bitmapData = _bm1.bitmapData = _leftMoodBm.bitmapData = _rightMoodBm.bitmapData = null;
 			while(_itemC.numChildren){
 				_itemC.removeChildAt(0);
 			}
 		}
 		
 		private function onClick(event:MouseEvent):void{
-			if(!_curData.label_1){//分支剧情
+			if(!_curData.lb_1){//分支剧情
 				if(_curData.eventInfo){//事件解析，也许是战斗，也许其他
 					if(_curData.eventInfo.fight){
 						(ModelManager.getInstance(FightCom) as FightCom).showFight(_curData.eventInfo.fight, resume, null)
@@ -234,7 +318,7 @@ package com.xiaohuzi999.test
 					}
 				}else{
 					_prevData = _curData;
-					_curData = _source[_curData.nextRecordId_0];
+					_curData = _source[_curData.nId_0];
 					parseDialog(_curData);
 				}
 			}
@@ -243,7 +327,7 @@ package com.xiaohuzi999.test
 		/**继续*/
 		private function resume():void{
 			_prevData = _curData;
-			_curData = _source[_curData.nextRecordId_0];
+			_curData = _source[_curData.nId_0];
 			parseDialog(_curData);
 		}
 		
@@ -267,18 +351,22 @@ package com.xiaohuzi999.test
 			
 			_bg = new Bitmap();
 			_specialSp.addChild(_bg);
-			_leftPlayerBm = new Bitmap();
-			_rightPlayerBm = new Bitmap();
+			_bm0 = new Bitmap();
+			_bm1 = new Bitmap();
+			_bm2 = new Bitmap();
+			_bm3 = new Bitmap();
 			_leftMoodBm = new Bitmap();
 			_rightMoodBm = new Bitmap();
-			_specialSp.addChild(_leftPlayerBm);
-			_specialSp.addChild(_rightPlayerBm);
+			_specialSp.addChild(_bm0);
+			_specialSp.addChild(_bm1);
+			_specialSp.addChild(_bm2);
+			_specialSp.addChild(_bm3);
 			_specialSp.addChild(_leftMoodBm);
 			_specialSp.addChild(_rightMoodBm);
 			//底板
 			var shp:Shape = new Shape();
 			shp.graphics.beginFill(0);
-			shp.graphics.drawRect(0,0,640,480);
+			shp.graphics.drawRect(0,0,750,480);
 			shp.graphics.endFill();
 			_specialSp.addChild(shp);
 			shp.y = 480;
@@ -286,30 +374,30 @@ package com.xiaohuzi999.test
 			closeBtn = new Button();
 			_specialSp.addChild(closeBtn);
 			closeBtn.width = 40;
-			closeBtn.x = 640-closeBtn.width;;
+			closeBtn.x = 750-closeBtn.width;;
 			closeBtn.label = "关闭";
 			shp = new Shape();
 			shp.graphics.beginFill(0xff0000, 0.1);
-			shp.graphics.drawRect(0,0, 640, 960);
+			shp.graphics.drawRect(0,0, 750, 960);
 			shp.graphics.endFill();
 			_specialSp.addChildAt(shp,0);
 			
 			_sp = new ScrollPane();
 			_specialSp.addChild(_sp);
 			_sp.y = 480;
-			_sp.setSize(640, 480);
+			_sp.setSize(750, 480);
 			
 			_itemC = new Sprite();
 			_specialSp.addChild(_itemC);
 			_itemC.y = 480;
 			this.bgAlpha = 1;
 			
-			_specialSp.scrollRect = new Rectangle(0,0, 640, 960);
+			_specialSp.scrollRect = new Rectangle(0,0, 750, 960);
 		}
 		
 		override public function show(autoAlignCenter:Boolean=true):void{
 			super.show(true);
-			this.y = 0;
+			//this.y = 0;
 		}
 		
 		override protected function initEvent():void{
@@ -330,6 +418,14 @@ package com.xiaohuzi999.test
 					break;
 			}
 			return key
+		}
+		
+		override public function get width():Number{
+			return 640;
+		}
+		
+		override public function get height():Number{
+			return 800;
 		}
 	}
 }

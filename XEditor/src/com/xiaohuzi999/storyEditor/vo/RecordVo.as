@@ -14,7 +14,9 @@ package com.xiaohuzi999.storyEditor.vo
 		//绘图层==============================================================================
 		//地图
 		public var bg:Object;
-		/**立绘,格式——图片name|x|y|scaleX|alpha;*/
+		//back/blur非聚焦状态，默认false
+		/**立绘,格式——图片{name:string,x:number,y:number,scaleX:number,alpha:number, back/blur:boolean}*/
+		/**缩减{n:string,x:number,y:number,sx:number,al:number,b:boolean}*/
 		public var p0:Object;
 		/**立绘——图片id|x|y|XScale|alpha;*/
 		public var p1:Object;
@@ -34,40 +36,42 @@ package com.xiaohuzi999.storyEditor.vo
 		public var name:String;
 		//对白
 		public var dialog:String;
+		//动画时间
+		public var time:int = 500;
 		
 		//四叉树功能层===============================================================================
 		/**下一个记录ID-四叉树结构-默认链接键*/
-		public var nextRecordId_0:String;
+		public var nId_0:String;
 		/**选择标签*/
-		public var label_0:String;
+		public var lb_0:String;
 		/**显示条件*/
-		public var condition_0:String;
+		public var cond_0:String;
 		
 		/**下一个记录ID-四叉树结构*/
-		public var nextRecordId_1:String;
+		public var nId_1:String;
 		/**选择标签*/
-		public var label_1:String;
+		public var lb_1:String;
 		/**显示条件*/
-		public var condition_1:String;
+		public var cond_1:String;
 		
 		/**下一个记录ID-四叉树结构*/
-		public var nextRecordId_2:String;
+		public var nId_2:String;
 		/**选择标签*/
-		public var label_2:String;
+		public var lb_2:String;
 		/**显示条件*/
-		public var condition_2:String;
+		public var cond_2:String;
 		
 		/**下一个记录ID-四叉树结构*/
-		public var nextRecordId_3:String;
+		public var nId_3:String;
 		/**选择标签*/
-		public var label_3:String;
+		public var lb_3:String;
 		/**显示条件*/
-		public var condition_3:String;
+		public var cond_3:String;
 		
 		/**父类类ID,区别分歧剧情*/
-		public var parentId:String = ""
-		/**父类名-调试用*/
-		public var parentName:String = "";
+		public var pId:String = ""
+		/**父类名parentName-调试用*/
+		public var pn:String = "";
 		
 		//数据操作================================================
 		public var dataInfo:Object;

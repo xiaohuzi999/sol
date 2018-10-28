@@ -2,6 +2,7 @@ package
 {
 	import com.xiaohuzi999.storyEditor.MainView;
 	import com.xiaohuzi999.xControls.frame.interfaces.IApp;
+	import com.xiaohuzi999.xControls.frame.manager.ModelManager;
 	
 	/**
 	 * App
@@ -19,7 +20,7 @@ package
 		
 		public function start():void
 		{
-			_mainView = new MainView();
+			_mainView = ModelManager.getInstance(MainView) as MainView;
 			_mainView.show();
 		}
 	}

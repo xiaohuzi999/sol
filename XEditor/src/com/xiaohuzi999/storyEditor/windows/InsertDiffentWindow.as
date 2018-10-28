@@ -41,9 +41,9 @@ package com.xiaohuzi999.storyEditor.windows
 			_data = data;
 			this.show();
 			for(var i:uint=0; i<_group.buttons.length; i++){
-				if(_data.hasOwnProperty("label_"+i) && _data["label_"+i] ){
-					_group.buttons[i].data = _data["nextRecordId_"+i];
-					_group.buttons[i].label = _data["label_"+i];
+				if(_data.hasOwnProperty("lb_"+i) && _data["lb_"+i] ){
+					_group.buttons[i].data = _data["nId_"+i];
+					_group.buttons[i].label = _data["lb_"+i];
 					_group.buttons[i].ui.tipTF.visible = true;
 				}else{
 					_group.buttons[i].data = null;
@@ -59,7 +59,7 @@ package com.xiaohuzi999.storyEditor.windows
 				for(var i:uint=0; i<_group.buttons.length; i++){
 					if(!_group.buttons[i].label || _group.buttons[i].label == " "){
 						//链接
-						_group.buttons[i].data = _data.nextRecordId_0
+						_group.buttons[i].data = _data.nId_0
 						_group.buttons[i].label = itemName;
 						_group.buttons[i].ui.tipTF.visible = true;
 						return;
@@ -112,13 +112,13 @@ package com.xiaohuzi999.storyEditor.windows
 				case $confirmBtn:
 					for(var i:uint=0; i<_group.buttons.length; i++){
 						if(_group.buttons[i].label && _group.buttons[i].label != " "){
-							_data["nextRecordId_"+i] = _group.buttons[i].data
-							_data["label_"+i] = _group.buttons[i].label;
+							_data["nId_"+i] = _group.buttons[i].data
+							_data["lb_"+i] = _group.buttons[i].label;
 							//出现条件没处理=================================
 						}else{
-							_data["nextRecordId_"+i] = null;
-							_data["label_"+i] = null;
-							_data["condition_"+i] = null;
+							_data["nId_"+i] = null;
+							_data["lb_"+i] = null;
+							_data["cond_"+i] = null;
 						}
 					}
 					MainDispatcher.getInstance().dispatchEvent(new XEvent("save"))

@@ -354,7 +354,7 @@ package com.xiaohuzi999.storyEditor
 			$itemSp.source = _container;
 			
 			$sceneSp = $ui.sceneSp;
-			$sceneSp.setSize(298,164);
+			$sceneSp.setSize(298,260);
 			_sceneContainer = new Sprite();
 			this.addChild(_sceneContainer);
 			_sceneContainer.x = $sceneSp.x;

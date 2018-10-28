@@ -59,12 +59,12 @@ package com.xiaohuzi999.storyEditor
 					$rewardTF.appendText(i+":"+obj[i]+" ");
 				}
 			}
-			if(vo.label_1){
+			if(vo.lb_1){
 				$ui.typeTF.text = "多线剧情开始";
 				this.$ui.bg.gotoAndStop(2);
 			}else{
-				if(vo.parentId){
-					$ui.typeTF.text = "剧情_"+vo.parentName;
+				if(vo.pId){
+					$ui.typeTF.text = "剧情_"+vo.pn;
 					this.$ui.bg.gotoAndStop(3);
 				}else{
 					$ui.typeTF.text = ""
@@ -98,26 +98,40 @@ package com.xiaohuzi999.storyEditor
 			}
 			//背景
 			if(data.bg){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg.name)+".jpg", onLeft, [data.bg]);
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg.n)+".jpg", onLeft, [data.bg, 0]);
 			}
 			//左立绘
 			if(!XUtil.isEmpty(data.p0)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p0.name)+".png", onLeft, [data.p0]);
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p0.n)+".png", onLeft, [data.p0]);
 			}
 			
 			//右立绘
 			if(!XUtil.isEmpty(data.p1)){
-				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p1.name)+".png", onLeft, [data.p1]);
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p1.n)+".png", onLeft, [data.p1]);
 				
 			}
 			
-			function onLeft(info:Object, data:Object):void{
-				_icon.addChild(info.content)
+			if(!XUtil.isEmpty(data.p2)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p2.n)+".png", onLeft, [data.p2]);
+				
+			}
+			
+			if(!XUtil.isEmpty(data.p3)){
+				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, data.p3.n)+".png", onLeft, [data.p3]);
+				
+			}
+			
+			function onLeft(info:Object, data:Object, index:int=-1):void{
+				if(index > -1){
+					_icon.addChildAt(info.content, index)
+				}else{
+					_icon.addChild(info.content)
+				}
 				Bitmap(info.content).smoothing = true;
 				info.content.x = data.x;
 				info.content.y = data.y
-				if(data.scaleX){
-					info.content.scaleX = data.scaleX;
+				if(data.sx){
+					info.content.scaleX = data.sx;
 				}
 				if(data.alpha != undefined){
 					info.content.alpha = data.alpha

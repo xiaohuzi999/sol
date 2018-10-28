@@ -169,8 +169,8 @@ package com.xiaohuzi999.storyEditor.model
 				return;
 			}
 			//
-			dialogInfo["nextRecordId_"+0] = preData["nextRecordId_"+key];
-			preData["nextRecordId_"+key] = dialogInfo.id;
+			dialogInfo["nId_"+0] = preData["nId_"+key];
+			preData["nId_"+key] = dialogInfo.id;
 			
 			//插入
 			list[dialogInfo.id] = dialogInfo;
@@ -186,13 +186,13 @@ package com.xiaohuzi999.storyEditor.model
 			
 			//分歧节点,删除所有子节点
 			var tempInfo:RecordVo;
-			var nextId:String = dialogInfo.nextRecordId_0
-			if(dialogInfo.label_1){
+			var nextId:String = dialogInfo.nId_0
+			if(dialogInfo.lb_1){
 				for(i in list){
-					if(list[i].parentId == dialogInfo.id){//
+					if(list[i].pId == dialogInfo.id){//
 						if(!tempInfo){
-							tempInfo = getDialogInfo(storyInfo, list[i].nextRecordId_0);
-							if(tempInfo && tempInfo.parentId  == list[i].parentId){
+							tempInfo = getDialogInfo(storyInfo, list[i].nId_0);
+							if(tempInfo && tempInfo.pId  == list[i].pId){
 								tempInfo = null;
 							}
 						}
@@ -201,7 +201,7 @@ package com.xiaohuzi999.storyEditor.model
 					}
 				}
 				if(tempInfo){
-					nextId = tempInfo.nextRecordId_0
+					nextId = tempInfo.nId_0
 				}
 			}else{
 				//删除
@@ -217,8 +217,8 @@ package com.xiaohuzi999.storyEditor.model
 			//修改链接到当前数据的节点 
 			for(var i:String in list){
 				for(var j:uint=0; j<4; j++){
-					if(list[i]["nextRecordId_"+j] == id){
-						list[i]["nextRecordId_"+j] = nextId;
+					if(list[i]["nId_"+j] == id){
+						list[i]["nId_"+j] = nextId;
 					}
 				}
 			}
@@ -234,15 +234,15 @@ package com.xiaohuzi999.storyEditor.model
 			var info:RecordVo = dialogInfo["0"];
 			list.push(info);
 			
-			while(info && info.nextRecordId_0){
+			while(info && info.nId_0){
 				var tempInfo:RecordVo
-				if(info.label_1){
+				if(info.lb_1){
 					//分支剧情
 					var currentId:String;
 					var endData:RecordVo
 					for(var j:uint=0 ;j<4; j++){
-						if(info["nextRecordId_"+j]){
-							currentId = info["nextRecordId_"+j];
+						if(info["nId_"+j]){
+							currentId = info["nId_"+j];
 							if(!endData){
 								endData = getDiffDialogList(list, info.id, currentId);
 							}else{
@@ -259,8 +259,8 @@ package com.xiaohuzi999.storyEditor.model
 					info = endData;
 					endData = null;
 				}else{
-					//trace(info.id,info.nextRecordId_0);
-					tempInfo = getDialogInfo(storyInfo, info.nextRecordId_0);
+					//trace(info.id,info.nId_0);
+					tempInfo = getDialogInfo(storyInfo, info.nId_0);
 					if(tempInfo){
 						list.push(tempInfo);
 					}
@@ -275,9 +275,9 @@ package com.xiaohuzi999.storyEditor.model
 				var vo:RecordVo
 				while(curRecordId && curRecordId != "null"){
 					var curInfo:RecordVo = getDialogInfo(storyInfo, curRecordId);
-					if(curInfo &&  curInfo.parentId == parentType){
+					if(curInfo &&  curInfo.pId == parentType){
 						arr.push(curInfo);
-						curRecordId = curInfo.nextRecordId_0;
+						curRecordId = curInfo.nId_0;
 					}else{
 						vo = curInfo;
 						curRecordId ="";
@@ -288,31 +288,30 @@ package com.xiaohuzi999.storyEditor.model
 		}
 		
 		/**一键背景*/
-		public static function setBgOnce(storyName:String, bgName:String):void{
+		public static function setBgOnce(storyName:String, bgInfo:Object):void{
 			var storyInfo:Object = getStoryByName(storyName);
 			var dialogInfo:Object = storyInfo.dialogList;
 			for(var i:String in dialogInfo){
-				dialogInfo[i].bg = bgName
+				dialogInfo[i].bg = bgInfo
 			}
 			save();
 		}
 		
 		/**继承立绘*/
-		public static function setPlayer(storyName:String, record:Object):void{
+		public static function setPlayer(storyName:String, nowRecord:Object):void{
 			var storyInfo:Object = getStoryByName(storyName);
 			var dialogInfo:Object = storyInfo.dialogList;
-			var nowRecord:Object;
 			var targetRecord:Object;
 			for(var i:String in dialogInfo){
-				if(dialogInfo[i].id == record.id){
-					nowRecord = dialogInfo[i];
-				}else if(dialogInfo[i].nextRecordId_0 == record.id || dialogInfo[i].nextRecordId_1 == record.id || 
-					dialogInfo[i].nextRecordId_2 == record.id || dialogInfo[i].nextRecordId_3 == record.id){
+				if(dialogInfo[i].nId_0 == nowRecord.id || dialogInfo[i].nId_1 == nowRecord.id || 
+					dialogInfo[i].nId_2 == nowRecord.id || dialogInfo[i].nId_3 == nowRecord.id){
 					targetRecord = dialogInfo[i];
 				}
 				if(nowRecord && targetRecord){
-					nowRecord.p0 = targetRecord.p0
-					nowRecord.p1 = targetRecord.p1
+					nowRecord.p0 = XUtil.clone(targetRecord.p0);
+					nowRecord.p1 = XUtil.clone(targetRecord.p1);
+					nowRecord.p2 = XUtil.clone(targetRecord.p2);
+					nowRecord.p3 = XUtil.clone(targetRecord.p3);
 					break;
 				}
 			}

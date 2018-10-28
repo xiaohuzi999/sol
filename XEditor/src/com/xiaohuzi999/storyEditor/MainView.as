@@ -1,5 +1,6 @@
 package com.xiaohuzi999.storyEditor
 {
+	import com.xiaohuzi999.storyEditor.main.BgItem;
 	import com.xiaohuzi999.storyEditor.model.DB;
 	import com.xiaohuzi999.storyEditor.vo.RecordVo;
 	import com.xiaohuzi999.storyEditor.vo.StoryVo;
@@ -91,13 +92,15 @@ package com.xiaohuzi999.storyEditor
 		
 		/**一键背景*/
 		private function onSetBg(event:XEvent):void{
-			var bg:String = event.data + "";
+			var bg:Object = event.data;
 			DB.setBgOnce(_currentSotryInfo.storyName, bg);
 		}
 		
 		/**继承立绘*/
 		private function onSetPlayer(event:XEvent):void{
-			DB.setPlayer(_currentSotryInfo.storyName, event.data);
+			var curVo:RecordVo = _rightPanel.currentItem.data as RecordVo;
+			
+			DB.setPlayer(_currentSotryInfo.storyName, curVo);
 			var info:Object = _rightPanel.currentItem.data;
 			_midPanel.format(info as RecordVo);
 		}
@@ -158,9 +161,9 @@ package com.xiaohuzi999.storyEditor
 			_leftPane.addEventListener(XEvent.SELECTED, onSelected);
 			_leftPane.addEventListener(XEvent.CHANGE, onChangeStory);
 			_midPanel.addEventListener(XEvent.CHANGE, onChange);
-			_midPanel.addEventListener(MidCom.ALIGN, onAlign);
-			_midPanel.addEventListener(MidCom.SETBG, onSetBg);
-			_midPanel.addEventListener(MidCom.SETPLAYER, onSetPlayer);
+			//_midPanel.addEventListener(MidCom.ALIGN, onAlign);
+			MainDispatcher.getInstance().addEventListener(BgItem.SETBG, onSetBg);
+			MainDispatcher.getInstance().addEventListener(BgItem.SETPLAYER, onSetPlayer);
 			_rightPanel.addEventListener(XEvent.CHANGE, formatView);
 			_rightPanel.addEventListener(RightCom.ADD_DIALOG, onAddDialog);
 			_rightPanel.addEventListener(RightCom.DEL_DIALOG, onDelDialog);

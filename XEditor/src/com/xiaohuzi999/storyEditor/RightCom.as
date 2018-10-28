@@ -80,13 +80,13 @@ package com.xiaohuzi999.storyEditor
 			var vo:Object;
 			switch(label){
 				case "新建":
-					if(_menuItem.data.parentId){//分歧剧情
-						vo = {parentId:_menuItem.data.parentId,parentName:_menuItem.data.parentName}
+					if(_menuItem.data.pId){//分歧剧情
+						vo = {pId:_menuItem.data.pId,pn:_menuItem.data.pn}
 					}
 					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id,vo:vo, type:"0"}));
 					break
 				case "复制":
-					if(_menuItem.data.label_1){
+					if(_menuItem.data.lb_1){
 						XTip.showTip("分支剧情不能复制");
 					}else{
 						this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id, vo:_menuItem.data, type:"0"}));
@@ -99,7 +99,7 @@ package com.xiaohuzi999.storyEditor
 					break;
 				default://创建分支剧情
 					var arr:Array = String(event.currentTarget.data).split("|");
-					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id, vo:{parentId:_menuItem.data.id,parentName:arr[0]},type:arr[1]}));
+					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id, vo:{pId:_menuItem.data.id,pn:arr[0]},type:arr[1]}));
 					break;
 			}
 		}
@@ -114,25 +114,25 @@ package com.xiaohuzi999.storyEditor
 			var vo:RecordVo = _menuItem.data as RecordVo;
 			
 			//分歧剧情=============
-			if(vo.label_1){
+			if(vo.lb_1){
 				labels = ["删除"];
 				datas = [null]
 			}		
-			if(vo.label_1){
-				labels.push("创建"+vo.label_0+"对话");
-				datas.push(vo.label_0+"|0");
+			if(vo.lb_1){
+				labels.push("创建"+vo.lb_0+"对话");
+				datas.push(vo.lb_0+"|0");
 			}
-			if(vo.label_1){
-				labels.push("创建"+vo.label_1+"对话");
-				datas.push(vo.label_1+"|1");
+			if(vo.lb_1){
+				labels.push("创建"+vo.lb_1+"对话");
+				datas.push(vo.lb_1+"|1");
 			}
-			if(vo.label_2){
-				labels.push("创建"+vo.label_2+"对话");
-				datas.push(vo.label_2+"|2");
+			if(vo.lb_2){
+				labels.push("创建"+vo.lb_2+"对话");
+				datas.push(vo.lb_2+"|2");
 			}
-			if(vo.label_3){
-				labels.push("创建"+vo.label_3+"对话");
-				datas.push(vo.label_3+"|3");
+			if(vo.lb_3){
+				labels.push("创建"+vo.lb_3+"对话");
+				datas.push(vo.lb_3+"|3");
 			}
 			for(var i:uint=0; i<labels.length; i++){
 				_menu.addItem(_menuItems[i]);

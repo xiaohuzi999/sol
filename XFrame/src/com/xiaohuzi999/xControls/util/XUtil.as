@@ -196,5 +196,13 @@ package com.xiaohuzi999.xControls.util
 		 public static function checkHit(sp:Sprite):Boolean{
 			 return sp.visible && sp.mouseX>0 && sp.mouseY>0 && sp.mouseX < sp.width && sp.mouseY < sp.height;
 		 }
+		 
+		 /**克隆对象*/
+		 public static function clone(obj:Object):Object{
+			 if(!obj){
+				 return null;
+			 }
+			 return JSON.parse(JSON.stringify(obj));
+		 }
 	}
 }
