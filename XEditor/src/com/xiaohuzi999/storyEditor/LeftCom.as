@@ -2,6 +2,7 @@ package com.xiaohuzi999.storyEditor
 {
 	import com.greensock.easing.Strong;
 	import com.xiaohuzi999.storyEditor.model.DB;
+	import com.xiaohuzi999.storyEditor.windows.ActEditWindow;
 	import com.xiaohuzi999.storyEditor.windows.CreateSceneWindow;
 	import com.xiaohuzi999.xControls.frame.XIcon;
 	import com.xiaohuzi999.xControls.frame.XSelectButton;
@@ -9,8 +10,6 @@ package com.xiaohuzi999.storyEditor
 	import com.xiaohuzi999.xControls.frame.XTip;
 	import com.xiaohuzi999.xControls.frame.manager.LayerManager;
 	import com.xiaohuzi999.xControls.util.xEvent.XEvent;
-	
-	import fl.containers.ScrollPane;
 	
 	import flash.display.Bitmap;
 	import flash.display.InteractiveObject;
@@ -23,6 +22,8 @@ package com.xiaohuzi999.storyEditor
 	import flash.events.MouseEvent;
 	import flash.filesystem.File;
 	import flash.text.TextField;
+	
+	import fl.containers.ScrollPane;
 	
 	/**
 	 * LeftCom
@@ -61,13 +62,13 @@ package com.xiaohuzi999.storyEditor
 		
 		
 		/**标签*/
-		private static const LABS:Array = ["背景","立绘","音乐","音效","表情"];
+		private static const LABS:Array = ["背景","立绘","装饰","音效","表情"];
 		/**文件夹*/
 		/**数据定义-类型-0：图片，1：音乐*/
 		private static const DATA_LIST:Array = [
 			{type:"0", url:"graphics\\background"},
 			{type:"1", url:"graphics\\player"},
-			{type:"2", url:"audio\\bgm"},
+			{type:"2", url:"graphics\\dec"},
 			{type:"3", url:"audio\\bgs"},
 			{type:"4", url:"graphics\\mood"}
 		]
@@ -89,8 +90,15 @@ package com.xiaohuzi999.storyEditor
 			var url:String = ST_URL+_group.selectedButton.data.url;
 			var file:File = File.applicationDirectory.resolvePath(url);
 			var arr:Array = file.getDirectoryListing();
+			if(_group.selectedButton.data.type == 0){
+				ActEditWindow.initScene(arr);
+			}else if(_group.selectedButton.data.type == 1){
+				ActEditWindow.initPlayer(arr);
+			}else if(_group.selectedButton.data.type == 2){
+				ActEditWindow.initEffect(arr);
+			}
 			
-			if(_group.selectedButton.data.type == 2 || _group.selectedButton.data.type == 3){
+			if(_group.selectedButton.data.type == 3){
 				var sItem:SoundItem
 				for(i=0;i<arr.length; i++){
 					sItem = new SoundItem();

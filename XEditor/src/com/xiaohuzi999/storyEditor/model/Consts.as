@@ -16,13 +16,13 @@ package com.xiaohuzi999.storyEditor.model
 		public static const DATA_LIST:Array = [
 			{type:"0", url:"graphics\\background"},
 			{type:"1", url:"graphics\\player"},
-			{type:"2", url:"audio\\bgm"},
+			{type:"2", url:"graphics\\dec"},
 			{type:"3", url:"audio\\bgs"},
 			{type:"4", url:"graphics\\mood"}
 		]
 		public static const BG_URL:String = "graphics\\background";
 		public static const PLAYER_URL:String = "graphics\\player";
-		public static const BGM_URL:String = "audio\\bgm";
+		public static const DEC_URL:String = "graphics\\dec";
 		public static const BGS_URL:String = "audio\\bgs";
 		public static const MOOD_URL:String = "graphics\\mood";
 			

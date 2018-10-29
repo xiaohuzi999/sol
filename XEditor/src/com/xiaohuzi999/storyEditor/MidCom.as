@@ -5,6 +5,7 @@ package com.xiaohuzi999.storyEditor
 	import com.xiaohuzi999.storyEditor.model.Consts;
 	import com.xiaohuzi999.storyEditor.model.DB;
 	import com.xiaohuzi999.storyEditor.vo.RecordVo;
+	import com.xiaohuzi999.storyEditor.windows.ActEditWindow;
 	import com.xiaohuzi999.storyEditor.windows.DataEditWindow;
 	import com.xiaohuzi999.storyEditor.windows.EditDiaWindow;
 	import com.xiaohuzi999.storyEditor.windows.FunEditWindow;
@@ -220,7 +221,7 @@ package com.xiaohuzi999.storyEditor
 					dataEditWindw.showWithArgs(_data)
 					break;
 				case $effectBtn:
-					XTip.showTip("~没做");
+					(ModelManager.getInstance(ActEditWindow) as ActEditWindow).showWithArgs(_data, "bg")
 					break;
 				case $funBtn:
 					(ModelManager.getInstance(FunEditWindow) as FunEditWindow).showWithArgs(_data)
