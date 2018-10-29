@@ -8,6 +8,7 @@ package com.xiaohuzi999.storyEditor
 	import com.xiaohuzi999.storyEditor.windows.ActEditWindow;
 	import com.xiaohuzi999.storyEditor.windows.DataEditWindow;
 	import com.xiaohuzi999.storyEditor.windows.EditDiaWindow;
+	import com.xiaohuzi999.storyEditor.windows.EffEditWindow;
 	import com.xiaohuzi999.storyEditor.windows.FunEditWindow;
 	import com.xiaohuzi999.storyEditor.windows.InsertDiffentWindow;
 	import com.xiaohuzi999.xControls.frame.XSelectButton;
@@ -47,6 +48,7 @@ package com.xiaohuzi999.storyEditor
 		private var $diffentBtn:InteractiveObject
 		private var $dataBtn:InteractiveObject;
 		private var $effectBtn:InteractiveObject;
+		private var $elementBtn:InteractiveObject
 		private var $funBtn:InteractiveObject;
 		
 		//背景
@@ -184,7 +186,7 @@ package com.xiaohuzi999.storyEditor
 		}
 		
 		private function onSave(event:XEvent):void{
-			if(event.data){
+			/*if(event.data){
 				var data:Object = event.data;
 				if(data.type == "EditDiaWindow"){
 					_data.name = data.name;
@@ -196,7 +198,8 @@ package com.xiaohuzi999.storyEditor
 						$ui.diaMC.msgTF.text = _data.dialog
 					}
 				}			
-			}
+			}*/
+			format(this._data);
 			dispatchEvent(new Event(XEvent.CHANGE));
 		}
 		
@@ -220,8 +223,11 @@ package com.xiaohuzi999.storyEditor
 				case $dataBtn:
 					dataEditWindw.showWithArgs(_data)
 					break;
-				case $effectBtn:
+				case $elementBtn:
 					(ModelManager.getInstance(ActEditWindow) as ActEditWindow).showWithArgs(_data, "bg")
+					break;
+				case $effectBtn:
+					(ModelManager.getInstance(EffEditWindow) as EffEditWindow).showWithArgs(_data)
 					break;
 				case $funBtn:
 					(ModelManager.getInstance(FunEditWindow) as FunEditWindow).showWithArgs(_data)
@@ -282,6 +288,7 @@ package com.xiaohuzi999.storyEditor
 			$dataBtn = $ui.dataBtn;
 			$effectBtn = $ui.effectBtn;
 			$funBtn = $ui.funBtn;
+			$elementBtn = $ui.elementBtn;
 			
 			$ui.x = $ui.y = 0;
 			_bgItem = new BgItem();
@@ -314,6 +321,7 @@ package com.xiaohuzi999.storyEditor
 			$dataBtn.addEventListener(MouseEvent.CLICK, onBtnClick);
 			$funBtn.addEventListener(MouseEvent.CLICK, onBtnClick);
 			$effectBtn.addEventListener(MouseEvent.CLICK, onBtnClick);
+			$elementBtn.addEventListener(MouseEvent.CLICK, onBtnClick);
 			MainDispatcher.getInstance().addEventListener("save", onSave)
 				
 			MainDispatcher.getInstance().addEventListener(PlayerItem.UPDATE, onUpdate);

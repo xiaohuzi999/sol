@@ -76,12 +76,12 @@ package com.xiaohuzi999.storyEditor.windows
 			$ui.tfTitle.text = title+"";
 			$tfX.text = (_data.x || 0)+"";
 			$tfY.text = (_data.y || 0)+"";
-			if(_data.hasOwnProperty("alpha")){
-				$tfAlpha.text  = (_data.alpha)+""
+			if(_data.hasOwnProperty("al")){
+				$tfAlpha.text  = (_data.al)+""
 			}else{
 				$tfAlpha.text  = "1"
 			}
-			if(key == "effect"){
+			if(key == "eff"){
 				_curData = _effectData;
 			}else if(key == "bg"){
 				_curData = _sceneData;
@@ -108,8 +108,8 @@ package com.xiaohuzi999.storyEditor.windows
 			//$ui.tfTitle.text = title+"";
 			$tfX.text = (_data.x || 0)+"";
 			$tfY.text = (_data.y || 0)+"";
-			if(_data.hasOwnProperty("alpha")){
-				$tfAlpha.text  = (_data.alpha)+""
+			if(_data.hasOwnProperty("al")){
+				$tfAlpha.text  = (_data.al)+""
 			}else{
 				$tfAlpha.text  = "1"
 			}
@@ -133,7 +133,7 @@ package com.xiaohuzi999.storyEditor.windows
 			
 			var index:int = -1;
 			for(var i:int=0; i<_curData.length; i++){
-				if(_curData[i].label == _data.name){
+				if(_curData[i].label == _data.n){
 					index = i;
 					break;
 				}
@@ -165,10 +165,10 @@ package com.xiaohuzi999.storyEditor.windows
 				case $confirmBtn:
 					//
 					if($ui.cb.selectedItem && $ui.cb.selectedItem.data){
-						_data.alpha = parseFloat($tfAlpha.text);
+						_data.al = parseFloat($tfAlpha.text);
 						_data.x = int($tfX.text);
 						_data.y = int($tfY.text);
-						_data.name = $ui.cb.selectedItem.label;
+						_data.n = $ui.cb.selectedItem.label;
 					}
 					if($ui.actCB.selectedItem && $ui.actCB.selectedItem.data){
 						_data.act = $ui.actCB.selectedItem.data

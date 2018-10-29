@@ -25,6 +25,8 @@ package com.xiaohuzi999.storyEditor
 		private var $diaTF:TextField;
 		private var $rewardTF:TextField;
 		private var $funTF:TextField;
+		private var $tfAct:TextField;
+		private var $tfTime:TextField;
 		private var _icon:MovieClip;
 		//
 		public function RightItem(data:RecordVo = null)
@@ -35,12 +37,15 @@ package com.xiaohuzi999.storyEditor
 			$diaTF = $ui.diaTF;
 			$rewardTF = $ui.rewardTF;
 			$funTF = $ui.funTF;
-			$nameTF.text = $diaTF.text = $rewardTF.text = $ui.typeTF.text = $funTF.text = "";
+			$tfAct = $ui.actTF;
+			$tfTime = $ui.timeTF
+			$nameTF.text = $diaTF.text = $rewardTF.text = $ui.typeTF.text = $funTF.text = $tfAct.text=$tfTime.text = "";
 			update();
 		}
 		
 		/***/
 		public function update():void{
+			$tfAct.text  = "";
 			this.$ui.bg.gotoAndStop(1);
 			if(vo.name){
 				$nameTF.htmlText = vo.name +"";
@@ -52,6 +57,7 @@ package com.xiaohuzi999.storyEditor
 			}else{
 				$diaTF.text = "";
 			}
+			$tfTime.text = vo.time+"";
 			$rewardTF.text = "";
 			if(vo.dataInfo){
 				var obj:Object = vo.dataInfo;
@@ -74,6 +80,30 @@ package com.xiaohuzi999.storyEditor
 			if(vo.eventInfo){
 				for(i in vo.eventInfo){
 					$funTF.appendText(getKeyStr(i)+":"+vo.eventInfo[i]+" ");
+				}
+			}
+			
+			if(vo.act){
+				if(vo.act.shake){
+					$tfAct.appendText("剧烈抖动");
+				}else if(vo.act.shake1){
+					$tfAct.appendText("轻微抖动");
+				}else if(vo.act.shake2){
+					$tfAct.appendText("横向剧烈");
+				}else if(vo.act.shake3){
+					$tfAct.appendText("纵向剧烈");
+				}else if(vo.act.shake4){
+					$tfAct.appendText("横向轻微");
+				}else if(vo.act.shake5){
+					$tfAct.appendText("纵向轻微");
+				}else if(vo.act.shake6){
+					$tfAct.appendText("抖一次");
+				}
+				
+				if(vo.act.flashRed){
+					$tfAct.appendText("闪红");
+				}else if(vo.act.flashWhite){
+					$tfAct.appendText("闪白");
 				}
 			}
 		}

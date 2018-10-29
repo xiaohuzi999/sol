@@ -27,9 +27,10 @@ package com.xiaohuzi999.storyEditor.vo
 		public var lm:Object;
 		/**表情--图片id|x|y*/
 		public var rm:Object;
-		//特效
+		//装饰
 		public var eff:Object;
-		
+		//特效 {flashRed, flashWhite, shake，shake1，shake2，shake3}
+		public var act:Object;
 		
 		//数据层================================================================================
 		//名字

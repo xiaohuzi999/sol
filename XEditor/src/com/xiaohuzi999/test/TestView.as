@@ -60,6 +60,11 @@ package com.xiaohuzi999.test
 		/***/
 		private var _curData:RecordVo;
 		
+		/***/
+		private var _redSp:Sprite;
+		/***/
+		private var _wSp:Sprite;
+		
 		private var _blackFilter:ColorMatrixFilter = new ColorMatrixFilter([1, 0, 0, 0, -100,
 			0, 1, 0, 0, -100, 
 			0, 0, 1, 0, -100, 
@@ -266,6 +271,48 @@ package com.xiaohuzi999.test
 				btn.y = 88*3+20;
 			}
 			
+			//特效
+			if(data.act){
+				if(data.act.flashRed){
+					ActUtil.flash(_redSp)
+					//XTip.showTip("特效：：闪红色")
+					trace("特效：：闪红色----------------")
+				}else if(data.act.flashWhite){
+					ActUtil.flash(_wSp)
+					trace("特效：：闪白色----------------")
+					//XTip.showTip("特效：：闪白色")
+				}
+				if(data.act.shake){
+					//闪动特效;
+					trace("闪动----------------")
+					ActUtil.shake(this._specialSp);
+				}else if(data.act.shake1){
+					//闪动特效;
+					trace("闪动1----------------")
+					ActUtil.shake(this._specialSp, 20, 10);
+				}else if(data.act.shake2){
+					//闪动特效;
+					trace("闪动2----------------")
+					ActUtil.shakeX(this._specialSp);
+				}else if(data.act.shake3){
+					//闪动特效;
+					trace("闪动3----------------")
+					ActUtil.shakeY(this._specialSp);
+				}else if(data.act.shake4){
+					//闪动特效;
+					trace("闪动4----------------")
+					ActUtil.shakeX(this._specialSp, 20, 10);
+				}else if(data.act.shake5){
+					//闪动特效;
+					trace("闪动5----------------")
+					ActUtil.shakeY(this._specialSp, 20, 10);
+				}else if(data.act.shake6){
+					//闪动特效;
+					trace("闪动6----------------")
+					ActUtil.shakeOnce(this._specialSp, 30, 15);
+				}
+			}
+			
 			
 			
 			function onLoadPic(info:LoaderInfo, targetBM:Bitmap):void{
@@ -393,6 +440,20 @@ package com.xiaohuzi999.test
 			this.bgAlpha = 1;
 			
 			_specialSp.scrollRect = new Rectangle(0,0, 750, 960);
+			
+			_redSp = new Sprite();
+			_redSp.graphics.beginFill(0xff0000);
+			_redSp.graphics.drawRect(0,0,750, 960);
+			_redSp.graphics.endFill();
+			
+			_wSp = new Sprite();
+			_wSp.graphics.beginFill(0xffffff);
+			_wSp.graphics.drawRect(0,0,750, 960);
+			_wSp.graphics.endFill();
+			
+			_specialSp.addChild(_redSp);
+			_specialSp.addChild(_wSp);
+			_redSp.visible = _wSp.visible = false;
 		}
 		
 		override public function show(autoAlignCenter:Boolean=true):void{

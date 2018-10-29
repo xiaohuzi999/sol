@@ -56,6 +56,9 @@ package com.xiaohuzi999.storyEditor.main
 				this.scaleX = info.sx || 1;
 				this.x = info.x;
 				this.y = info.y;
+				if(info.hasOwnProperty("al")){
+					this.alpha = info.al;
+				}
 				if(info.b){
 					this.filters = [_blackFilter];
 					modifyMenu("幕后", "幕前");
