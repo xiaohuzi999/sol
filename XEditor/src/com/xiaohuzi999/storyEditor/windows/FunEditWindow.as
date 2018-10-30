@@ -11,6 +11,7 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.display.InteractiveObject;
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	
 	/**
@@ -149,6 +150,7 @@ package com.xiaohuzi999.storyEditor.windows
 			$joinTeamTF = $ui.joinTeamTF;
 			$leftTeamTF = $ui.leftTeamTF
 			$gameOverTF = $ui.gameOverTF;
+			$ui.bgMC.scale9Grid  = new Rectangle(100,100,100,100);
 		}
 		
 		override protected function initEvent():void{

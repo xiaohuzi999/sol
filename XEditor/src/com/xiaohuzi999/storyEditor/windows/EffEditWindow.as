@@ -8,6 +8,7 @@ package com.xiaohuzi999.storyEditor.windows
 	
 	import flash.display.InteractiveObject;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	
 	import fl.controls.RadioButtonGroup;
@@ -131,6 +132,8 @@ package com.xiaohuzi999.storyEditor.windows
 			_group2 = new RadioButtonGroup("act1");
 			$ui.rbNo2.group = $ui.rbShake.group = $ui.rbShake1.group = $ui.rbShake2.group = $ui.rbShake3.group =  
 				$ui.rbShake4.group = $ui.rbShake5.group = $ui.rbShake6.group= _group2;
+			
+			$ui.bgMC.scale9Grid = new Rectangle(100,100,100,100);
 		}
 		
 		override protected function initEvent():void{

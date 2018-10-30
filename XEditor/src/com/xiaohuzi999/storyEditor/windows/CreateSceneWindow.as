@@ -8,6 +8,7 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.display.InteractiveObject;
 	import flash.display.MovieClip;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	
 	/**
@@ -59,6 +60,7 @@ package com.xiaohuzi999.storyEditor.windows
 			this.addChild($ui);
 			$closeBtn = $ui.closeBtn;
 			$confirmBtn = $ui.confirmBtn;
+			$ui.bgMC.scale9Grid = new Rectangle(100,100,100,100);
 		}
 		
 		public function get oldName():String{

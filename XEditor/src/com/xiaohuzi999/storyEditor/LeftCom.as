@@ -81,7 +81,27 @@ package com.xiaohuzi999.storyEditor
 			this.addChild($ui);
 			init();
 			initEvent();
+			initAll();
 			onChange();
+		}
+		
+		/**初始化所有的元素*/
+		private function initAll():void{
+			var list:Array = [{type:"0", url:"graphics\\background"},
+				{type:"1", url:"graphics\\player"},
+				{type:"2", url:"graphics\\dec"}];
+			for(var i:int=0; i<list.length; i++){
+				var url:String = ST_URL+list[i].url;
+				var file:File = File.applicationDirectory.resolvePath(url);
+				var arr:Array = file.getDirectoryListing();
+				if(list[i].type == 0){
+					ActEditWindow.initScene(arr);
+				}else if(list[i].type == 1){
+					ActEditWindow.initPlayer(arr);
+				}else if(list[i].type == 2){
+					ActEditWindow.initEffect(arr);
+				}
+			}
 		}
 		
 		private function onChange(event:Event = null):void{

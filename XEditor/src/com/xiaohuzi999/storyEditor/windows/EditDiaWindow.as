@@ -1,13 +1,11 @@
 package com.xiaohuzi999.storyEditor.windows
 {
+	import com.xiaohuzi999.storyEditor.vo.RecordVo;
 	import com.xiaohuzi999.xControls.frame.XModeWindow;
 	import com.xiaohuzi999.xControls.frame.XTip;
 	import com.xiaohuzi999.xControls.frame.XWindow;
 	import com.xiaohuzi999.xControls.util.xEvent.MainDispatcher;
 	import com.xiaohuzi999.xControls.util.xEvent.XEvent;
-	
-	import fl.controls.ColorPicker;
-	import fl.events.ColorPickerEvent;
 	
 	import flash.desktop.InteractiveIcon;
 	import flash.display.InteractiveObject;
@@ -16,8 +14,12 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.events.FocusEvent;
 	import flash.events.MouseEvent;
 	import flash.geom.Point;
+	import flash.geom.Rectangle;
 	import flash.system.System;
 	import flash.text.TextField;
+	
+	import fl.controls.ColorPicker;
+	import fl.events.ColorPickerEvent;
 	
 	/**
 	 * EditDiaWindow
@@ -35,6 +37,7 @@ package com.xiaohuzi999.storyEditor.windows
 		private var $cp1:ColorPicker;
 		private var $nameTF:TextField;
 		private var $diaTF:TextField;
+		private var _data:RecordVo;
 		public function EditDiaWindow()
 		{
 			init();
@@ -52,7 +55,11 @@ package com.xiaohuzi999.storyEditor.windows
 					if(nameStr && $nameTF.textColor != 0){
 						nameStr = "<font color='#"+$nameTF.textColor.toString(16)+"'>"+$nameTF.text+"</font>";
 					}
-					MainDispatcher.getInstance().dispatchEvent(new XEvent("save", {type:"EditDiaWindow",name:nameStr, dialog:$diaTF.text}))
+					if(_data){
+						_data.name = nameStr;
+						_data.dialog = $diaTF.text;
+					}
+					MainDispatcher.getInstance().dispatchEvent(new XEvent("save"))
 					break;
 				case $resetBtn:
 					$nameTF.text = $diaTF.text = "";
@@ -73,7 +80,8 @@ package com.xiaohuzi999.storyEditor.windows
 			}
 		}
 		
-		public function showWithArgs(data:Object):void{
+		public function showWithArgs(data:RecordVo):void{
+			_data = data;
 			if(data){
 				$nameTF.htmlText = data.name?data.name:"";
 				$diaTF.text = data.dialog?data.dialog:"";
@@ -106,6 +114,7 @@ package com.xiaohuzi999.storyEditor.windows
 			
 			$cp0 = $ui.cp0;
 			$cp1 = $ui.cp1;
+			this.$ui.bgMC.scale9Grid  = new Rectangle(100,100,100,100);
 		}
 		
 		override protected function initEvent():void{

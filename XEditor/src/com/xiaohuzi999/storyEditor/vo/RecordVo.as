@@ -40,6 +40,9 @@ package com.xiaohuzi999.storyEditor.vo
 		//动画时间
 		public var time:int = 500;
 		
+		//非关键帧not key frame;
+		public var nkf:Boolean = false;
+		
 		//四叉树功能层===============================================================================
 		/**下一个记录ID-四叉树结构-默认链接键*/
 		public var nId_0:String;

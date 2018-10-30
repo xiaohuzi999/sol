@@ -13,6 +13,7 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	
 	/**
@@ -175,6 +176,7 @@ package com.xiaohuzi999.storyEditor.windows
 			}
 			_group = new XSelecteGroup(btns);
 			_group.selectedButton = btns[0];
+			$ui.bgMC.scale9Grid = new Rectangle(100,100,100,100);
 		}
 		
 		override protected function initEvent():void{

@@ -21,6 +21,7 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.events.Event;
 	import flash.events.MouseEvent;
 	import flash.filesystem.File;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	
 	import fl.data.DataProvider;
@@ -50,6 +51,8 @@ package com.xiaohuzi999.storyEditor.windows
 		private var _curData:Array;
 		private var _bm:Bitmap;
 		private var _group:XSelecteGroup;
+		private const DX:int = 430;
+		private const DY:int = 120;
 		public function ActEditWindow()
 		{
 			init();
@@ -66,36 +69,6 @@ package com.xiaohuzi999.storyEditor.windows
 				}
 			}
 			format(_vo, key);
-			return;
-			_data = vo[key];
-			if(!_data){
-				_data = {x:0, y:0};
-			}
-			show();
-			reset();
-			$ui.tfTitle.text = title+"";
-			$tfX.text = (_data.x || 0)+"";
-			$tfY.text = (_data.y || 0)+"";
-			if(_data.hasOwnProperty("al")){
-				$tfAlpha.text  = (_data.al)+""
-			}else{
-				$tfAlpha.text  = "1"
-			}
-			if(key == "eff"){
-				_curData = _effectData;
-			}else if(key == "bg"){
-				_curData = _sceneData;
-				$ui.cb.dataProvider = new DataProvider(_sceneData);
-			}else{
-				_curData = _playerData;
-			}
-			
-			if(_curData){
-				$ui.cb.dataProvider = new DataProvider(_curData);
-			}else{
-				this.close();
-				XTip.showTip("未初始化，请挨个点击左上角的按钮");
-			}
 		}
 		
 		private function format(vo:RecordVo, key:String):void{
@@ -104,6 +77,12 @@ package com.xiaohuzi999.storyEditor.windows
 			_key  = key;
 			if(!_data){
 				_data = {x:0, y:0};
+				if(key == "p1" || key == "p3"){
+					_data.x = DX;
+				}
+				if(key == "p0" || key == "p1"){
+					_data.y = DY;
+				}
 			}
 			//$ui.tfTitle.text = title+"";
 			$tfX.text = (_data.x || 0)+"";
@@ -164,16 +143,22 @@ package com.xiaohuzi999.storyEditor.windows
 					break;
 				case $confirmBtn:
 					//
-					if($ui.cb.selectedItem && $ui.cb.selectedItem.data){
-						_data.al = parseFloat($tfAlpha.text);
-						_data.x = int($tfX.text);
-						_data.y = int($tfY.text);
-						_data.n = $ui.cb.selectedItem.label;
+					if($ui.cb.selectedItem){
+						if($ui.cb.selectedItem.data){
+							_data.al = parseFloat($tfAlpha.text);
+							_data.x = int($tfX.text);
+							_data.y = int($tfY.text);
+							_data.n = $ui.cb.selectedItem.label;
+						}else{
+							_data = null;
+						}
 					}
-					if($ui.actCB.selectedItem && $ui.actCB.selectedItem.data){
-						_data.act = $ui.actCB.selectedItem.data
-					}else{
-						delete _data.act;
+					if(_data){
+						if($ui.actCB.selectedItem && $ui.actCB.selectedItem.data){
+							_data.act = $ui.actCB.selectedItem.data
+						}else{
+							delete _data.act;
+						}
 					}
 					_vo[_key] = _data;
 					MainDispatcher.getInstance().dispatchEvent(new XEvent("save"))
@@ -253,6 +238,8 @@ package com.xiaohuzi999.storyEditor.windows
 				{label:"踏踏踏", data:"ttt"}
 			]
 			$ui.actCB.dataProvider = new DataProvider(arr);
+			
+			$ui.bgMC.scale9Grid = new Rectangle(100,100,100,100);
 		}
 		
 		override protected function initEvent():void{

@@ -9,6 +9,7 @@ package com.xiaohuzi999.storyEditor
 	import flash.display.Bitmap;
 	import flash.display.LoaderInfo;
 	import flash.display.MovieClip;
+	import flash.display.NativeMenu;
 	import flash.display.Sprite;
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
@@ -28,6 +29,7 @@ package com.xiaohuzi999.storyEditor
 		private var $tfAct:TextField;
 		private var $tfTime:TextField;
 		private var _icon:MovieClip;
+		private var _menu:NativeMenu;
 		//
 		public function RightItem(data:RecordVo = null)
 		{
@@ -58,6 +60,7 @@ package com.xiaohuzi999.storyEditor
 				$diaTF.text = "";
 			}
 			$tfTime.text = vo.time+"";
+			this.$ui.mcNKF.visible = vo.nkf;
 			$rewardTF.text = "";
 			if(vo.dataInfo){
 				var obj:Object = vo.dataInfo;

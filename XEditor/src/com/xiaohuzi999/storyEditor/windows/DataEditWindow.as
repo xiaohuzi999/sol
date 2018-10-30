@@ -12,6 +12,7 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.display.MovieClip;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	
 	/**
@@ -22,7 +23,7 @@ package com.xiaohuzi999.storyEditor.windows
 	 */
 	public class DataEditWindow extends XModeWindow
 	{
-		private var $ui:MovieClip;
+		private var $ui:DataEditWindowUI;
 		private var $goldTF:TextField;
 		private var $pointTF:TextField;
 		private var $skillTF:TextField;
@@ -151,6 +152,7 @@ package com.xiaohuzi999.storyEditor.windows
 			$closeBtn = $ui.closeBtn;
 			$confirmBtn = $ui.confirmBtn;
 			$resetBtn = $ui.resetBtn;
+			$ui.bgMC.scale9Grid  = new Rectangle(100,100,100,100);
 		}
 		
 		override protected function initEvent():void{

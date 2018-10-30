@@ -8,14 +8,14 @@ package com.xiaohuzi999.storyEditor
 	import com.xiaohuzi999.xControls.frame.XTip;
 	import com.xiaohuzi999.xControls.util.xEvent.XEvent;
 	
-	import fl.containers.ScrollPane;
-	
 	import flash.display.MovieClip;
 	import flash.display.NativeMenu;
 	import flash.display.NativeMenuItem;
 	import flash.display.Sprite;
 	import flash.events.Event;
 	import flash.events.MouseEvent;
+	
+	import fl.containers.ScrollPane;
 	
 	/**
 	 * RightCom
@@ -97,6 +97,16 @@ package com.xiaohuzi999.storyEditor
 						this.dispatchEvent(new XEvent(DEL_DIALOG, _menuItem.data.id));
 					}
 					break;
+				case "设置过度帧":
+					var rvo:RecordVo = (_menuItem.data as RecordVo)
+					rvo.nkf = true;
+					_menuItem.update();
+					break;
+				case "取消过度帧":
+					rvo = (_menuItem.data as RecordVo)
+					rvo.nkf = false;
+					_menuItem.update();
+					break;
 				default://创建分支剧情
 					var arr:Array = String(event.currentTarget.data).split("|");
 					this.dispatchEvent(new XEvent(ADD_DIALOG, {preId:_menuItem.data.id, vo:{pId:_menuItem.data.id,pn:arr[0]},type:arr[1]}));
@@ -108,7 +118,7 @@ package com.xiaohuzi999.storyEditor
 		private function onSelectItem(event:Event):void{
 			//
 			_menu.removeAllItems();
-			var labels:Array = ["新建", "复制", "删除"];
+			var labels:Array = ["新建", "复制", "删除", "设置过度帧", "取消过度帧"];
 			var datas:Array = [null,null,null]
 			_menuItem = event.currentTarget as RightItem;
 			var vo:RecordVo = _menuItem.data as RecordVo;
