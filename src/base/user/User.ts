@@ -8,7 +8,7 @@ class User{
 
     public power:number;
 
-    public money:number;
+    public gold:number;
     
     public diamond:number;
     //
@@ -22,12 +22,12 @@ class User{
     private static _instance:User;
     //
     public static readonly UPDATE:string = "update";
+
     constructor(){
     }
 
     //更新
     public update(value:any):void{
-        trace("updatexxxxxxxxxxxxx", value)
         for(var i in value){
             this[i] = value[i];
         }
@@ -39,6 +39,7 @@ class User{
         this.heros.push(role);
         //=============================================
         //
+
         xframe.XEvent.instance.event(User.UPDATE);
     }
 

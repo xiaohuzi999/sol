@@ -1,6 +1,7 @@
 package{
 	import com.xiaohuzi999.storyEditor.MainView;
 	import com.xiaohuzi999.storyEditor.model.DB;
+	import com.xiaohuzi999.storyEditor.model.DBItem;
 	import com.xiaohuzi999.test.TestView;
 	import com.xiaohuzi999.xControls.frame.XFacade;
 	import com.xiaohuzi999.xControls.frame.XWindow;
@@ -42,7 +43,10 @@ package{
 		private static const MENU_NEW:String = "新建Ctrl+N";
 		private static const MENU_OPEN:String = "打开Ctrl+O";
 		private static const MENU_SAVE:String = "保存Ctrl+S";
-		private static const MENU_CLOSE:String = "退出Ctrl+Q"
+		private static const MENU_CLOSE:String = "退出Ctrl+Q";
+		
+		/***/
+		private static const MENU_IMPORT_ITEMS:String = "导入道具Json";
 		
 		private static const MENUS:Array = [MENU_NEW,MENU_OPEN, MENU_SAVE, MENU_CLOSE];
 		public function Main()
@@ -134,6 +138,9 @@ package{
 				case MENU_NEW:
 					DB.importData("{}");
 					break;
+				case MENU_IMPORT_ITEMS:
+					DBItem.input();
+					break;
 			}
 		}
 		
@@ -205,6 +212,16 @@ package{
 				item.addEventListener(Event.SELECT, onSelectItem);
 			}
 			rootMenu.addSubmenu(fileMenu, "文件");
+			
+			var editList:Array = [MENU_IMPORT_ITEMS];
+			fileMenu = new  NativeMenu();
+			for(i=0; i<editList.length; i++){
+				item = new NativeMenuItem(editList[i]);
+				fileMenu.addItem(item);
+				item.addEventListener(Event.SELECT, onSelectItem);
+			}
+			rootMenu.addSubmenu(fileMenu, "编辑");
+			
 			window.menu = rootMenu;
 			
 			XFacade.getInstance().init(this,  App,  "剧情编辑器");

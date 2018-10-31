@@ -10,7 +10,6 @@ var User = /** @class */ (function () {
     }
     //更新
     User.prototype.update = function (value) {
-        trace("updatexxxxxxxxxxxxx", value);
         for (var i in value) {
             this[i] = value[i];
         }

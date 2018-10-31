@@ -19,7 +19,7 @@ class MainTopView extends xframe.XWindow{
         var user:User = User.getInstance();
         this._view.tfPower.text = user.power+"";
         this._view.tfDiamond.text = user.diamond+"";
-        this._view.tfMoney.text = user.money+"";
+        this._view.tfMoney.text = user.gold+"";
     }
 
     protected addEventListener():void{

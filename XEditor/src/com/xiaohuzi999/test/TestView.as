@@ -69,6 +69,11 @@ package com.xiaohuzi999.test
 			0, 1, 0, 0, -100, 
 			0, 0, 1, 0, -100, 
 			0, 0, 0, 1, 0]);
+		
+		private var _mythFilter:ColorMatrixFilter = new ColorMatrixFilter([0, 0, 0, 0, 63.5,
+			0, 0, 0, 0, 63.5, 
+			0, 0, 0, 0, 63.5, 
+			0, 0, 0, 1, 0]);
 		public function TestView()
 		{
 			init();
@@ -90,9 +95,9 @@ package com.xiaohuzi999.test
 			}
 			//上一次对话奖励
 			if(_prevData){
-				if(_prevData.dataInfo){
-					for(var i:String in _prevData.dataInfo){
-						XTip.showTip("获得"+getStr(i)+_prevData.dataInfo[i]);
+				if(_prevData.data){
+					for(var i:String in _prevData.data){
+						XTip.showTip("获得"+getStr(i)+_prevData.data[i]);
 					}
 				}
 			}

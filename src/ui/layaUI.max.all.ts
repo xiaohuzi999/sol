@@ -145,6 +145,23 @@ module ui.fight {
 }
 
 module ui.main {
+    export class ChapItemUI extends View {
+		public tfName:Laya.Label;
+		public pic:Laya.Image;
+
+        public static  uiView:any ={"type":"View","props":{"width":480,"height":480},"child":[{"type":"Label","props":{"y":440,"x":113,"width":254,"var":"tfName","text":"label","height":24,"fontSize":24,"color":"#ffffff","align":"center"}},{"type":"Image","props":{"y":0,"x":30,"var":"pic"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.main.ChapItemUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.main {
     export class MainMenuViewUI extends View {
 		public btnBag:Laya.Image;
 		public btnStory:Laya.Image;
@@ -182,15 +199,16 @@ module ui.main {
 
 module ui.main {
     export class MainViewUI extends View {
-		public btnStart:Laya.Image;
 		public topCom:ui.main.MainTopViewUI;
 		public menuCom:ui.main.MainMenuViewUI;
+		public chapList:Laya.List;
 
-        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}},{"type":"Image","props":{"y":818,"x":245,"var":"btnStart","skin":"main/btn_play.png","mouseEnabled":true}},{"type":"MainTopView","props":{"y":0,"x":0,"var":"topCom","runtime":"ui.main.MainTopViewUI"}},{"type":"MainMenuView","props":{"y":1134,"x":0,"var":"menuCom","runtime":"ui.main.MainMenuViewUI"}}]};
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334}},{"type":"MainTopView","props":{"y":0,"x":0,"var":"topCom","runtime":"ui.main.MainTopViewUI"}},{"type":"MainMenuView","props":{"y":1134,"x":0,"var":"menuCom","runtime":"ui.main.MainMenuViewUI"}},{"type":"List","props":{"y":427,"x":-358,"width":1448,"var":"chapList","spaceY":1,"height":480},"child":[{"type":"ChapItem","props":{"runtime":"ChapItem","name":"render"}}]}]};
         constructor(){ super()}
         createChildren():void {
         			View.regComponent("ui.main.MainTopViewUI",ui.main.MainTopViewUI);
 			View.regComponent("ui.main.MainMenuViewUI",ui.main.MainMenuViewUI);
+			View.regComponent("ChapItem",ChapItem);
 
             super.createChildren();
             this.createView(ui.main.MainViewUI.uiView);
@@ -231,6 +249,21 @@ module ui.story {
 
             super.createChildren();
             this.createView(ui.story.StoryViewUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.user {
+    export class UserInfoUI extends View {
+
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":1334},"child":[{"type":"Image","props":{"y":0,"x":0,"skin":"main/bj_homepage@2x.png"},"child":[{"type":"Rect","props":{"y":1134,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#a4a4a4"}},{"type":"Rect","props":{"y":0,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#b9b9b9"}}]}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.user.UserInfoUI.uiView);
 
         }
 

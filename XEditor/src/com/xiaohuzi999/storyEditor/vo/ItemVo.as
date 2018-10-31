@@ -11,18 +11,18 @@ package com.xiaohuzi999.storyEditor.vo
 	{
 		public var id:int;
 		public var name:String;
-		public var pic:String;
+		public var icon:String;
 		public var price:int;
 		
 		//shuxing
 		//加成；
-		public function ItemVo()
+		public function ItemVo(obj:Object=null)
 		{
-			/**
-			 * 事件ID: 战斗，死亡，
-			 * 参数：
-			 * 
-			 * */
+			for(var i:String in obj){
+				if(this.hasOwnProperty(i)){
+					this[i] = obj[i];
+				}
+			}
 		}
 	}
 }

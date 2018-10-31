@@ -33,6 +33,13 @@ class UserReq{
         }
     }
 
+    /** ttttttttttttttttttttttttttodo*/
+    public static addHero(id:any):void{
+        var role = DBMonster.calcTotalPro(1);
+        role.state = Role.IN_FIGHT;
+        role.uid = 2;
+    }
+
     //
     public static getFightTeam():Role[]{
         var arr:Role[] = [User.getInstance().role]

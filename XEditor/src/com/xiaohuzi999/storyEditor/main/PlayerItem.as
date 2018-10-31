@@ -36,6 +36,10 @@ package com.xiaohuzi999.storyEditor.main
 			0, 1, 0, 0, -100, 
 			0, 0, 1, 0, -100, 
 			0, 0, 0, 1, 0]);
+		private var _mythFilter:ColorMatrixFilter = new ColorMatrixFilter([0, 0, 0, 0, 63.5,
+			0, 0, 0, 0, 63.5, 
+			0, 0, 0, 0, 63.5, 
+			0, 0, 0, 1, 0]);
 		public function PlayerItem()
 		{
 			init();
@@ -64,6 +68,12 @@ package com.xiaohuzi999.storyEditor.main
 					modifyMenu("幕后", "幕前");
 				}else{
 					modifyMenu("幕前", "幕后");
+				}
+				if(info.m){
+					this.filters = [_mythFilter];
+					modifyMenu("神秘", "揭秘");
+				}else{
+					modifyMenu("揭秘", "神秘");
 				}
 				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.PLAYER_URL, info.n)+".png", onLoadPic);
 			}
@@ -114,6 +124,22 @@ package com.xiaohuzi999.storyEditor.main
 						MainDispatcher.getInstance().dispatchEvent(new XEvent(UPDATE));
 					}
 					break;
+				case "神秘":
+					if(data){
+						data.m = true;
+						this.filters = [_mythFilter];
+						modifyMenu("神秘", "揭秘");
+						MainDispatcher.getInstance().dispatchEvent(new XEvent(UPDATE));
+					}
+					break;
+				case "揭秘":
+					if(data){
+						delete data.m;
+						this.filters = null;
+						modifyMenu("揭秘", "神秘");
+						MainDispatcher.getInstance().dispatchEvent(new XEvent(UPDATE));
+					}
+					break;
 				case "自动对齐":
 					break;
 				case "删除":
@@ -149,7 +175,7 @@ package com.xiaohuzi999.storyEditor.main
 		
 		protected function createMenu():void{
 			var menu:NativeMenu = new NativeMenu();
-			var lbs:Array = ["翻转", "幕后","自动对齐", "删除"]
+			var lbs:Array = ["翻转", "幕后","神秘","自动对齐", "删除"]
 			for(var i:int=0; i<lbs.length; i++){
 				var item:NativeMenuItem = new NativeMenuItem(lbs[i])
 				menu.addItem(item);

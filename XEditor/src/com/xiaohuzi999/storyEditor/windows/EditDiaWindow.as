@@ -94,6 +94,9 @@ package com.xiaohuzi999.storyEditor.windows
 		override public function show(autoAlignCenter:Boolean=true):void{
 			super.show(autoAlignCenter);
 			XWindow.addPopWindow(this);
+			
+			var arr:Array = $ui.cp1.filters;
+			trace(arr);
 		}
 		
 		override public function close():void{

@@ -29,7 +29,7 @@ var MainTopView = /** @class */ (function (_super) {
         var user = User.getInstance();
         this._view.tfPower.text = user.power + "";
         this._view.tfDiamond.text = user.diamond + "";
-        this._view.tfMoney.text = user.money + "";
+        this._view.tfMoney.text = user.gold + "";
     };
     MainTopView.prototype.addEventListener = function () {
         xframe.XEvent.instance.on(User.UPDATE, this, this.onUpdte);

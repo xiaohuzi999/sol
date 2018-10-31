@@ -1,5 +1,6 @@
 package com.xiaohuzi999.storyEditor.windows
 {
+	import com.xiaohuzi999.storyEditor.model.DBItem;
 	import com.xiaohuzi999.storyEditor.vo.RecordVo;
 	import com.xiaohuzi999.xControls.frame.XModeWindow;
 	import com.xiaohuzi999.xControls.frame.XTip;
@@ -15,6 +16,9 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.geom.Rectangle;
 	import flash.text.TextField;
 	
+	import fl.controls.ComboBox;
+	import fl.data.DataProvider;
+	
 	/**
 	 * DataEditWindow
 	 * author:xiaohuzi999
@@ -25,12 +29,14 @@ package com.xiaohuzi999.storyEditor.windows
 	{
 		private var $ui:DataEditWindowUI;
 		private var $goldTF:TextField;
-		private var $pointTF:TextField;
-		private var $skillTF:TextField;
+		private var $diamondTF:TextField;
 		private var $itemTF:TextField;
-		private var $otherTF:TextField;
-		private var $msgTF:TextField;
-		private var $honorTF:TextField;
+		private var $proTF:TextField;
+		
+		private var $itemCB:ComboBox;
+		private var $proCB:ComboBox;
+		private var _items:Array
+		private var _pros:Array;
 		//关闭
 		private var $closeBtn:InteractiveObject;
 		private var $confirmBtn:InteractiveObject;
@@ -47,27 +53,42 @@ package com.xiaohuzi999.storyEditor.windows
 			_data = data;
 			show();
 			reset();
-			var obj:Object = (_data.dataInfo || {})
-			if(obj.msg){
-				$msgTF.text = obj.msg;
-			}
-			if(obj.honorLv){
-				$honorTF.text = obj.honorLv;
-			}
+			var obj:Object = (_data.data || {});
+			var info:Object;
 			if(obj.gold){
 				$goldTF.text = obj.gold
 			}
-			if(obj.point){
-				$pointTF.text = obj.point;
-			}
-			if(obj.skill){
-				$skillTF.text = obj.skill;
+			if(obj.diamond){
+				$diamondTF.text = obj.diamond;
 			}
 			if(obj.item){
-				$itemTF.text = obj.item;
+				info = obj.item;
+				for(var i:String in info){
+					//判定
+					for(var j:int=0; j<_items.length; j++){
+						var id:int = _items[j].data;
+						if(id == int(i)){
+							$itemCB.selectedIndex = j;
+							break;
+						}
+					}
+					$itemTF.text= info[i];
+				}
 			}
-			if(obj.other){
-				$otherTF.text = obj.other;
+			
+			if(obj.pro){
+				info = obj.pro;
+				for(i in info){
+					//判定
+					for(j=0; j<_pros.length; j++){
+						var key:String = _pros[j].data;
+						if(key == i){
+							$proCB.selectedIndex = j;
+							break;
+						}
+					}
+					$proTF.text= info[i];
+				}
 			}
 		}
 		
@@ -79,39 +100,32 @@ package com.xiaohuzi999.storyEditor.windows
 					break;
 				case $confirmBtn:
 					var obj:Object = new Object();
-					if($msgTF.text){
-						obj.msg = $msgTF.text;
-					}
-					if($honorTF.text){
-						obj.honorLv = $honorTF.text;
-					}
 					if($goldTF.text){
 						obj.gold = $goldTF.text;
 					}
-					if($pointTF.text){
-						obj.point = $pointTF.text;
+					
+					if($diamondTF.text){
+						obj.diamond = $diamondTF.text;
 					}
-					if($skillTF.text){
-						obj.skill = $skillTF.text;
+					
+					//道具
+					var num:int = int($itemTF.text);
+					if($itemCB.selectedItem.data && num){
+						obj.item = {}
+						obj.item[$itemCB.selectedItem.data] = num;
 					}
-					if($itemTF.text){
-						if($itemTF.text.indexOf(":") == -1){
-							XTip.showTip("道具数据不符合规范");
-							return;
-						}
-						obj.item = $itemTF.text
+					
+					//属性
+					num = int($proTF.text);
+					if($proCB.selectedItem.data && num){
+						obj.pro = {}
+						obj.pro[$proCB.selectedItem.data] = num;
 					}
-					if($otherTF.text){
-						if($otherTF.text.indexOf(":") == -1){
-							XTip.showTip("其他数据不符合规范");
-							return;
-						}
-						obj.other = $otherTF.text
-					}
+					
 					if(!XUtil.isEmpty(obj)){
-						_data.dataInfo = obj
+						_data.data = obj
 					}else{
-						_data.dataInfo = null;
+						_data.data = null;
 					}
 					MainDispatcher.getInstance().dispatchEvent(new XEvent("save"))
 					this.close();
@@ -123,12 +137,21 @@ package com.xiaohuzi999.storyEditor.windows
 		}
 		
 		private function reset():void{
-			$goldTF.text = $skillTF.text = $pointTF.text = $itemTF.text = $otherTF.text = $msgTF.text = $honorTF.text = "";
+			$goldTF.text = $diamondTF.text = $itemTF.text = $proTF.text = "";
+			$itemCB.selectedIndex = -1;
+			$proCB.selectedIndex = -1;
 		}
 		
 		override public function show(autoAlignCenter:Boolean=true):void{
 			super.show(autoAlignCenter);
 			XWindow.addPopWindow(this);
+			
+			var arr:Array  = [{label:"无"}];
+			for(var i:String in DBItem.items){
+				arr.push({label:DBItem.items[i].name, data:DBItem.items[i].id})
+			}
+			_items = arr;
+			$itemCB.dataProvider = new DataProvider(arr);
 		}
 		
 		override public function close():void{
@@ -139,15 +162,25 @@ package com.xiaohuzi999.storyEditor.windows
 		private function init():void{
 			$ui = new DataEditWindowUI();
 			this.addChild($ui);
-			$msgTF = $ui.msgTF;
-			$honorTF = $ui.honorTF
 			$goldTF = $ui.goldTF;
-			$pointTF = $ui.pointTF;
-			$skillTF = $ui.skillTF;
+			$diamondTF = $ui.diamondTF;
 			$itemTF = $ui.itemTF;
-			$otherTF = $ui.otherTF;
-			$goldTF.restrict = $skillTF.restrict = $pointTF.restrict = "0-9";
+			$proTF = $ui.proTF;
+			$proCB = $ui.proCB;
+			$itemCB = $ui.itemCB;
+			$goldTF.restrict = $diamondTF.restrict = "0-9";
 			reset();
+			
+			var arr:Array  = [
+				{label:"无", data:null},
+				{label:"physique", data:"physique"},
+				{label:"agility", data:"agility"},
+				{label:"strength", data:"strength"},
+				{label:"speed", data:"speed"}
+			]
+			_pros = arr;
+				
+			$proCB.dataProvider = new DataProvider(arr);
 			
 			$closeBtn = $ui.closeBtn;
 			$confirmBtn = $ui.confirmBtn;

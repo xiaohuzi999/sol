@@ -24,10 +24,10 @@ package com.xiaohuzi999.storyEditor
 	{
 		private var $nameTF:TextField;
 		private var $diaTF:TextField;
-		private var $rewardTF:TextField;
 		private var $funTF:TextField;
 		private var $tfAct:TextField;
 		private var $tfTime:TextField;
+		private var $mcIcon:MovieClip;
 		private var _icon:MovieClip;
 		private var _menu:NativeMenu;
 		//
@@ -37,11 +37,11 @@ package com.xiaohuzi999.storyEditor
 			super(new RecordItemUI(), "", data, false);
 			$nameTF = $ui.nameTF;
 			$diaTF = $ui.diaTF;
-			$rewardTF = $ui.rewardTF;
 			$funTF = $ui.funTF;
 			$tfAct = $ui.actTF;
 			$tfTime = $ui.timeTF
-			$nameTF.text = $diaTF.text = $rewardTF.text = $ui.typeTF.text = $funTF.text = $tfAct.text=$tfTime.text = "";
+			$mcIcon = $ui.mcIcon;
+			$nameTF.text = $diaTF.text = $ui.typeTF.text = $funTF.text = $tfAct.text=$tfTime.text = "";
 			update();
 		}
 		
@@ -61,13 +61,16 @@ package com.xiaohuzi999.storyEditor
 			}
 			$tfTime.text = vo.time+"";
 			this.$ui.mcNKF.visible = vo.nkf;
-			$rewardTF.text = "";
-			if(vo.dataInfo){
-				var obj:Object = vo.dataInfo;
+			
+			$mcIcon.visible = false;
+			if(vo.data){
+				$mcIcon.visible = true;
+				var obj:Object = vo.data;
 				for(var i:String in obj){
-					$rewardTF.appendText(i+":"+obj[i]+" ");
+					$mcIcon.gotoAndStop(i);
 				}
 			}
+			
 			if(vo.lb_1){
 				$ui.typeTF.text = "多线剧情开始";
 				this.$ui.bg.gotoAndStop(2);

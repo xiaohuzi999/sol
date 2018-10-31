@@ -162,6 +162,24 @@ var ui;
 (function (ui) {
     var main;
     (function (main) {
+        var ChapItemUI = /** @class */ (function (_super) {
+            __extends(ChapItemUI, _super);
+            function ChapItemUI() {
+                return _super.call(this) || this;
+            }
+            ChapItemUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.main.ChapItemUI.uiView);
+            };
+            ChapItemUI.uiView = { "type": "View", "props": { "width": 480, "height": 480 }, "child": [{ "type": "Label", "props": { "y": 440, "x": 113, "width": 254, "var": "tfName", "text": "label", "height": 24, "fontSize": 24, "color": "#ffffff", "align": "center" } }, { "type": "Image", "props": { "y": 0, "x": 30, "var": "pic" } }] };
+            return ChapItemUI;
+        }(View));
+        main.ChapItemUI = ChapItemUI;
+    })(main = ui.main || (ui.main = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var main;
+    (function (main) {
         var MainMenuViewUI = /** @class */ (function (_super) {
             __extends(MainMenuViewUI, _super);
             function MainMenuViewUI() {
@@ -206,10 +224,11 @@ var ui;
             MainViewUI.prototype.createChildren = function () {
                 View.regComponent("ui.main.MainTopViewUI", ui.main.MainTopViewUI);
                 View.regComponent("ui.main.MainMenuViewUI", ui.main.MainMenuViewUI);
+                View.regComponent("ChapItem", ChapItem);
                 _super.prototype.createChildren.call(this);
                 this.createView(ui.main.MainViewUI.uiView);
             };
-            MainViewUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "main/bj_homepage@2x.png", "height": 1334 } }, { "type": "Image", "props": { "y": 818, "x": 245, "var": "btnStart", "skin": "main/btn_play.png", "mouseEnabled": true } }, { "type": "MainTopView", "props": { "y": 0, "x": 0, "var": "topCom", "runtime": "ui.main.MainTopViewUI" } }, { "type": "MainMenuView", "props": { "y": 1134, "x": 0, "var": "menuCom", "runtime": "ui.main.MainMenuViewUI" } }] };
+            MainViewUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "main/bj_homepage@2x.png", "height": 1334 } }, { "type": "MainTopView", "props": { "y": 0, "x": 0, "var": "topCom", "runtime": "ui.main.MainTopViewUI" } }, { "type": "MainMenuView", "props": { "y": 1134, "x": 0, "var": "menuCom", "runtime": "ui.main.MainMenuViewUI" } }, { "type": "List", "props": { "y": 427, "x": -358, "width": 1448, "var": "chapList", "spaceY": 1, "height": 480 }, "child": [{ "type": "ChapItem", "props": { "runtime": "ChapItem", "name": "render" } }] }] };
             return MainViewUI;
         }(View));
         main.MainViewUI = MainViewUI;
@@ -251,5 +270,23 @@ var ui;
         }(View));
         story.StoryViewUI = StoryViewUI;
     })(story = ui.story || (ui.story = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var user;
+    (function (user) {
+        var UserInfoUI = /** @class */ (function (_super) {
+            __extends(UserInfoUI, _super);
+            function UserInfoUI() {
+                return _super.call(this) || this;
+            }
+            UserInfoUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.user.UserInfoUI.uiView);
+            };
+            UserInfoUI.uiView = { "type": "View", "props": { "width": 750, "height": 1334 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "skin": "main/bj_homepage@2x.png" }, "child": [{ "type": "Rect", "props": { "y": 1134, "x": 0, "width": 750, "lineWidth": 1, "lineColor": "#ffffff", "height": 200, "fillColor": "#a4a4a4" } }, { "type": "Rect", "props": { "y": 0, "x": 0, "width": 750, "lineWidth": 1, "lineColor": "#ffffff", "height": 200, "fillColor": "#b9b9b9" } }] }] };
+            return UserInfoUI;
+        }(View));
+        user.UserInfoUI = UserInfoUI;
+    })(user = ui.user || (ui.user = {}));
 })(ui || (ui = {}));
 //# sourceMappingURL=layaUI.max.all.js.map

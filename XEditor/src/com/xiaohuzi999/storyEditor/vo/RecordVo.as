@@ -14,9 +14,9 @@ package com.xiaohuzi999.storyEditor.vo
 		//绘图层==============================================================================
 		//地图
 		public var bg:Object;
-		//back/blur非聚焦状态，默认false
-		/**立绘,格式——图片{name:string,x:number,y:number,scaleX:number,alpha:number, back/blur:boolean}*/
-		/**缩减{n:string,x:number,y:number,sx:number,al:number,b:boolean}*/
+		//back/blur非聚焦状态，默认false, myth神秘模式
+		/**立绘,格式——图片{name:string,x:number,y:number,scaleX:number,alpha:number, back/blur:boolean, myth:boolen}*/
+		/**缩减{n:string,x:number,y:number,sx:number,al:number,b:boolean, m:boolean}*/
 		public var p0:Object;
 		/**立绘——图片id|x|y|XScale|alpha;*/
 		public var p1:Object;
@@ -78,7 +78,11 @@ package com.xiaohuzi999.storyEditor.vo
 		public var pn:String = "";
 		
 		//数据操作================================================
-		public var dataInfo:Object;
+		/**
+		 * 每个hash里面都保留一个值
+		 * {gold:number, diamond:number, item:{id:number}, pro:{key:number},skill:{id:number(lv)}}
+		 * */
+		public var data:Object;
 		//事件====================================================
 		public var eventInfo:Object;
 		
