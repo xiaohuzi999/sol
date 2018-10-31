@@ -130,6 +130,9 @@ package com.xiaohuzi999.test
 				}else{
 					_bm0.filters = [];
 				}
+				if(data.p0.m){
+					_bm0.filters = [_mythFilter];
+				}
 				
 				if(_prevData && checkSame(_prevData.p0, data.p0)){
 					TweenLite.to(_bm0, time, {x:data.p0.x, y:data.p0.y});
@@ -154,6 +157,9 @@ package com.xiaohuzi999.test
 				}else{
 					_bm1.filters = [];
 				}
+				if(data.p1.m){
+					_bm1.filters = [_mythFilter];
+				}
 				if(_prevData && checkSame(_prevData.p1, data.p1)){
 					TweenLite.to(_bm1, time, {x:data.p1.x, y:data.p1.y});
 				}else{
@@ -177,6 +183,9 @@ package com.xiaohuzi999.test
 				}else{
 					_bm2.filters = [];
 				}
+				if(data.p2.m){
+					_bm2.filters = [_mythFilter];
+				}
 				if(_prevData && checkSame(_prevData.p2, data.p2)){
 					TweenLite.to(_bm2, time, {x:data.p2.x, y:data.p2.y});
 				}else{
@@ -199,6 +208,9 @@ package com.xiaohuzi999.test
 					_bm3.filters = [_blackFilter];
 				}else{
 					_bm3.filters = [];
+				}
+				if(data.p3.m){
+					_bm3.filters = [_mythFilter];
 				}
 				if(_prevData && checkSame(_prevData.p3, data.p3)){
 					TweenLite.to(_bm3, time, {x:data.p3.x, y:data.p3.y});
