@@ -2,6 +2,8 @@
 * name;
 */
 class User{
+    public id:string;
+
     public name:string;
 
     public pic:string;
@@ -31,15 +33,15 @@ class User{
         for(var i in value){
             this[i] = value[i];
         }
-        trace(this.role);
         //测试用======================================
-        var role = DBMonster.calcTotalPro(1);
-        role.state = Role.IN_FIGHT;
-        role.uid = 2;
-        this.heros.push(role);
+        UserReq.addHero(1);
         //=============================================
         //
+        this.emit();
+    }
 
+    /** */
+    public emit():void{
         xframe.XEvent.instance.event(User.UPDATE);
     }
 

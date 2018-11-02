@@ -12,10 +12,7 @@ class UserReq{
         if(userInfo){
             userInfo = JSON.parse(userInfo);
         }else{
-            //create user
             userInfo = createUser();
-            //create role
-            //create bag
         }
         User.getInstance().update(userInfo);
         cb && cb.run();
@@ -23,6 +20,7 @@ class UserReq{
         //
         function createUser():any{
             return {
+                id:1,
                 name:"xiaohuzi999", 
                 pic:"",
                 money:0, 
@@ -33,11 +31,17 @@ class UserReq{
         }
     }
 
-    /** ttttttttttttttttttttttttttodo*/
+
+    public static save():void{
+        XDB.save(XDB.USER, JSON.stringify(User.getInstance()));
+    }
+
     public static addHero(id:any):void{
-        var role = DBMonster.calcTotalPro(1);
+        var role = DBMonster.calcTotalPro(id);
         role.state = Role.IN_FIGHT;
-        role.uid = 2;
+        role.uid = role.id;
+        User.getInstance().heros.push(role);
+        User.getInstance().emit();
     }
 
     //

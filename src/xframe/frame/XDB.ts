@@ -4,12 +4,6 @@
 class XDB{
     /**KEY-USER INFO */
     public static readonly USER:string = "user";
-    /**HEROS */
-    public static readonly HERO:string = "hero";
-    /**PET */
-    public static readonly PET:string = "pet";
-    /**KEY-ROLE INFO */
-    public static readonly ROLE:string = "role";
     /**KEY-BAG */
     public static readonly BAG:string = "bag";
     /**unique id index */

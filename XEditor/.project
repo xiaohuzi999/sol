@@ -22,9 +22,14 @@
 	</natures>
 	<linkedResources>
 		<link>
-			<name>[source path] src</name>
+			<name>[source path] H5Pro-sol-XFrame-src</name>
 			<type>2</type>
 			<location>E:/H5Pro/sol/XFrame/src</location>
+		</link>
+		<link>
+			<name>[source path] private-sol-XFrame-src</name>
+			<type>2</type>
+			<location>D:/private/sol/XFrame/src</location>
 		</link>
 	</linkedResources>
 </projectDescription>

@@ -16,15 +16,6 @@ var MainView = /** @class */ (function (_super) {
     function MainView() {
         return _super.call(this) || this;
     }
-    MainView.prototype.onC = function (e) {
-        e.stopPropagation();
-        switch (e.target) {
-            //case this._view.btnStart:
-            //this.close();
-            //xframe.XFacade.instance.showModule(StoryView, Laya.loader.getRes("cfgs/chap_0.txt"));
-            //break;
-        }
-    };
     MainView.prototype.onItemClick = function (e, index) {
         if (e.type == Laya.Event.CLICK) {
             if (index == this._view.chapList.selectedIndex) {
@@ -58,12 +49,10 @@ var MainView = /** @class */ (function (_super) {
         xframe.ModuleManager.addModule(new MainMenuView(this._view.menuCom), MainMenuView).show();
     };
     MainView.prototype.addEventListener = function () {
-        this._view.on(Laya.Event.CLICK, this, this.onC);
         this._view.chapList.mouseHandler = Laya.Handler.create(this, this.onItemClick, null, false);
         this._view.chapList.scrollBar.on(Laya.Event.END, this, this.onScrollEnd);
     };
     MainView.prototype.removeEventListener = function () {
-        this._view.off(Laya.Event.CLICK, this, this.onC);
         this._view.chapList.mouseHandler.recover();
         this._view.chapList.mouseHandler = null;
         this._view.chapList.scrollBar.off(Laya.Event.END, this, this.onScrollEnd);

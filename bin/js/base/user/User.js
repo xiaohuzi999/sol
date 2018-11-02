@@ -13,14 +13,14 @@ var User = /** @class */ (function () {
         for (var i in value) {
             this[i] = value[i];
         }
-        trace(this.role);
         //测试用======================================
-        var role = DBMonster.calcTotalPro(1);
-        role.state = Role.IN_FIGHT;
-        role.uid = 2;
-        this.heros.push(role);
+        UserReq.addHero(1);
         //=============================================
         //
+        this.emit();
+    };
+    /** */
+    User.prototype.emit = function () {
         xframe.XEvent.instance.event(User.UPDATE);
     };
     User.getInstance = function () {

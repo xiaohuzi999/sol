@@ -5,6 +5,7 @@ var App = /** @class */ (function () {
     function App() {
     }
     App.prototype.start = function () {
+        //
         DBMonster.init(Laya.loader.getRes("cfgs/npc.txt"));
         //加载。。
         var main = new MainView();

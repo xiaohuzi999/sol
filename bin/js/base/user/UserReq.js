@@ -29,6 +29,7 @@ var UserReq = /** @class */ (function () {
         //
         function createUser() {
             return {
+                id: 1,
                 name: "xiaohuzi999",
                 pic: "",
                 money: 0,
@@ -37,6 +38,16 @@ var UserReq = /** @class */ (function () {
                 role: __assign({}, DBMonster.calcTotalPro(0), { uid: 1 })
             };
         }
+    };
+    UserReq.save = function () {
+        XDB.save(XDB.USER, JSON.stringify(User.getInstance()));
+    };
+    UserReq.addHero = function (id) {
+        var role = DBMonster.calcTotalPro(id);
+        role.state = Role.IN_FIGHT;
+        role.uid = role.id;
+        User.getInstance().heros.push(role);
+        User.getInstance().emit();
     };
     //
     UserReq.getFightTeam = function () {

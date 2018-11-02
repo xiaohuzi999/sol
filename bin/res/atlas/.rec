@@ -87,6 +87,7 @@ P A9674D86 recharge_pic4.png
 P 98B9C766 recharge_pic5.png
 P A937632F recharge_pic6.png
 D main
+P 63ABFF23 05.png
 P D9DF9444 bg_dialog.png
 R 8651CAAC bj_homepage@2x.png
 P 8D0E6173 bj_power_tc.png
@@ -112,6 +113,7 @@ P ED28FFC8 ic_user_coin.png
 P 95F2D326 ic_user_power.png
 P 11AF94BD ic_user_star.png
 P 04617D56 loading.png
+P EE7F51F4 ui_common_avatar_frame.png
 D rank
 P E443FCB5 rank_bg.png
 P F81683F8 rank_close.png

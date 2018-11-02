@@ -47,7 +47,7 @@ class Role{
     /**速度*/
     public speed:number = 0;
     //装备=============================================
-    public weapon:string[] = [];
+    public weapon:EquipVo = null;
     //服务端逻辑用============================================================
     /**是否NPC，即是否采用AI逻辑*/
     public isNpc:boolean = false;
