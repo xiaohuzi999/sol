@@ -81,14 +81,14 @@ class BagView extends xframe.XWindow{
         this._group.selectedIndex = 0;
     }
 
-    protected addEventListener():void{
+    protected initEvent():void{
         this._view.itemList.selectHandler = Handler.create(this, this.onItemSelect, null, false);
         this._view.proList.renderHandler = Handler.create(this, this.onRendPro, null, false);
         this._group.on(Laya.Event.CHANGE, this, this.onChange);
         this._view.on(Laya.Event.CLICK, this, this.onC);
     }
 
-    protected removeEventListener():void{
+    protected removeEvent():void{
         this._view.itemList.selectHandler.recover();
         this._view.itemList.selectHandler = null;
         this._view.proList.renderHandler.recover();

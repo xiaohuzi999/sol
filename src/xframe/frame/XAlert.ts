@@ -63,13 +63,13 @@ module xframe{
 		}
 		
 		/**加事件*/
-		protected addEventListener():void
+		protected initEvent():void
 		{
 			this._view.on(Laya.Event.CLICK, this, this.onClick);
 		}
 		
 		/**删除事件*/
-		protected removeEventListener():void
+		protected removeEvent():void
 		{
 			this._view.off(Laya.Event.CLICK, this, this.onClick);
 		}

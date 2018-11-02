@@ -22,11 +22,11 @@ class MainTopView extends xframe.XWindow{
         this._view.tfMoney.text = user.gold+"";
     }
 
-    protected addEventListener():void{
+    protected initEvent():void{
         xframe.XEvent.instance.on(User.UPDATE, this, this.onUpdte);
     }
 
-    protected removeEventListener():void{
+    protected removeEvent():void{
         xframe.XEvent.instance.off(User.UPDATE, this, this.onUpdte);
     }
 }

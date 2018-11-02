@@ -25,12 +25,6 @@ var XDB = /** @class */ (function () {
     });
     /**KEY-USER INFO */
     XDB.USER = "user";
-    /**HEROS */
-    XDB.HERO = "hero";
-    /**PET */
-    XDB.PET = "pet";
-    /**KEY-ROLE INFO */
-    XDB.ROLE = "role";
     /**KEY-BAG */
     XDB.BAG = "bag";
     /**unique id index */

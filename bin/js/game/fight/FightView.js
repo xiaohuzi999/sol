@@ -119,13 +119,13 @@ var FightView = /** @class */ (function (_super) {
             this._view["enemy_" + i].data = list[i];
         }
     };
-    FightView.prototype.addEventListener = function () {
+    FightView.prototype.initEvent = function () {
         xframe.XEvent.instance.on(FightModel.TURN, this, this.onFightEvent, [FightModel.TURN]);
         xframe.XEvent.instance.on(FightModel.UPDATEINFO, this, this.onFightEvent, [FightModel.UPDATEINFO]);
         xframe.XEvent.instance.on(FightModel.WIN, this, this.onFightEvent, [FightModel.WIN]);
         xframe.XEvent.instance.on(FightModel.LOSE, this, this.onFightEvent, [FightModel.LOSE]);
     };
-    FightView.prototype.removeEventListener = function () {
+    FightView.prototype.removeEvent = function () {
         xframe.XEvent.instance.off(FightModel.TURN, this, this.onFightEvent);
         xframe.XEvent.instance.off(FightModel.UPDATEINFO, this, this.onFightEvent);
         xframe.XEvent.instance.off(FightModel.WIN, this, this.onFightEvent);

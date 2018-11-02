@@ -44,12 +44,12 @@ class MainView extends xframe.XWindow{
         xframe.ModuleManager.addModule(new MainMenuView(this._view.menuCom), MainMenuView).show();
     }
 
-    protected addEventListener():void{
+    protected initEvent():void{
         this._view.chapList.mouseHandler = Laya.Handler.create(this, this.onItemClick,null, false);
         this._view.chapList.scrollBar.on(Laya.Event.END, this, this.onScrollEnd);
     }
 
-    protected removeEventListener():void{
+    protected removeEvent():void{
         this._view.chapList.mouseHandler.recover();
         this._view.chapList.mouseHandler = null;
         this._view.chapList.scrollBar.off(Laya.Event.END, this, this.onScrollEnd);

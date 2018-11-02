@@ -59,10 +59,10 @@ var xframe;
             this._msgTF = new Laya.Text();
             this._view.addChild(this._msgTF);
         };
-        XToolTip.prototype.addEventListener = function () {
+        XToolTip.prototype.initEvent = function () {
             Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.onClose);
         };
-        XToolTip.prototype.removeEventListener = function () {
+        XToolTip.prototype.removeEvent = function () {
             Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.onClose);
         };
         return XToolTip;

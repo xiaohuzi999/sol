@@ -10,6 +10,10 @@ var __extends = (this && this.__extends) || (function () {
 })();
 /**
 * name
+* 可选择"组"
+* btns 对象可以是任意带selected的对象；
+* var btns:any[] = [];
+* var group:XGroup = new XGroup(btns);
 */
 var xframe;
 (function (xframe) {
@@ -31,6 +35,7 @@ var xframe;
             this._btns = null;
         };
         XGroup.prototype.onSelect = function (e) {
+            xframe.trace("onSelect", e.currentTarget);
             this.selectedBtn = e.currentTarget;
         };
         Object.defineProperty(XGroup.prototype, "selectedBtn", {
@@ -40,6 +45,7 @@ var xframe;
             },
             /**选中按钮*/
             set: function (btn) {
+                xframe.trace("selectedBtn-------------", btn);
                 if (this._selectedBtn != btn) {
                     if (this._selectedBtn) {
                         this._selectedBtn.selected = false;
@@ -80,7 +86,10 @@ var xframe;
                 var btn;
                 for (var i = 0; i < this._btns.length; i++) {
                     btn = this._btns[i];
-                    btn.toggle = true;
+                    if (btn instanceof Laya.Button) {
+                        btn.toggle = true;
+                    }
+                    xframe.trace(btn);
                     btn.on(Laya.Event.CLICK, this, this.onSelect);
                 }
             },

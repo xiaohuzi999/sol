@@ -48,11 +48,11 @@ var MainView = /** @class */ (function (_super) {
         xframe.ModuleManager.addModule(new MainTopView(this._view.topCom), MainTopView).show();
         xframe.ModuleManager.addModule(new MainMenuView(this._view.menuCom), MainMenuView).show();
     };
-    MainView.prototype.addEventListener = function () {
+    MainView.prototype.initEvent = function () {
         this._view.chapList.mouseHandler = Laya.Handler.create(this, this.onItemClick, null, false);
         this._view.chapList.scrollBar.on(Laya.Event.END, this, this.onScrollEnd);
     };
-    MainView.prototype.removeEventListener = function () {
+    MainView.prototype.removeEvent = function () {
         this._view.chapList.mouseHandler.recover();
         this._view.chapList.mouseHandler = null;
         this._view.chapList.scrollBar.off(Laya.Event.END, this, this.onScrollEnd);

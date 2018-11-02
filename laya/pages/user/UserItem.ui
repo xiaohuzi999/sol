@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":2,
+    "selecteID":1,
     "props":{"width":120,"sceneColor":"#ffffff","height":140},
     "nodeParent":-1,
     "label":"View",
@@ -35,6 +35,19 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":3,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Rect",
+            "props":{"y":0,"x":0,"width":100,"lineWidth":1,"height":100,"fillColor":"#ff0000"},
+            "nodeParent":1,
+            "label":"Rect",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":4,
             "child":[
                 ]
         }],

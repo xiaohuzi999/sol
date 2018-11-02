@@ -28,6 +28,9 @@ var MainMenuView = /** @class */ (function (_super) {
             case this._view.btnStory:
                 this.curWin = xframe.XFacade.instance.getView(MainView);
                 break;
+            case this._view.btnUser:
+                this.curWin = xframe.XFacade.instance.getView(UserInfoView);
+                break;
         }
     };
     Object.defineProperty(MainMenuView.prototype, "curWin", {
@@ -53,10 +56,10 @@ var MainMenuView = /** @class */ (function (_super) {
         this.mouseThrough = this._view.mouseThrough = true;
         this.curWin = xframe.XFacade.instance.getView(MainView);
     };
-    MainMenuView.prototype.addEventListener = function () {
+    MainMenuView.prototype.initEvent = function () {
         this._view.on(Laya.Event.CLICK, this, this.onClick);
     };
-    MainMenuView.prototype.removeEventListener = function () {
+    MainMenuView.prototype.removeEvent = function () {
         this._view.off(Laya.Event.CLICK, this, this.onClick);
     };
     return MainMenuView;

@@ -40,12 +40,12 @@ var xframe;
                 this._hasInit = true;
                 this.createUI();
             }
-            this.addEventListener();
+            this.initEvent();
             xframe.LayerManager.openWindow(this);
         };
         /**关闭 */
         XWindow.prototype.close = function () {
-            this.removeEventListener();
+            this.removeEvent();
             this.removeSelf();
             xframe.XEvent.instance.event(xframe.XEvent.CLOSE, this);
         };
@@ -53,10 +53,10 @@ var xframe;
         XWindow.prototype.onStageResize = function () {
         };
         /**添加事件 */
-        XWindow.prototype.addEventListener = function () {
+        XWindow.prototype.initEvent = function () {
         };
         /**移除事件 */
-        XWindow.prototype.removeEventListener = function () {
+        XWindow.prototype.removeEvent = function () {
         };
         Object.defineProperty(XWindow.prototype, "layer", {
             get: function () {
@@ -191,10 +191,10 @@ var xframe;
         };
         XMWindow.prototype.createUI = function () {
         };
-        XMWindow.prototype.addEventListener = function () {
+        XMWindow.prototype.initEvent = function () {
             this.bg.on(Laya.Event.CLICK, this, this._onClick);
         };
-        XMWindow.prototype.removeEventListener = function () {
+        XMWindow.prototype.removeEvent = function () {
             this.bg.off(Laya.Event.CLICK, this, this._onClick);
         };
         return XMWindow;

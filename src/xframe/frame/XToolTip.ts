@@ -52,11 +52,11 @@ module xframe{
 			this._view.addChild(this._msgTF);
 		}
 		
-		protected  addEventListener():void{
+		protected  initEvent():void{
 			Laya.stage.on(Laya.Event.MOUSE_DOWN, this, this.onClose);
 		}
 		
-		protected removeEventListener():void{
+		protected removeEvent():void{
 			Laya.stage.off(Laya.Event.MOUSE_DOWN, this, this.onClose);
 		}
 	}

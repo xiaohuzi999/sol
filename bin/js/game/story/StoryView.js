@@ -52,7 +52,7 @@ var StoryView = /** @class */ (function (_super) {
             trace("事件：：", this._curDialog.eventInfo);
             //fight 
             if (this._curDialog.eventInfo.fight) {
-                this.removeEventListener();
+                this.removeEvent();
                 xframe.XFacade.instance.showModule(FightView, this._curDialog.eventInfo.fight);
             }
         }
@@ -77,10 +77,10 @@ var StoryView = /** @class */ (function (_super) {
         this._view = new ui.story.StoryViewUI();
         this.addChild(this._view);
     };
-    StoryView.prototype.addEventListener = function () {
+    StoryView.prototype.initEvent = function () {
         Laya.stage.on(Laya.Event.CLICK, this, this.onC);
     };
-    StoryView.prototype.removeEventListener = function () {
+    StoryView.prototype.removeEvent = function () {
         Laya.stage.off(Laya.Event.CLICK, this, this.onC);
     };
     return StoryView;

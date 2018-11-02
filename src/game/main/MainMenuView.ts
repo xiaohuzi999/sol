@@ -19,6 +19,9 @@ class MainMenuView extends xframe.XWindow{
             case this._view.btnStory:
             this.curWin = xframe.XFacade.instance.getView(MainView);
             break;
+            case this._view.btnUser:
+            this.curWin = xframe.XFacade.instance.getView(UserInfoView);
+            break;
         }
     }
 
@@ -45,11 +48,11 @@ class MainMenuView extends xframe.XWindow{
         this.curWin = xframe.XFacade.instance.getView(MainView);
     }
 
-    protected addEventListener():void{
+    protected initEvent():void{
         this._view.on(Laya.Event.CLICK, this, this.onClick);
     }
 
-    protected removeEventListener():void{
+    protected removeEvent():void{
         this._view.off(Laya.Event.CLICK, this, this.onClick);
     }
 }

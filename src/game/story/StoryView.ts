@@ -46,7 +46,7 @@ class StoryView extends xframe.XWindow{
             trace("事件：：",this._curDialog.eventInfo);
             //fight 
             if(this._curDialog.eventInfo.fight){
-                this.removeEventListener();
+                this.removeEvent();
                 xframe.XFacade.instance.showModule(FightView, this._curDialog.eventInfo.fight)
             }
         }
@@ -75,11 +75,11 @@ class StoryView extends xframe.XWindow{
         this.addChild(this._view);
     }
 
-    protected addEventListener():void{
+    protected initEvent():void{
         Laya.stage.on(Laya.Event.CLICK, this, this.onC);
     }
 
-    protected removeEventListener():void{
+    protected removeEvent():void{
         Laya.stage.off(Laya.Event.CLICK, this, this.onC);
     }
 }

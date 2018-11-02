@@ -26,14 +26,14 @@ module xframe{
 				this._hasInit = true;
 				this.createUI();
 			}
-			this.addEventListener();
+			this.initEvent();
 			LayerManager.openWindow(this);
 
 		}
 		
 		/**关闭 */
 		public close():void{
-			this.removeEventListener();
+			this.removeEvent();
 			this.removeSelf();
 			XEvent.instance.event(XEvent.CLOSE, this);
 		}
@@ -48,12 +48,12 @@ module xframe{
 		protected abstract createUI():void;
 
 		/**添加事件 */
-		protected addEventListener():void{
+		protected initEvent():void{
 
 		}
 
 		/**移除事件 */
-		protected removeEventListener():void{
+		protected removeEvent():void{
 			
 		}
 		
@@ -178,11 +178,11 @@ module xframe{
 			
 		}
 
-		protected addEventListener():void{
+		protected initEvent():void{
 			this.bg.on(Laya.Event.CLICK, this, this._onClick);
 		}
 		
-		protected removeEventListener():void{
+		protected removeEvent():void{
 			this.bg.off(Laya.Event.CLICK, this, this._onClick);
 		}
 	}

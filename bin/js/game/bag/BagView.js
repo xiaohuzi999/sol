@@ -78,13 +78,13 @@ var BagView = /** @class */ (function (_super) {
         this._group = new xframe.XGroup([this._view.btnItem, this._view.btnEquip]);
         this._group.selectedIndex = 0;
     };
-    BagView.prototype.addEventListener = function () {
+    BagView.prototype.initEvent = function () {
         this._view.itemList.selectHandler = Handler.create(this, this.onItemSelect, null, false);
         this._view.proList.renderHandler = Handler.create(this, this.onRendPro, null, false);
         this._group.on(Laya.Event.CHANGE, this, this.onChange);
         this._view.on(Laya.Event.CLICK, this, this.onC);
     };
-    BagView.prototype.removeEventListener = function () {
+    BagView.prototype.removeEvent = function () {
         this._view.itemList.selectHandler.recover();
         this._view.itemList.selectHandler = null;
         this._view.proList.renderHandler.recover();

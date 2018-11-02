@@ -31,10 +31,10 @@ var MainTopView = /** @class */ (function (_super) {
         this._view.tfDiamond.text = user.diamond + "";
         this._view.tfMoney.text = user.gold + "";
     };
-    MainTopView.prototype.addEventListener = function () {
+    MainTopView.prototype.initEvent = function () {
         xframe.XEvent.instance.on(User.UPDATE, this, this.onUpdte);
     };
-    MainTopView.prototype.removeEventListener = function () {
+    MainTopView.prototype.removeEvent = function () {
         xframe.XEvent.instance.off(User.UPDATE, this, this.onUpdte);
     };
     return MainTopView;

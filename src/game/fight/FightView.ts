@@ -121,14 +121,14 @@ class FightView extends xframe.XWindow{
     }
     
 
-    protected addEventListener():void{
+    protected initEvent():void{
         xframe.XEvent.instance.on(FightModel.TURN, this, this.onFightEvent, [FightModel.TURN]);
         xframe.XEvent.instance.on(FightModel.UPDATEINFO, this, this.onFightEvent, [FightModel.UPDATEINFO]);
         xframe.XEvent.instance.on(FightModel.WIN, this, this.onFightEvent, [FightModel.WIN]);
         xframe.XEvent.instance.on(FightModel.LOSE, this, this.onFightEvent, [FightModel.LOSE]);
     }
 
-    protected removeEventListener():void{
+    protected removeEvent():void{
         xframe.XEvent.instance.off(FightModel.TURN, this, this.onFightEvent);
         xframe.XEvent.instance.off(FightModel.UPDATEINFO, this, this.onFightEvent);
         xframe.XEvent.instance.off(FightModel.WIN, this, this.onFightEvent);

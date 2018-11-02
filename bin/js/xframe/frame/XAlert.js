@@ -57,11 +57,11 @@ var xframe;
             this._oriNoPos = this._btnNo.x;
         };
         /**加事件*/
-        XAlert.prototype.addEventListener = function () {
+        XAlert.prototype.initEvent = function () {
             this._view.on(Laya.Event.CLICK, this, this.onClick);
         };
         /**删除事件*/
-        XAlert.prototype.removeEventListener = function () {
+        XAlert.prototype.removeEvent = function () {
             this._view.off(Laya.Event.CLICK, this, this.onClick);
         };
         XAlert.prototype.onClick = function (event) {

@@ -19,10 +19,7 @@ var UserReq = /** @class */ (function () {
             userInfo = JSON.parse(userInfo);
         }
         else {
-            //create user
             userInfo = createUser();
-            //create role
-            //create bag
         }
         User.getInstance().update(userInfo);
         cb && cb.run();
