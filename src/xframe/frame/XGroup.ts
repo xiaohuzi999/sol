@@ -28,7 +28,6 @@ module xframe{
 		}
 		
 		private onSelect(e:Event):void{
-			trace("onSelect",e.currentTarget)
 			this.selectedBtn = <any>e.currentTarget
 		}
 		

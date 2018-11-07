@@ -35,7 +35,6 @@ var xframe;
             this._btns = null;
         };
         XGroup.prototype.onSelect = function (e) {
-            xframe.trace("onSelect", e.currentTarget);
             this.selectedBtn = e.currentTarget;
         };
         Object.defineProperty(XGroup.prototype, "selectedBtn", {
@@ -45,7 +44,6 @@ var xframe;
             },
             /**选中按钮*/
             set: function (btn) {
-                xframe.trace("selectedBtn-------------", btn);
                 if (this._selectedBtn != btn) {
                     if (this._selectedBtn) {
                         this._selectedBtn.selected = false;
@@ -89,7 +87,6 @@ var xframe;
                     if (btn instanceof Laya.Button) {
                         btn.toggle = true;
                     }
-                    xframe.trace(btn);
                     btn.on(Laya.Event.CLICK, this, this.onSelect);
                 }
             },

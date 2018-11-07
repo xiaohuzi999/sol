@@ -16,6 +16,7 @@ var UserInfoView = /** @class */ (function (_super) {
     function UserInfoView() {
         var _this = _super.call(this) || this;
         _this.ItemNum = 3;
+        _this.layer = xframe.LayerManager.LAYER_POP;
         return _this;
     }
     UserInfoView.prototype.show = function () {
@@ -33,7 +34,6 @@ var UserInfoView = /** @class */ (function (_super) {
         }
     };
     UserInfoView.prototype.onSelect = function () {
-        trace("onSelect------------");
         var role = this._group.selectedBtn.dataSource;
         this._ui.tfAttack.text = role.attack + "";
         this._ui.tfHP.text = role.maxHp + "";
@@ -53,5 +53,5 @@ var UserInfoView = /** @class */ (function (_super) {
         this._group.off(Laya.Event.SELECT, this, this.onSelect);
     };
     return UserInfoView;
-}(xframe.XMWindow));
+}(xframe.XWindow));
 //# sourceMappingURL=UserInfoView.js.map
