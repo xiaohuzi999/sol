@@ -7,6 +7,7 @@ var App = /** @class */ (function () {
     App.prototype.start = function () {
         //
         DBMonster.init(Laya.loader.getRes("cfgs/npc.txt"));
+        BagReq.getBagInfo();
         //加载。。
         var main = xframe.XFacade.instance.showModule(MainView);
         //

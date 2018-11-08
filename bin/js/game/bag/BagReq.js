@@ -6,16 +6,19 @@ var BagReq = /** @class */ (function () {
     }
     /** */
     BagReq.getBagInfo = function (cb) {
-        this.vo = new BagVo(XDB.getData(XDB.BAG));
-        this.vo.itemsList || (this.vo.itemsList = []);
-        this.vo.itemsList.push(DBItem.createItem(101, 10));
-        this.vo.itemsList.push(DBItem.createItem(201, 1));
-        this.vo.itemsList.push(DBItem.createItem(202, 1));
-        this.vo.itemsList.push(DBItem.createItem(203, 1));
-        this.vo.itemsList.push(DBItem.createItem(204, 1));
-        this.vo.itemsList.push(DBItem.createItem(205, 1));
-        this.vo.itemsList.push(DBItem.createItem(206, 1));
-        cb.runWith(this.vo);
+        if (cb === void 0) { cb = null; }
+        if (!this.vo) {
+            this.vo = new BagVo(XDB.getData(XDB.BAG));
+        }
+        //this.vo.itemsList || (this.vo.itemsList = []);
+        //this.vo.itemsList.push(DBItem.createItem(101,10));
+        //this.vo.itemsList.push(DBItem.createItem(201,1));
+        //this.vo.itemsList.push(DBItem.createItem(202,1));
+        //this.vo.itemsList.push(DBItem.createItem(203,1));
+        //this.vo.itemsList.push(DBItem.createItem(204,1));
+        //this.vo.itemsList.push(DBItem.createItem(205,1));
+        //this.vo.itemsList.push(DBItem.createItem(206,1));
+        cb && cb.runWith(this.vo);
     };
     /** add item*/
     BagReq.addItem = function (id, num) {
@@ -29,9 +32,11 @@ var BagReq = /** @class */ (function () {
         }
         else {
             item = this.getItems(id)[0];
-            if (item) {
-                item.num = item.num + num;
+            if (!item) {
+                item = DBItem.createItem(id, num);
+                this.vo.itemsList.push(item);
             }
+            item.num = item.num + num;
         }
         //更新表现===
         xframe.XEvent.instance.event(this.UPDATE);

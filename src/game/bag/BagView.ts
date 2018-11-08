@@ -17,6 +17,7 @@ class BagView extends xframe.XWindow{
 
     private initBag(vo:BagVo):void{
         this._vo = vo;
+        trace(this._vo);
         this.onChange();
     }
 
@@ -46,13 +47,15 @@ class BagView extends xframe.XWindow{
 
     private formatPro():void{
         var item:ItemVo = this._view.itemList.selectedItem;
-        
-        if(item.property){
-            this._view.proList.visible = true;
-            this._view.proList.array = getProList(item.property);
-        }else{
-            this._view.proList.visible = false;
+        if(item){
+            if(item.property){
+                this._view.proList.visible = true;
+                this._view.proList.array = getProList(item.property);
+            }else{
+                this._view.proList.visible = false;
+            }
         }
+        
 
         function getProList(pro:any):any[]{
             let proList:any[] = [];

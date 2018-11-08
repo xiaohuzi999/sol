@@ -9,6 +9,7 @@ class App implements IApp{
     public start():void{
         //
         DBMonster.init(Laya.loader.getRes("cfgs/npc.txt"));
+        BagReq.getBagInfo();
         //加载。。
         var main:MainView = xframe.XFacade.instance.showModule(MainView);
         //
