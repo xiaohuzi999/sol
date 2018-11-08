@@ -20,7 +20,8 @@ class MainMenuView extends xframe.XWindow{
             this.curWin = xframe.XFacade.instance.getView(MainView);
             break;
             case this._view.btnUser:
-            this.curWin = xframe.XFacade.instance.getView(UserInfoView);
+            //this.curWin = xframe.XFacade.instance.getView(UserInfoView);
+            xframe.XFacade.instance.showModule(DAddItem);
             break;
         }
     }

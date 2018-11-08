@@ -34,6 +34,8 @@ var xframe;
                 win = LayerManager._container.getChildAt(i);
                 if (win.layer && win.layer <= layer) {
                     //找到相应的位置，返回-
+                    xframe.trace("setLayer__________________");
+                    xframe.trace(win);
                     LayerManager._container.addChildAt(view, i + 1);
                     return;
                 }

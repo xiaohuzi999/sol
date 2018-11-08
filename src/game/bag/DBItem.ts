@@ -27,6 +27,14 @@ class DBItem{
         return item;
     }
 
+    public static getItemList():ItemVo[]{
+        let items:ItemVo[] = [];
+        for(let i in this.db){
+            items.push(this.db[i]);
+        }
+        return items;
+    }
+
 
 
     private static get db():any{

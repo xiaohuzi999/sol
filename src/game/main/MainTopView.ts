@@ -6,6 +6,10 @@ class MainTopView extends xframe.XWindow{
     constructor(ui:any = null){
         super();
         this._view = ui;
+        // this.x = ui.x;
+        // this.y = ui.y;
+        // this.addChild(ui);
+        // ui.pos(0,0);
         this._autoDispose = false;
         this.layer = xframe.LayerManager.LAYER_UI;
     }

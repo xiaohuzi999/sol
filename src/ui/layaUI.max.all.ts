@@ -2,6 +2,21 @@
 import View=laya.ui.View;
 import Dialog=laya.ui.Dialog;
 module ui.bag {
+    export class BagComUI extends View {
+
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":554},"child":[{"type":"Rect","props":{"y":-0.5,"x":-0.5,"width":120,"lineWidth":1,"lineColor":"#ffffff","height":554,"fillColor":"#a4a4a4"}},{"type":"Rect","props":{"y":-0.5,"x":119.5,"width":630,"lineWidth":1,"lineColor":"#ffffff","height":554,"fillColor":"#d9d9d9"}}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.bag.BagComUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.bag {
     export class BagEquipComUI extends View {
 		public roleList:Laya.List;
 
@@ -68,6 +83,41 @@ module ui.bag {
         
             super.createChildren();
             this.createView(ui.bag.ItemUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.debug {
+    export class DebugAddItemUI extends View {
+		public itemList:Laya.List;
+		public btnClose:Laya.Button;
+
+        public static  uiView:any ={"type":"View","props":{"width":750,"height":600},"child":[{"type":"Image","props":{"y":0,"x":0,"width":750,"skin":"main/bg_dialog.png","sizeGrid":"51,83,89,86","height":600}},{"type":"List","props":{"y":125,"x":31,"width":686,"var":"itemList","spaceY":15,"spaceX":20,"repeatX":5,"height":437},"child":[{"type":"DebugItem","props":{"y":0,"x":0,"runtime":"DItem","name":"render"}}]},{"type":"Button","props":{"y":3,"x":672,"width":76,"var":"btnClose","stateNum":1,"skin":"common/ic_back.png","height":80}}]};
+        constructor(){ super()}
+        createChildren():void {
+        			View.regComponent("DItem",DItem);
+
+            super.createChildren();
+            this.createView(ui.debug.DebugAddItemUI.uiView);
+
+        }
+
+    }
+}
+
+module ui.debug {
+    export class DebugItemUI extends View {
+		public tfName:Laya.Label;
+		public btnAdd:Laya.Button;
+
+        public static  uiView:any ={"type":"View","props":{"width":120,"height":60},"child":[{"type":"Label","props":{"y":0,"x":0,"width":120,"var":"tfName","text":"label","height":27,"fontSize":24,"color":"#000000","align":"center"}},{"type":"Button","props":{"y":27,"x":0,"width":120,"var":"btnAdd","labelSize":20,"labelColors":"#ffffff,#ffffff,#ffffff","label":"Add","height":33},"child":[{"type":"Rect","props":{"y":0,"x":0,"width":120,"lineWidth":1,"height":32,"fillColor":"#040f60"}}]}]};
+        constructor(){ super()}
+        createChildren():void {
+        
+            super.createChildren();
+            this.createView(ui.debug.DebugItemUI.uiView);
 
         }
 

@@ -19,6 +19,13 @@ var DBItem = /** @class */ (function () {
         item.uid = XDB.uid + "";
         return item;
     };
+    DBItem.getItemList = function () {
+        var items = [];
+        for (var i in this.db) {
+            items.push(this.db[i]);
+        }
+        return items;
+    };
     Object.defineProperty(DBItem, "db", {
         get: function () {
             if (!this._db) {

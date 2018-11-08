@@ -40,7 +40,7 @@ class MainView extends xframe.XWindow{
         this._view.chapList.scrollBar.elasticBackTime = 100;
         this._view.chapList.scrollBar.rollRatio = 0.7
 
-        xframe.ModuleManager.addModule(new MainTopView(this._view.topCom), MainTopView).show();
+        xframe.ModuleManager.addModule(new MainTopView(this._view.topCom), MainTopView)//.show();
         xframe.ModuleManager.addModule(new MainMenuView(this._view.menuCom), MainMenuView).show();
     }
 

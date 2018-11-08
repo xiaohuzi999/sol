@@ -120,7 +120,6 @@ module xframe{
 				this.bg.size(Laya.stage.width, Laya.stage.height);
 				this.bg.graphics.clear();
 				this.bg.graphics.drawRect(0,0,Laya.stage.width, Laya.stage.height, this._bgColor);
-				Laya.stage.addChild(this.bg);
 			}
 		}
 		

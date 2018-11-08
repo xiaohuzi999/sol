@@ -17,6 +17,10 @@ var MainTopView = /** @class */ (function (_super) {
         if (ui === void 0) { ui = null; }
         var _this = _super.call(this) || this;
         _this._view = ui;
+        // this.x = ui.x;
+        // this.y = ui.y;
+        // this.addChild(ui);
+        // ui.pos(0,0);
         _this._autoDispose = false;
         _this.layer = xframe.LayerManager.LAYER_UI;
         return _this;

@@ -14,6 +14,24 @@ var ui;
 (function (ui) {
     var bag;
     (function (bag) {
+        var BagComUI = /** @class */ (function (_super) {
+            __extends(BagComUI, _super);
+            function BagComUI() {
+                return _super.call(this) || this;
+            }
+            BagComUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.bag.BagComUI.uiView);
+            };
+            BagComUI.uiView = { "type": "View", "props": { "width": 750, "height": 554 }, "child": [{ "type": "Rect", "props": { "y": -0.5, "x": -0.5, "width": 120, "lineWidth": 1, "lineColor": "#ffffff", "height": 554, "fillColor": "#a4a4a4" } }, { "type": "Rect", "props": { "y": -0.5, "x": 119.5, "width": 630, "lineWidth": 1, "lineColor": "#ffffff", "height": 554, "fillColor": "#d9d9d9" } }] };
+            return BagComUI;
+        }(View));
+        bag.BagComUI = BagComUI;
+    })(bag = ui.bag || (ui.bag = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var bag;
+    (function (bag) {
         var BagEquipComUI = /** @class */ (function (_super) {
             __extends(BagEquipComUI, _super);
             function BagEquipComUI() {
@@ -84,6 +102,43 @@ var ui;
         }(View));
         bag.ItemUI = ItemUI;
     })(bag = ui.bag || (ui.bag = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var debug;
+    (function (debug) {
+        var DebugAddItemUI = /** @class */ (function (_super) {
+            __extends(DebugAddItemUI, _super);
+            function DebugAddItemUI() {
+                return _super.call(this) || this;
+            }
+            DebugAddItemUI.prototype.createChildren = function () {
+                View.regComponent("DItem", DItem);
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.debug.DebugAddItemUI.uiView);
+            };
+            DebugAddItemUI.uiView = { "type": "View", "props": { "width": 750, "height": 600 }, "child": [{ "type": "Image", "props": { "y": 0, "x": 0, "width": 750, "skin": "main/bg_dialog.png", "sizeGrid": "51,83,89,86", "height": 600 } }, { "type": "List", "props": { "y": 125, "x": 31, "width": 686, "var": "itemList", "spaceY": 15, "spaceX": 20, "repeatX": 5, "height": 437 }, "child": [{ "type": "DebugItem", "props": { "y": 0, "x": 0, "runtime": "DItem", "name": "render" } }] }, { "type": "Button", "props": { "y": 3, "x": 672, "width": 76, "var": "btnClose", "stateNum": 1, "skin": "common/ic_back.png", "height": 80 } }] };
+            return DebugAddItemUI;
+        }(View));
+        debug.DebugAddItemUI = DebugAddItemUI;
+    })(debug = ui.debug || (ui.debug = {}));
+})(ui || (ui = {}));
+(function (ui) {
+    var debug;
+    (function (debug) {
+        var DebugItemUI = /** @class */ (function (_super) {
+            __extends(DebugItemUI, _super);
+            function DebugItemUI() {
+                return _super.call(this) || this;
+            }
+            DebugItemUI.prototype.createChildren = function () {
+                _super.prototype.createChildren.call(this);
+                this.createView(ui.debug.DebugItemUI.uiView);
+            };
+            DebugItemUI.uiView = { "type": "View", "props": { "width": 120, "height": 60 }, "child": [{ "type": "Label", "props": { "y": 0, "x": 0, "width": 120, "var": "tfName", "text": "label", "height": 27, "fontSize": 24, "color": "#000000", "align": "center" } }, { "type": "Button", "props": { "y": 27, "x": 0, "width": 120, "var": "btnAdd", "labelSize": 20, "labelColors": "#ffffff,#ffffff,#ffffff", "label": "Add", "height": 33 }, "child": [{ "type": "Rect", "props": { "y": 0, "x": 0, "width": 120, "lineWidth": 1, "height": 32, "fillColor": "#040f60" } }] }] };
+            return DebugItemUI;
+        }(View));
+        debug.DebugItemUI = DebugItemUI;
+    })(debug = ui.debug || (ui.debug = {}));
 })(ui || (ui = {}));
 (function (ui) {
     var fight;

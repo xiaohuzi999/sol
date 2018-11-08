@@ -9,7 +9,6 @@ Laya.MiniAdpter.init();
 Laya.init(750, 1334, WebGL);
 
 Laya.stage.scaleMode = "showall"
-
 //激活资源版本控制
 Laya.ResourceVersion.enable("version.json", Handler.create(null, beginLoad), Laya.ResourceVersion.FILENAME_VERSION);
 

@@ -97,7 +97,7 @@ class FightModel{
             /**加入背包*/
             //
             //修改用户状态
-            User.getInstance().money += reward.money;
+            User.getInstance().gold += reward.money;
             //
             xframe.XEvent.instance.event(FightModel.WIN, reward);
         }else{

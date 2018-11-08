@@ -8,8 +8,7 @@ var App = /** @class */ (function () {
         //
         DBMonster.init(Laya.loader.getRes("cfgs/npc.txt"));
         //加载。。
-        var main = new MainView();
-        main.show();
+        var main = xframe.XFacade.instance.showModule(MainView);
         //
         UserReq.getUserInfo(Handler.create(null, function () {
             trace(User.getInstance());
