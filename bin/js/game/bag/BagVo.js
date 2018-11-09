@@ -3,6 +3,7 @@
 */
 var BagVo = /** @class */ (function () {
     function BagVo(data) {
+        this.itemsList = [];
         for (var i in data) {
             this[i] = data[i];
         }

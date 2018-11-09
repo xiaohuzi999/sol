@@ -22,6 +22,7 @@ var BagView = /** @class */ (function (_super) {
     };
     BagView.prototype.initBag = function (vo) {
         this._vo = vo;
+        trace(this._vo);
         this.onChange();
     };
     BagView.prototype.onItemSelect = function (index) {
@@ -48,12 +49,14 @@ var BagView = /** @class */ (function (_super) {
     };
     BagView.prototype.formatPro = function () {
         var item = this._view.itemList.selectedItem;
-        if (item.property) {
-            this._view.proList.visible = true;
-            this._view.proList.array = getProList(item.property);
-        }
-        else {
-            this._view.proList.visible = false;
+        if (item) {
+            if (item.property) {
+                this._view.proList.visible = true;
+                this._view.proList.array = getProList(item.property);
+            }
+            else {
+                this._view.proList.visible = false;
+            }
         }
         function getProList(pro) {
             var proList = [];
