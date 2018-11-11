@@ -32,12 +32,22 @@ var UserInfoView = /** @class */ (function (_super) {
         for (var i = 0; i < this.ItemNum; i++) {
             this._ui["role_" + i].dataSource = roles[i];
         }
+        if (!this._group.selectedBtn) {
+            this._group.selectedBtn = this._group.buttons[0];
+        }
     };
     UserInfoView.prototype.onSelect = function () {
         var role = this._group.selectedBtn.dataSource;
         this._ui.tfAttack.text = role.attack + "";
         this._ui.tfHP.text = role.maxHp + "";
         this._ui.tfSpeed.text = role.speed + "";
+    };
+    UserInfoView.prototype.onClick = function (e) {
+        switch (e.target) {
+            case this._ui.btnBack:
+                this.close();
+                break;
+        }
     };
     UserInfoView.prototype.createUI = function () {
         this._ui = new ui.user.UserInfoUI();
@@ -46,11 +56,13 @@ var UserInfoView = /** @class */ (function (_super) {
     };
     UserInfoView.prototype.initEvent = function () {
         this._group.on(Laya.Event.SELECT, this, this.onSelect);
+        this._ui.on(Laya.Event.CLICK, this, this.onClick);
         _super.prototype.initEvent.call(this);
     };
     UserInfoView.prototype.removeEvent = function () {
         _super.prototype.removeEvent.call(this);
         this._group.off(Laya.Event.SELECT, this, this.onSelect);
+        this._ui.off(Laya.Event.CLICK, this, this.onClick);
     };
     return UserInfoView;
 }(xframe.XWindow));

@@ -3,20 +3,27 @@
 */
 class MainTopView extends xframe.XWindow{
     protected _view:ui.main.MainTopViewUI;
-    constructor(ui:any = null){
+    constructor(){
         super();
-        this._view = ui;
-        // this.x = ui.x;
-        // this.y = ui.y;
-        // this.addChild(ui);
-        // ui.pos(0,0);
         this._autoDispose = false;
         this.layer = xframe.LayerManager.LAYER_UI;
     }
 
     protected createUI():void{
+        this._view = new ui.main.MainTopViewUI();
         this.addChild(this._view);
         this.mouseThrough = this._view.mouseThrough = true;
+    }
+
+    private onClick(e:Laya.Event):void{
+        switch(e.target){
+            case this._view.btnUserInfo:
+                xframe.XFacade.instance.showModule(UserInfoView);
+            break;
+            case this._view.btnCharge:
+                xframe.XTip.showTip("coming soon");
+            break;
+        }
     }
 
     private onUpdte():void{
@@ -28,9 +35,11 @@ class MainTopView extends xframe.XWindow{
 
     protected initEvent():void{
         xframe.XEvent.instance.on(User.UPDATE, this, this.onUpdte);
+        this._view.on(Laya.Event.CLICK, this, this.onClick)
     }
 
     protected removeEvent():void{
         xframe.XEvent.instance.off(User.UPDATE, this, this.onUpdte);
+        this._view.off(Laya.Event.CLICK, this, this.onClick)
     }
 }

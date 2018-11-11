@@ -9,6 +9,10 @@ var BagVo = /** @class */ (function () {
         }
     }
     BagVo.prototype.getItemByType = function (type) {
+        if (type === void 0) { type = 0; }
+        if (type == 0) {
+            return this.itemsList;
+        }
         var items = [];
         for (var i in this.itemsList) {
             if (this.itemsList[i].type == type) {

@@ -20,6 +20,12 @@ class RoleItem extends ui.user.UserItemUI implements ISelectable{
 
     public set selected(v:boolean){
         this._selected = v;
+        if(this._selected){
+            this.filters = [new Laya.GlowFilter("#ff6600",5)];
+        }else{
+            this.filters = null;
+        }
+        
     }
 
     public get selected():boolean{

@@ -62,6 +62,8 @@ package com.xiaohuzi999.storyEditor.main
 				this.y = info.y;
 				if(info.hasOwnProperty("al")){
 					this.alpha = info.al;
+				}else{
+					this.alpha = 1;
 				}
 				if(info.b){
 					this.filters = [_blackFilter];

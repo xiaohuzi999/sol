@@ -19,6 +19,7 @@ package com.xiaohuzi999.storyEditor.windows
 	import flash.text.TextField;
 	
 	import fl.controls.ColorPicker;
+	import fl.controls.RadioButtonGroup;
 	import fl.events.ColorPickerEvent;
 	
 	/**
@@ -29,7 +30,7 @@ package com.xiaohuzi999.storyEditor.windows
 	 */
 	public class EditDiaWindow extends XModeWindow
 	{
-		private var $ui:MovieClip
+		private var $ui:EditDiaWindowUI
 		private var $closeBtn:InteractiveObject;
 		private var $saveBtn:InteractiveObject;
 		private var $resetBtn:InteractiveObject
@@ -38,6 +39,7 @@ package com.xiaohuzi999.storyEditor.windows
 		private var $nameTF:TextField;
 		private var $diaTF:TextField;
 		private var _data:RecordVo;
+		private var _radioGroup:RadioButtonGroup;
 		public function EditDiaWindow()
 		{
 			init();
@@ -58,6 +60,7 @@ package com.xiaohuzi999.storyEditor.windows
 					if(_data){
 						_data.name = nameStr;
 						_data.dialog = $diaTF.text;
+						_data.dir = int(_radioGroup.selectedData);
 					}
 					MainDispatcher.getInstance().dispatchEvent(new XEvent("save"))
 					break;
@@ -85,6 +88,11 @@ package com.xiaohuzi999.storyEditor.windows
 			if(data){
 				$nameTF.htmlText = data.name?data.name:"";
 				$diaTF.text = data.dialog?data.dialog:"";
+				if(data.dir == 1){
+					_radioGroup.selection = this.$ui.dir_0;
+				}else{
+					_radioGroup.selection = this.$ui.dir_1;
+				}
 			}else{
 				$diaTF.text = "";
 			}
@@ -118,6 +126,9 @@ package com.xiaohuzi999.storyEditor.windows
 			$cp0 = $ui.cp0;
 			$cp1 = $ui.cp1;
 			this.$ui.bgMC.scale9Grid  = new Rectangle(100,100,100,100);
+			
+			_radioGroup = new RadioButtonGroup("dir");
+			this.$ui.dir_0.group = this.$ui.dir_1.group = _radioGroup;
 		}
 		
 		override protected function initEvent():void{

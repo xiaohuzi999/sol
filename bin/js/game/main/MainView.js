@@ -38,6 +38,7 @@ var MainView = /** @class */ (function (_super) {
     MainView.prototype.show = function () {
         _super.prototype.show.call(this);
         this._view.chapList.array = [null].concat(DBChapter.getChapList(), [null]);
+        xframe.XFacade.instance.showModule(MainTopView);
     };
     MainView.prototype.createUI = function () {
         this._view = new ui.main.MainViewUI();
@@ -45,7 +46,6 @@ var MainView = /** @class */ (function (_super) {
         this._view.chapList.hScrollBarSkin = "";
         this._view.chapList.scrollBar.elasticBackTime = 100;
         this._view.chapList.scrollBar.rollRatio = 0.7;
-        xframe.ModuleManager.addModule(new MainTopView(this._view.topCom), MainTopView); //.show();
         xframe.ModuleManager.addModule(new MainMenuView(this._view.menuCom), MainMenuView).show();
     };
     MainView.prototype.initEvent = function () {

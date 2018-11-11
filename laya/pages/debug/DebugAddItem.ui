@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":3,
-    "selecteID":4,
+    "selecteID":9,
     "props":{"width":750,"sceneColor":"#000000","height":600},
     "nodeParent":-1,
     "label":"View",
@@ -50,6 +50,58 @@
                     "compId":4,
                     "child":[
                         ]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"y":-40,"x":-3,"width":120,"var":"btnGold","labelSize":20,"labelColors":"#ffffff,#ffffff,#ffffff","label":"Gold +1000","height":33},
+                    "nodeParent":3,
+                    "label":"Button(btnGold)",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":false,
+                    "hasChild":true,
+                    "compId":9,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Rect",
+                            "props":{"y":0,"x":0,"width":120,"lineWidth":1,"height":32,"fillColor":"#000000"},
+                            "nodeParent":9,
+                            "label":"Rect",
+                            "isDirectory":false,
+                            "isAniNode":false,
+                            "hasChild":false,
+                            "compId":10,
+                            "child":[
+                                ]
+                        }]
+                },
+                {
+                    "x":30,
+                    "type":"Button",
+                    "props":{"y":-39,"x":141,"width":120,"var":"btnDiamond","labelSize":20,"labelColors":"#ffffff,#ffffff,#ffffff","label":"Dia +1000","height":33},
+                    "nodeParent":3,
+                    "label":"Button(btnDiamond)",
+                    "isOpen":true,
+                    "isDirectory":true,
+                    "isAniNode":false,
+                    "hasChild":true,
+                    "compId":11,
+                    "child":[
+                        {
+                            "x":45,
+                            "type":"Rect",
+                            "props":{"y":0,"x":0,"width":120,"lineWidth":1,"height":32,"fillColor":"#000000"},
+                            "nodeParent":11,
+                            "label":"Rect",
+                            "isDirectory":false,
+                            "isAniNode":false,
+                            "hasChild":false,
+                            "compId":12,
+                            "child":[
+                                ]
+                        }]
                 }]
         },
         {

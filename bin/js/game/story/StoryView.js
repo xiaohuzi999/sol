@@ -34,6 +34,7 @@ var StoryView = /** @class */ (function (_super) {
         //trace(this._curDialog);
         if (this._curDialog) {
             this._view.msgCom.showDialog(this._curDialog);
+            this._msgCom.dataSource = this._curDialog;
             this.execute();
         }
         else {
@@ -41,11 +42,11 @@ var StoryView = /** @class */ (function (_super) {
     };
     StoryView.prototype.execute = function () {
         //是否分支选项
-        if (this._curDialog.nextRecordId_1) {
-            trace("分支1：", this._curDialog.label_0);
-            trace("分支2：", this._curDialog.label_1);
-            trace("分支3：", this._curDialog.label_2);
-            trace("分支4：", this._curDialog.label_3);
+        if (this._curDialog.nId_1) {
+            trace("分支1：", this._curDialog.lb_0);
+            trace("分支2：", this._curDialog.lb_1);
+            trace("分支3：", this._curDialog.lb_2);
+            trace("分支4：", this._curDialog.lb_3);
         }
         //是否具有事件
         else if (this._curDialog.eventInfo) {
@@ -62,9 +63,9 @@ var StoryView = /** @class */ (function (_super) {
         }
     };
     StoryView.prototype.getCurDialog = function (data) {
-        var curId = this._curDialog ? this._curDialog.nextRecordId_0 : "0";
+        var curId = this._curDialog ? this._curDialog.nId_0 : "0";
         for (var i in data.dialogList) {
-            if (data.dialogList[i].recordId == curId) {
+            if (data.dialogList[i].id == curId) {
                 return data.dialogList[i];
             }
         }
@@ -76,6 +77,9 @@ var StoryView = /** @class */ (function (_super) {
     StoryView.prototype.createUI = function () {
         this._view = new ui.story.StoryViewUI();
         this.addChild(this._view);
+        this._msgCom = new MsgCom();
+        this.addChild(this._msgCom);
+        this._msgCom.pos(0, 700);
     };
     StoryView.prototype.initEvent = function () {
         Laya.stage.on(Laya.Event.CLICK, this, this.onC);

@@ -9,6 +9,8 @@ class StoryView extends xframe.XWindow{
     private _curStory:StoryVo;
     //
     private _curDialog:DialogVo;
+    //
+    private _msgCom:MsgCom;
     constructor(){
         super();
         this._layer = xframe.LayerManager.LAYER_POP;
@@ -27,6 +29,7 @@ class StoryView extends xframe.XWindow{
         //trace(this._curDialog);
         if(this._curDialog){
             this._view.msgCom.showDialog(this._curDialog);
+            this._msgCom.dataSource = this._curDialog;
             this.execute();
         }else{
 
@@ -35,11 +38,11 @@ class StoryView extends xframe.XWindow{
 
     private execute():void{
         //是否分支选项
-        if(this._curDialog.nextRecordId_1){
-            trace("分支1：",this._curDialog.label_0);
-            trace("分支2：",this._curDialog.label_1);
-            trace("分支3：",this._curDialog.label_2);
-            trace("分支4：",this._curDialog.label_3);
+        if(this._curDialog.nId_1){
+            trace("分支1：",this._curDialog.lb_0);
+            trace("分支2：",this._curDialog.lb_1);
+            trace("分支3：",this._curDialog.lb_2);
+            trace("分支4：",this._curDialog.lb_3);
         }
         //是否具有事件
         else if(this._curDialog.eventInfo){
@@ -57,9 +60,9 @@ class StoryView extends xframe.XWindow{
     }
 
     private getCurDialog(data:StoryVo):DialogVo{
-        var curId:string = this._curDialog?this._curDialog.nextRecordId_0:"0";
+        var curId:string = this._curDialog?this._curDialog.nId_0:"0";
         for(var i in data.dialogList){
-            if(data.dialogList[i].recordId == curId){
+            if(data.dialogList[i].id == curId){
                 return data.dialogList[i];
             }
         }
@@ -73,6 +76,10 @@ class StoryView extends xframe.XWindow{
     protected createUI():void{
         this._view = new ui.story.StoryViewUI();
         this.addChild(this._view);
+
+        this._msgCom = new MsgCom();
+        this.addChild(this._msgCom);
+        this._msgCom.pos(0,700)
     }
 
     protected initEvent():void{

@@ -39,6 +39,12 @@ var RoleItem = /** @class */ (function (_super) {
         },
         set: function (v) {
             this._selected = v;
+            if (this._selected) {
+                this.filters = [new Laya.GlowFilter("#ff6600", 5)];
+            }
+            else {
+                this.filters = null;
+            }
         },
         enumerable: true,
         configurable: true

@@ -3,14 +3,19 @@
 */
 class DialogVo{
         //id
-		public recordId:string;
+		public id:string;
         //绘图层==============================================================================
 		//地图
-		public  bg:string;
+		public  bg:{n:string, x:number,y:number,sx:number, al:number,b:boolean,m:boolean};
 		/**立绘,格式——图片id|x|y|XScale|alpha;*/
-		public  leftPlayer:{name:string, x:number,y:number,scaleX:number, alpha:number};
+		public  p0:{n:string, x:number,y:number,sx:number, al:number,b:boolean,m:boolean};
 		/**立绘——图片id|x|y|XScale|alpha;*/
-		public  rightPlayer:{name:string, x:number,y:number,scaleX:number, alpha:number};
+		public  p1:{n:string, x:number,y:number,sx:number, al:number,b:boolean,m:boolean};
+		/**立绘——图片id|x|y|XScale|alpha;*/
+		public  p2:{n:string, x:number,y:number,sx:number, al:number,b:boolean,m:boolean};
+		/**立绘——图片id|x|y|XScale|alpha;*/
+		public  p3:{n:string, x:number,y:number,sx:number, al:number,b:boolean,m:boolean};
+		
 		/**表情--图片id|x|y*/
 		public  leftMood:string;
 		/**表情--图片id|x|y*/
@@ -24,35 +29,39 @@ class DialogVo{
 		public  name:string;
 		//对白
 		public  dialog:string;
+		//动画时间
+		public time:number = 500;
+		//方向
+		public dir:number = 1;
 		
 		//四叉树功能层===============================================================================
 		/**下一个记录ID-四叉树结构-默认链接键*/
-		public  nextRecordId_0:string;
+		public  nId_0:string;
 		/**选择标签*/
-		public  label_0:string;
+		public  lb_0:string;
 		/**显示条件*/
-		public  condition_0:string;
+		public  cond_0:string;
 		
 		/**下一个记录ID-四叉树结构*/
-		public  nextRecordId_1:string;
+		public  nId_1:string;
 		/**选择标签*/
-		public  label_1:string;
+		public  lb_1:string;
 		/**显示条件*/
-		public  condition_1:string;
+		public  cond_1:string;
 		
 		/**下一个记录ID-四叉树结构*/
-		public  nextRecordId_2:string;
+		public  nId_2:string;
 		/**选择标签*/
-		public  label_2:string;
+		public  lb_2:string;
 		/**显示条件*/
-		public  condition_2:string;
+		public  cond_2:string;
 		
 		/**下一个记录ID-四叉树结构*/
-		public  nextRecordId_3:string;
+		public  nId_3:string;
 		/**选择标签*/
-		public  label_3:string;
+		public  lb_3:string;
 		/**显示条件*/
-		public  condition_3:string;
+		public  cond_3:string;
 		
 		/**父类类ID,区别分歧剧情*/
 		public  parentId:string = ""

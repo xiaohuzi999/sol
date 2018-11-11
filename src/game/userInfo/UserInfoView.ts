@@ -20,6 +20,9 @@ class UserInfoView extends xframe.XWindow{
         for(let i=0; i<this.ItemNum; i++){
             this._ui["role_"+i].dataSource = roles[i];
         }
+        if(!this._group.selectedBtn){
+            this._group.selectedBtn = this._group.buttons[0];
+        }
     }
 
     private onSelect():void{
@@ -27,6 +30,14 @@ class UserInfoView extends xframe.XWindow{
         this._ui.tfAttack.text = role.attack+"";
         this._ui.tfHP.text = role.maxHp+"";
         this._ui.tfSpeed.text = role.speed+"";
+    }
+
+    private onClick(e:Laya.Event):void{
+        switch(e.target){
+            case this._ui.btnBack:
+            this.close();
+            break;
+        }
     }
 
     public createUI():void{
@@ -37,11 +48,13 @@ class UserInfoView extends xframe.XWindow{
 
     protected initEvent():void{
         this._group.on(Laya.Event.SELECT, this, this.onSelect)
+        this._ui.on(Laya.Event.CLICK, this, this.onClick)
         super.initEvent();
     }
 
     protected removeEvent():void{
         super.removeEvent();
         this._group.off(Laya.Event.SELECT, this, this.onSelect)
+        this._ui.off(Laya.Event.CLICK, this, this.onClick)
     }
 }

@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":43,
+    "selecteID":53,
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
     "label":"View",
@@ -14,19 +14,6 @@
     "child":[
         {
             "x":15,
-            "type":"Image",
-            "props":{"y":0,"x":0,"width":750,"skin":"main/bj_homepage@2x.png","height":1334},
-            "nodeParent":1,
-            "label":"Image",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":41,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"UIView",
             "source":"story/DialogCom.ui",
             "props":{"y":0,"x":0,"var":"msgCom","runtime":"DialogCom"},
@@ -36,6 +23,33 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":43,
+            "child":[
+                ],
+            "$HIDDEN":false
+        },
+        {
+            "x":15,
+            "type":"Image",
+            "props":{"y":-2,"x":0,"skin":"game/bg.png"},
+            "nodeParent":1,
+            "label":"Image",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":44,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Label",
+            "props":{"y":48,"x":181,"width":366,"var":"tfTitle","text":"水云村","height":39,"fontSize":36,"color":"#ffffff","align":"center"},
+            "nodeParent":1,
+            "label":"Label(tfTitle)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":45,
             "child":[
                 ]
         }],

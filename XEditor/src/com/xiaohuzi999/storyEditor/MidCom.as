@@ -244,6 +244,7 @@ package com.xiaohuzi999.storyEditor
 			_p0.y = _p1.y = 120;
 			_p1.x = _p3.x = 750-320;
 			_p0.x = _p2.x = _p2.y = _p3.y = 0;
+			_p0.alpha = _p2.alpha = _p2.alpha = _p3.alpha = 0;
 			_bgItem.x = _bgItem.y = 0;
 			$ui.diaMC.tipTF.visible = true;
 			$ui.diaMC.msgTF.text = "";

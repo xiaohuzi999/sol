@@ -23,7 +23,7 @@ class UserReq{
                 id:1,
                 name:"xiaohuzi999", 
                 pic:"",
-                money:0, 
+                gold:0, 
                 diamond:6,
                 power:10,
                 role:{...DBMonster.calcTotalPro(0), uid:1}

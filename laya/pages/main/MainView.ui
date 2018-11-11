@@ -2,7 +2,7 @@
     "x":0,
     "type":"View",
     "selectedBox":1,
-    "selecteID":45,
+    "selecteID":42,
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
     "label":"View",
@@ -22,20 +22,6 @@
             "isAniNode":true,
             "hasChild":false,
             "compId":41,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"UIView",
-            "source":"main/MainTopView.ui",
-            "props":{"y":0,"x":0,"var":"topCom"},
-            "nodeParent":1,
-            "label":"UIView(topCom)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":42,
             "child":[
                 ]
         },

@@ -1,8 +1,8 @@
 {
     "x":0,
     "type":"View",
-    "selectedBox":1,
-    "selecteID":21,
+    "selectedBox":29,
+    "selecteID":31,
     "props":{"width":750,"sceneColor":"#000000","height":1334},
     "nodeParent":-1,
     "label":"View",
@@ -19,128 +19,20 @@
             "nodeParent":1,
             "label":"Image",
             "isOpen":true,
-            "isDirectory":true,
+            "isDirectory":false,
             "isAniNode":true,
-            "hasChild":true,
+            "hasChild":false,
             "compId":2,
             "child":[
-                {
-                    "x":30,
-                    "type":"Rect",
-                    "props":{"y":889,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"},
-                    "nodeParent":2,
-                    "label":"Rect",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":3,
-                    "child":[
-                        ],
-                    "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Rect",
-                    "props":{"y":1134,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#a4a4a4"},
-                    "nodeParent":2,
-                    "label":"Rect",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":4,
-                    "child":[
-                        ],
-                    "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Rect",
-                    "props":{"y":0,"x":0,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":200,"fillColor":"#b9b9b9"},
-                    "nodeParent":2,
-                    "label":"Rect",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":5,
-                    "child":[
-                        ],
-                    "$HIDDEN":false
-                },
-                {
-                    "x":30,
-                    "type":"Rect",
-                    "props":{"y":216,"x":2,"width":750,"lineWidth":1,"lineColor":"#ffffff","height":160,"fillColor":"#ffffff"},
-                    "nodeParent":2,
-                    "label":"Rect",
-                    "isDirectory":false,
-                    "isAniNode":true,
-                    "hasChild":false,
-                    "compId":6,
-                    "child":[
-                        ],
-                    "$HIDDEN":false
-                }],
+                ],
             "$HIDDEN":false
         },
         {
             "x":15,
-            "type":"List",
-            "props":{"y":902,"x":1,"width":728,"var":"itemList","spaceX":18,"repeatY":1,"height":134},
-            "nodeParent":1,
-            "label":"List(itemList)",
-            "isOpen":true,
-            "isDirectory":true,
-            "isAniNode":true,
-            "hasChild":true,
-            "compId":12,
-            "child":[
-                {
-                    "x":30,
-                    "type":"UIView",
-                    "source":"bag/Item.ui",
-                    "props":{"y":0,"x":0,"runtime":"Item","name":"render"},
-                    "nodeParent":12,
-                    "label":"UIView(render)",
-                    "isDirectory":false,
-                    "isAniNode":false,
-                    "hasChild":false,
-                    "compId":15,
-                    "child":[
-                        ]
-                }]
-        },
-        {
-            "x":15,
-            "type":"Image",
-            "props":{"y":474,"x":278,"var":"pic"},
-            "nodeParent":1,
-            "label":"Image(pic)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":16,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
-            "type":"Label",
-            "props":{"y":415,"x":262,"width":226,"var":"tfName","text":"1","height":24,"fontSize":28,"color":"#000000","align":"center"},
-            "nodeParent":1,
-            "label":"Label(tfName)",
-            "isDirectory":false,
-            "isAniNode":true,
-            "hasChild":false,
-            "compId":17,
-            "child":[
-                ]
-        },
-        {
-            "x":15,
             "type":"Button",
-            "props":{"y":230,"x":10,"var":"btnItem","stateNum":"3","skin":"common/btn_0.png","labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"ITEM"},
+            "props":{"y":84,"x":8,"var":"btnAll","stateNum":"3","skin":"common/btn_0.png","sizeGrid":"24,33,18,24","scaleY":0.5,"scaleX":0.5,"labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"全部"},
             "nodeParent":1,
-            "label":"Button(btnItem)",
+            "label":"Button(btnAll)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
@@ -151,9 +43,9 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":230,"x":260,"var":"btnEquip","stateNum":"3","skin":"common/btn_0.png","labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"EQUIP"},
+            "props":{"y":84,"x":131,"var":"btnWeapon","stateNum":"3","skin":"common/btn_0.png","scaleY":0.5,"scaleX":0.5,"labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"武器"},
             "nodeParent":1,
-            "label":"Button(btnEquip)",
+            "label":"Button(btnWeapon)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
@@ -164,53 +56,80 @@
         {
             "x":15,
             "type":"Button",
-            "props":{"y":1077,"x":288,"var":"btnUse","stateNum":"1","skin":"common/btn_1.png","mouseEnabled":true,"label":"装备"},
+            "props":{"y":84,"x":255,"var":"btnCloth","stateNum":"3","skin":"common/btn_0.png","scaleY":0.5,"scaleX":0.5,"labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"衣服"},
             "nodeParent":1,
-            "label":"Button(btnUse)",
+            "label":"Button(btnCloth)",
             "isDirectory":false,
             "isAniNode":true,
             "hasChild":false,
-            "compId":21,
+            "compId":25,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "props":{"y":84,"x":378,"var":"btnShoe","stateNum":"3","skin":"common/btn_0.png","scaleY":0.5,"scaleX":0.5,"labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"鞋子"},
+            "nodeParent":1,
+            "label":"Button(btnShoe)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":26,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "props":{"y":84,"x":502,"var":"btnJewel","stateNum":"3","skin":"common/btn_0.png","scaleY":0.5,"scaleX":0.5,"labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"饰品"},
+            "nodeParent":1,
+            "label":"Button(btnJewel)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":27,
+            "child":[
+                ]
+        },
+        {
+            "x":15,
+            "type":"Button",
+            "props":{"y":84,"x":625,"var":"btnItem","stateNum":"3","skin":"common/btn_0.png","scaleY":0.5,"scaleX":0.5,"labelSize":24,"labelColors":"#000000,#ffffff,#ffffff","label":"道具"},
+            "nodeParent":1,
+            "label":"Button(btnItem)",
+            "isDirectory":false,
+            "isAniNode":true,
+            "hasChild":false,
+            "compId":28,
             "child":[
                 ]
         },
         {
             "x":15,
             "type":"List",
-            "props":{"y":445,"x":593,"width":125,"var":"proList","height":143},
+            "props":{"y":143,"x":0,"width":750,"var":"itemList","height":1033},
             "nodeParent":1,
-            "label":"List(proList)",
+            "label":"List(itemList)",
             "isOpen":true,
             "isDirectory":true,
             "isAniNode":true,
             "hasChild":true,
-            "compId":22,
+            "compId":29,
             "child":[
                 {
                     "x":30,
-                    "type":"Box",
-                    "props":{"y":0,"x":0,"width":115,"name":"render","height":29},
-                    "nodeParent":22,
-                    "label":"Box(render)",
-                    "isOpen":true,
-                    "isDirectory":true,
+                    "type":"UIView",
+                    "source":"bag/BagItem.ui",
+                    "props":{"runtime":"BagItem","name":"render"},
+                    "nodeParent":29,
+                    "label":"UIView(render)",
+                    "isDirectory":false,
                     "isAniNode":false,
-                    "hasChild":true,
-                    "compId":24,
+                    "hasChild":false,
+                    "compId":31,
                     "child":[
-                        {
-                            "x":45,
-                            "type":"Label",
-                            "props":{"y":0,"x":0,"width":115,"text":"label","name":"lb","height":27,"fontSize":24,"color":"#ffffff"},
-                            "nodeParent":24,
-                            "label":"Label(lb)",
-                            "isDirectory":false,
-                            "isAniNode":false,
-                            "hasChild":false,
-                            "compId":23,
-                            "child":[
-                                ]
-                        }]
+                        ]
                 }]
         }],
     "animations":[

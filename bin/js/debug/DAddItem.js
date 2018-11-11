@@ -21,6 +21,14 @@ var DAddItem = /** @class */ (function (_super) {
             case this._ui.btnClose:
                 this.close();
                 break;
+            case this._ui.btnGold:
+                User.getInstance().gold += 1000;
+                User.getInstance().emit();
+                break;
+            case this._ui.btnDiamond:
+                User.getInstance().diamond += 1000;
+                User.getInstance().emit();
+                break;
         }
     };
     DAddItem.prototype.show = function () {
@@ -34,7 +42,6 @@ var DAddItem = /** @class */ (function (_super) {
     };
     DAddItem.prototype.initEvent = function () {
         this._ui.on(Laya.Event.CLICK, this, this.onClick);
-        this.on(Laya.Event.CLICK, this, this.onClick);
     };
     DAddItem.prototype.removeEvent = function () {
         this._ui.off(Laya.Event.CLICK, this, this.onClick);

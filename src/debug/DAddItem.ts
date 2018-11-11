@@ -12,6 +12,14 @@ class DAddItem extends xframe.XMWindow{
             case this._ui.btnClose:
                 this.close();
             break;
+            case this._ui.btnGold:
+                User.getInstance().gold += 1000;
+                User.getInstance().emit();
+            break;
+            case this._ui.btnDiamond:
+                User.getInstance().diamond += 1000;
+                User.getInstance().emit();
+            break;
         }
     }
 
@@ -29,7 +37,6 @@ class DAddItem extends xframe.XMWindow{
 
     protected initEvent():void{
         this._ui.on(Laya.Event.CLICK, this, this.onClick)
-        this.on(Laya.Event.CLICK, this, this.onClick)
     }
 
     protected removeEvent():void{

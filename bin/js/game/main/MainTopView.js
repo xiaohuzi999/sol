@@ -13,21 +13,26 @@ var __extends = (this && this.__extends) || (function () {
 */
 var MainTopView = /** @class */ (function (_super) {
     __extends(MainTopView, _super);
-    function MainTopView(ui) {
-        if (ui === void 0) { ui = null; }
+    function MainTopView() {
         var _this = _super.call(this) || this;
-        _this._view = ui;
-        // this.x = ui.x;
-        // this.y = ui.y;
-        // this.addChild(ui);
-        // ui.pos(0,0);
         _this._autoDispose = false;
         _this.layer = xframe.LayerManager.LAYER_UI;
         return _this;
     }
     MainTopView.prototype.createUI = function () {
+        this._view = new ui.main.MainTopViewUI();
         this.addChild(this._view);
         this.mouseThrough = this._view.mouseThrough = true;
+    };
+    MainTopView.prototype.onClick = function (e) {
+        switch (e.target) {
+            case this._view.btnUserInfo:
+                xframe.XFacade.instance.showModule(UserInfoView);
+                break;
+            case this._view.btnCharge:
+                xframe.XTip.showTip("coming soon");
+                break;
+        }
     };
     MainTopView.prototype.onUpdte = function () {
         var user = User.getInstance();
@@ -37,9 +42,11 @@ var MainTopView = /** @class */ (function (_super) {
     };
     MainTopView.prototype.initEvent = function () {
         xframe.XEvent.instance.on(User.UPDATE, this, this.onUpdte);
+        this._view.on(Laya.Event.CLICK, this, this.onClick);
     };
     MainTopView.prototype.removeEvent = function () {
         xframe.XEvent.instance.off(User.UPDATE, this, this.onUpdte);
+        this._view.off(Laya.Event.CLICK, this, this.onClick);
     };
     return MainTopView;
 }(xframe.XWindow));

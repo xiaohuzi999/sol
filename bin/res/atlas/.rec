@@ -11,7 +11,6 @@ P 63241226 btn_1.png
 P DAE2C051 ic_back.png
 P C02BF76D ic_cricle.png
 P 83CA8FBB ic_more.png
-P C1E28382 ic_qrcode.png
 P EA3186B5 ic_rank.png
 P 6C6E6558 ic_share.png
 P 68E10C07 ic_signin.png
@@ -22,12 +21,11 @@ P 941ECCF8 wechat.png
 D fight
 P 11ED1B6C tx.png
 D game
-P A74CC120 ball.png
-P 13BDB3BC bj_choose music.png
+P 42822DC2 2.png
+R 77D1E044 bg.png
 P 6ECF5E41 bj_music.png
 P 3EEC46D0 bj_play_tc.png
 P F6CE2FDD bj_ranking_single.png
-P F60E222D bj_single.png
 P 19EF31AF btn_again.png
 P C280B17D btn_close.png
 P BE7B1835 btn_continue.png
@@ -41,6 +39,8 @@ P 335F628B btn_sure.png
 P 244E6B38 btn_sure2.png
 P 577AF9BC click.png
 P DBB03A6E dot.png
+P 17E7DEE6 head.png
+P 42DCC4D4 hero.png
 P 4208B345 ic_coin.png
 P 6636ECEC ic_power1.png
 P FF87D702 ic_star_result_b.png
@@ -52,7 +52,6 @@ P AED089E9 origin.png
 P 210DCA52 progress$bar.png
 P 45B44097 progress.png
 P 8B76931D spot.png
-P 62460798 spot_s.png
 P A92689C2 star_b.png
 P 90A4A73B star_w.png
 P 350F701F start_bg.png
@@ -78,14 +77,14 @@ P C5C5A751 yy_qklq.png
 P 970F4347 yy_xhj.png
 D icons
 P 8D19D32B attack.png
+P D4B362E0 diamond.png
+P 1EA9A238 diamond2.png
+P 6FD45E96 diamond3.png
+P A9674D86 diamond4.png
+P 98B9C766 diamond5.png
+P A937632F diamond6.png
 P 6D46FBC7 heart.png
 P BCB44830 jinbi.png
-P D4B362E0 recharge_pic1.png
-P 1EA9A238 recharge_pic2.png
-P 6FD45E96 recharge_pic3.png
-P A9674D86 recharge_pic4.png
-P 98B9C766 recharge_pic5.png
-P A937632F recharge_pic6.png
 D main
 P 63ABFF23 05.png
 P D9DF9444 bg_dialog.png
@@ -101,6 +100,7 @@ P 70DE4DF2 btn_ranking.png
 P B27DEB03 btn_role.png
 P 7C60E828 btn_sign.png
 P 5A73F0FA btn_watch.png
+P F0DEBBB8 daojutiao.png
 P D0479170 ic_add_power.png
 P 2126D1B2 ic_bg.png
 P 74656864 ic_coin.png

@@ -39,6 +39,8 @@ package com.xiaohuzi999.storyEditor.vo
 		public var dialog:String;
 		//动画时间
 		public var time:int = 500;
+		//方向
+		public var dir:int = 1;
 		
 		//非关键帧not key frame;
 		public var nkf:Boolean = false;

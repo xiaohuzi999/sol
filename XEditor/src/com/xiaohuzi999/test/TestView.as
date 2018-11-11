@@ -59,6 +59,7 @@ package com.xiaohuzi999.test
 		private var _prevData:RecordVo;
 		/***/
 		private var _curData:RecordVo;
+		private var _canAct:Boolean = true;
 		
 		/***/
 		private var _redSp:Sprite;
@@ -101,8 +102,12 @@ package com.xiaohuzi999.test
 					}
 				}
 			}
+			
 			_curData = data;
+			_canAct = !_curData.nkf;
+			
 			var time:Number = .5;
+			var delAlpha:Number;
 			if(data && data.time){
 				time = int(data.time)/1000;
 			}
@@ -111,10 +116,14 @@ package com.xiaohuzi999.test
 			if(data.bg){
 				DisplayLoader.getLoaderInfo(Consts.getURL(Consts.BG_URL, data.bg.n)+".jpg", onLoadPic, [_bg]);
 				if(_prevData && checkSame(_prevData.bg, data.bg)){
-					TweenLite.to(_bg, time, {x:data.bg.x || 0, y:data.bg.y || 0});
+					delAlpha = data.bg.alpha || 1
+					TweenLite.to(_bg, time, {x:data.bg.x || 0, y:data.bg.y || 0, alpha:delAlpha});
 				}else{
 					_bg.x = data.bg.x
 					_bg.y = data.bg.y
+					if(data.bg.hasOwnProperty("al")){
+						_bg.alpha = data.bg.al;
+					}
 				}
 			}
 			//左立绘
@@ -135,10 +144,14 @@ package com.xiaohuzi999.test
 				}
 				
 				if(_prevData && checkSame(_prevData.p0, data.p0)){
-					TweenLite.to(_bm0, time, {x:data.p0.x, y:data.p0.y});
+					delAlpha = data.p0.hasOwnProperty("al")?data.p0.al:1
+					TweenLite.to(_bm0, time, {x:data.p0.x, y:data.p0.y, alpha:delAlpha});
 				}else{
 					_bm0.x = data.p0.x
 					_bm0.y = data.p0.y
+					if(data.p0.hasOwnProperty("al")){
+						_bm0.alpha = data.p0.al;
+					}
 				}
 			}else{
 				_bm0.bitmapData = null;
@@ -161,10 +174,14 @@ package com.xiaohuzi999.test
 					_bm1.filters = [_mythFilter];
 				}
 				if(_prevData && checkSame(_prevData.p1, data.p1)){
-					TweenLite.to(_bm1, time, {x:data.p1.x, y:data.p1.y});
+					delAlpha = data.p1.hasOwnProperty("al")?data.p1.al:1
+					TweenLite.to(_bm1, time, {x:data.p1.x, y:data.p1.y, alpha:delAlpha});
 				}else{
 					_bm1.x = data.p1.x
 					_bm1.y = data.p1.y;
+					if(data.p1.hasOwnProperty("al")){
+						_bm1.alpha = data.p1.al;
+					}
 				}
 			}else{
 				_bm1.bitmapData = null;
@@ -187,10 +204,14 @@ package com.xiaohuzi999.test
 					_bm2.filters = [_mythFilter];
 				}
 				if(_prevData && checkSame(_prevData.p2, data.p2)){
-					TweenLite.to(_bm2, time, {x:data.p2.x, y:data.p2.y});
+					delAlpha = data.p2.hasOwnProperty("al")?data.p2.al:1
+					TweenLite.to(_bm2, time, {x:data.p2.x, y:data.p2.y, alpha:delAlpha});
 				}else{
 					_bm2.x = data.p2.x
 					_bm2.y = data.p2.y;
+					if(data.p2.hasOwnProperty("al")){
+						_bm2.alpha = data.p2.al;
+					}
 				}
 			}else{
 				_bm2.bitmapData = null;
@@ -213,10 +234,14 @@ package com.xiaohuzi999.test
 					_bm3.filters = [_mythFilter];
 				}
 				if(_prevData && checkSame(_prevData.p3, data.p3)){
+					delAlpha = data.p3.hasOwnProperty("al")?data.p3.al:1
 					TweenLite.to(_bm3, time, {x:data.p3.x, y:data.p3.y});
 				}else{
 					_bm3.x = data.p3.x
 					_bm3.y = data.p3.y;
+					if(data.p3.hasOwnProperty("al")){
+						_bm3.alpha = data.p3.al;
+					}
 				}
 			}else{
 				_bm3.bitmapData = null;
@@ -242,6 +267,14 @@ package com.xiaohuzi999.test
 			//对话=============================
 			if(data.name || data.dialog){
 				addDialog(data);
+			}
+			
+			//如果是过度帧，
+			if(!_canAct){
+				TweenLite.to(this, time, {onComplete:function():void{
+					_canAct = true;
+					onClick();
+				}});
 			}
 			
 			//分歧剧情
@@ -368,7 +401,7 @@ package com.xiaohuzi999.test
 			}
 		}
 		
-		private function onClick(event:MouseEvent):void{
+		private function onClick(event:MouseEvent=null):void{
 			if(!_curData.lb_1){//分支剧情
 				if(_curData.eventInfo){//事件解析，也许是战斗，也许其他
 					if(_curData.eventInfo.fight){
@@ -381,9 +414,11 @@ package com.xiaohuzi999.test
 						resume();
 					}
 				}else{
-					_prevData = _curData;
-					_curData = _source[_curData.nId_0];
-					parseDialog(_curData);
+					if(_canAct){
+						_prevData = _curData;
+						_curData = _source[_curData.nId_0];
+						parseDialog(_curData);
+					}
 				}
 			}
 		}
